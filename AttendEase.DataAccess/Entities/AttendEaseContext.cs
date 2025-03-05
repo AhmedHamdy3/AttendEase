@@ -27,11 +27,6 @@ namespace AttendEase.DataAccess.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var configBuilder = new ConfigurationBuilder()
-            //    .AddJsonFile("appsettings.json")
-            //    .Build();
-            //var configSection = configBuilder.GetSection("ConnectionStrings");
-            //var connectionString = configSection["SQLServerConnection"] ?? null;
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer(connectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

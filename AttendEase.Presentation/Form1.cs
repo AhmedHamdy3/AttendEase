@@ -20,8 +20,7 @@ namespace AttendEase.Presentation
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            var dailyAttendance = attendanceService.getLast10DaysAttendanceSummary(0);
+            var dailyAttendance = attendanceService.GetAttendanceInSpecificPeriod(new DateTime(2025, 02, 23), new DateTime(2025, 02, 27));
             dataGridView1.DataSource = dailyAttendance;
         }
     }
