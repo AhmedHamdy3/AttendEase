@@ -41,7 +41,7 @@ namespace AttendEase.Presentation
             profileImage.Location = new Point(100, 30); // Center it on the form
             profileImage.BorderStyle = BorderStyle.None; // Remove border
             profileImage.SizeMode = PictureBoxSizeMode.StretchImage; // Stretch image to fit
-            //profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
+            profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
 
             // Add the CircularPictureBox to the form
             this.Controls.Add(profileImage);

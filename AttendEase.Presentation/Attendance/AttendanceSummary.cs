@@ -40,17 +40,17 @@ namespace AttendEase.Presentation.Attendance
         private void DailySelected()
         {
             var dailyAttendanceSummary = attendanceService.GetPageOfDailyAttendanceSummary(0);
-            table.fillTable(dailyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Day", AttendanceInSpecificDay);
+            table.fillTable(dailyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Day", AttendanceInSpecificDay, null);
         }
         private void WeeklySelected()
         {
             var WeeklyAttendanceSummary = attendanceService.GetPageOfWeeklyAttendanceSummary(0);
-            table.fillTable(WeeklyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Period", AttendanceInSpecificWeek);
+            table.fillTable(WeeklyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Period", AttendanceInSpecificWeek, null);
         }
         private void MonthlySelected()
         {
             var MonthyAttendanceSummary = attendanceService.GetPageOfMonthlyAttendanceSummary(0);
-            table.fillTable(MonthyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Period", AttendanceInSpecificMonth);
+            table.fillTable(MonthyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Period", AttendanceInSpecificMonth, null);
         }
 
         private void AttendanceInSpecificDay(DateTime StartDate, DateTime EndDate)
@@ -62,7 +62,7 @@ namespace AttendEase.Presentation.Attendance
             cb_summaryType.Visible = false;
 
             var attendanceDay = attendanceService.GetAttendanceInSpecificDay(StartDate);
-            table.fillTable(attendanceDay, new[] { "Employee", "Department", "Status", "CheckIn", "CheckOut", "Late", "Early" }, "", null);
+            table.fillTable(attendanceDay, new[] { "Employee", "Department", "Status", "CheckIn", "CheckOut", "Late", "Early" }, "", null, null);
         }
         private void AttendanceInSpecificWeek(DateTime StartDate, DateTime EndDate)
         {
@@ -84,7 +84,7 @@ namespace AttendEase.Presentation.Attendance
             pb_back.Visible = true;
             btn_cb_summaryType.Visible = false;
             cb_summaryType.Visible = false;
-            table.fillTable(attendancePeriod, new[] { "Employee", "Department", "Present", "Absent", "Late", "Early" }, "", null);
+            table.fillTable(attendancePeriod, new[] { "Employee", "Department", "Present", "Absent", "Late", "Early" }, "", null, null);
         }
 
         private void cb_summarType_SelectedIndexChanged(object sender, EventArgs e)

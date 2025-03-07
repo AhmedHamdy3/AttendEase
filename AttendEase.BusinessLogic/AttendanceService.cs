@@ -151,13 +151,14 @@ namespace AttendEase.BusinessLogic
                         TotalDaysEarly = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Early"),
                         Id = g.Key.EmployeeId
                     })
+                    .Where(a => a.TotalDaysLate > 0 || a.TotalDaysEarly > 0)
                     .ToList();
 
                 return lateArrivalsAndEarlyDepartures;
             }
         }
 
-        public List<LateArrivalsAndEarlyDepartureForSpecificEmployee> GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(int id, DateTime startDate, DateTime endDate)
+        public List<LateArrivalsAndEarlyDepartureForSpecificEmployee> GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(DateTime startDate, DateTime endDate, int id)
         {
             using (var context = new AttendEaseContext())
             {
@@ -177,6 +178,7 @@ namespace AttendEase.BusinessLogic
                 var lateArrivalsAndEarlyDepartureForSpecificEmployee = attendanceData
                     .Select(attendance => new LateArrivalsAndEarlyDepartureForSpecificEmployee
                     {
+                        Name = attendance.Employee.Name,
                         Date = attendance.AttendanceDate,
                         CheckInTime = attendance.CheckInTime,
                         CheckOutTime = attendance.CheckOutTime,
@@ -279,6 +281,8 @@ namespace AttendEase.BusinessLogic
             }
             public class LateArrivalsAndEarlyDepartureForSpecificEmployee
             {
+                public string Name{ get; set; }
+
                 public DateTime Date { get; set; }
                 public TimeSpan? CheckInTime { get; set; }
                 public TimeSpan? CheckOutTime { get; set; }

@@ -19,8 +19,8 @@ namespace AttendEase.Presentation.CustomControls
             tablePanel.AutoScroll = true; // Enable scrolling if the table is large
             tablePanel.BackColor = Color.White;
         }
-
-        public void fillTable<T>(List<T> data, string[] headers, string guide, Action<DateTime, DateTime> foo)
+        
+        public void fillTable<T>(List<T> data, string[] headers, string guide, Action<DateTime, DateTime> foo1, Action<int> foo2)
         {
             //MessageBox.Show("Table Fill");
             int cellWidth = this.width / headers.Length; ; // Width of each cell
@@ -64,6 +64,7 @@ namespace AttendEase.Presentation.CustomControls
                 var employeeName = properties.FirstOrDefault(p => p.Name == "Name"); // ******************
                 var startDate = properties.FirstOrDefault(p => p.Name == "StartDate"); // ******************
                 var endDate = properties.FirstOrDefault(p => p.Name == "EndDate"); // ******************
+                var id = properties.FirstOrDefault(p => p.Name == "Id"); // ******************
 
                 Panel rowData = new Panel();
                 rowData.Size = new Size(this.width, cellHeight);
@@ -98,16 +99,32 @@ namespace AttendEase.Presentation.CustomControls
                     if (guide != "")
                     {
                         cellPanel.Cursor = Cursors.Hand;
-                        cellPanel.MouseUp += (sender, e) =>
-                        {
-                            foo((DateTime)startDate.GetValue(item), (DateTime)endDate.GetValue(item));
-                        };
-
                         cellLabel.Cursor = Cursors.Hand;
-                        cellLabel.MouseUp += (sender, e) =>
+
+                        if (guide == "Arrivals")
                         {
-                            foo((DateTime)startDate.GetValue(item), (DateTime)endDate.GetValue(item));
-                        };
+                            cellPanel.MouseUp += (sender, e) =>
+                            {
+                                foo2((int)id.GetValue(item));
+                            };
+
+                            cellLabel.MouseUp += (sender, e) =>
+                            {
+                                foo2((int)id.GetValue(item));
+                            };
+                        }
+                        else if (guide == "Day" || guide == "Period") 
+                        {
+                            cellPanel.MouseUp += (sender, e) =>
+                            {
+                                foo1((DateTime)startDate.GetValue(item), (DateTime)endDate.GetValue(item));
+                            };
+
+                            cellLabel.MouseUp += (sender, e) =>
+                            {
+                                foo1((DateTime)startDate.GetValue(item), (DateTime)endDate.GetValue(item));
+                            };
+                        }
                     }
 
                     // Add the cell panel to the table panel

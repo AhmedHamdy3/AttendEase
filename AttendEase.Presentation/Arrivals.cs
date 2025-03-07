@@ -17,6 +17,8 @@ namespace AttendEase.Presentation
     {
         AttendanceService attendanceService;
         Table table;
+        int isDetails = 0;
+        int id = -1;
         public Arrivals()
         {
             InitializeComponent();
@@ -26,7 +28,6 @@ namespace AttendEase.Presentation
                     .Build();
             var configSection = configBuilder.GetSection("ConnectionStrings");
             var connectionString = configSection["SQLServerConnection"] ?? null;
-
             attendanceService = new AttendanceService(connectionString);
         }
 
@@ -34,9 +35,68 @@ namespace AttendEase.Presentation
         {
             table = new Table(888, 570, 30, 240);
             this.Controls.Add(table.tablePanel);
-            var lateArrivalsAndEarlyDeparture = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriod(new DateTime(2025, 2, 22), new DateTime(2025,2,27));
-            table.fillTable(lateArrivalsAndEarlyDeparture, new[] { "Employee", "Department", "Late", "Early"}, "", null);
+            var month = AttendanceService.GetPreviousMonth(DateTime.Now, 0);
 
+            dtp_startDate.Value = month.StartDate;
+            dtp_endDate.Value = month.EndDate;
+
+            ShowArrivals();
+        }
+
+        private void dtp_startDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (isDetails == 0)
+            {
+                ShowArrivals();
+            }
+            else if (isDetails == 1)
+            {
+                ShowArrivalsDetail();
+            }
+        }
+
+        private void dtp_endDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (isDetails == 0)
+            {
+                ShowArrivals();
+            }
+            else if (isDetails == 1)
+            {
+                ShowArrivalsDetail();
+            }
+        }
+
+        private void GetLateAndEarlyForSpecificEmployee(int id)
+        {
+            isDetails = 1;
+            this.id = id;
+            table.tablePanel.Location = new Point(30, 280);
+            table.tablePanel.Size = new Size(888, 530);
+            pb_back.Visible = true;
+            ShowArrivalsDetail();
+        }
+
+        private void ShowArrivals()
+        {
+            var lateArrivalsAndEarlyDeparture = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriod(dtp_startDate.Value, dtp_endDate.Value);
+            table.fillTable(lateArrivalsAndEarlyDeparture, new[] { "Employee", "Department", "Late", "Early" }, "Arrivals", null, GetLateAndEarlyForSpecificEmployee);
+        }
+        private void ShowArrivalsDetail()
+        {
+            var lateArrivalsAndEarlyDepartureForSpecificEmployee = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(dtp_startDate.Value, dtp_endDate.Value, this.id);
+            table.fillTable(lateArrivalsAndEarlyDepartureForSpecificEmployee, new string[] { "Employee", "Date", "Check In", "Check Out", "Total Time", "type" }, "ArrivalDetails", null, null);
+
+
+        }
+
+        private void pb_back_Click(object sender, EventArgs e)
+        {
+            isDetails = 0;
+            table.tablePanel.Location = new Point(30, 240);
+            table.tablePanel.Size = new Size(888, 570);
+            pb_back.Visible = false;
+            ShowArrivals();
         }
     }
 }
