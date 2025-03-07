@@ -4,10 +4,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace AttendEase.Presentation
 {
-    public partial class Form1 : Form
+    public partial class SetPassword : Form
     {
         private readonly AttendanceService attendanceService;
-        public Form1()
+        public SetPassword()
         {
             InitializeComponent();
             var configBuilder = new ConfigurationBuilder()
@@ -18,10 +18,10 @@ namespace AttendEase.Presentation
             attendanceService = new AttendanceService(connectionString);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void SetPassword_Load(object sender, EventArgs e)
         {
             var dailyAttendance = attendanceService.GetAttendanceInSpecificPeriod(new DateTime(2025, 02, 23), new DateTime(2025, 02, 27));
-            dataGridView1.DataSource = dailyAttendance;
+            //dataGridView1.DataSource = dailyAttendance;
         }
     }
 }

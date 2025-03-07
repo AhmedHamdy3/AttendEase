@@ -77,9 +77,9 @@ namespace AttendEase.BusinessLogic
                     {
                         Name = attendance.Employee.Name,
                         Department = attendance.Employee.Department.Name,
+                        Status = status,
                         CheckInTime = checkInTime,
                         CheckOutTime = checkOutTime,
-                        Status = status,
                         IsLate = late,
                         IsEarly = early,
                     });
@@ -119,6 +119,79 @@ namespace AttendEase.BusinessLogic
                     .ToList();
 
                 return employeeAttendances;
+            }
+        }
+        #endregion
+
+        #region Late Arrivals & Early Departure
+        public List<LateArrivalsAndEarlyDeparture> GetLateArrivalsAndEarlyDepartureInSpecificPeriod(DateTime startDate, DateTime endDate)
+        {
+            using(var context = new AttendEaseContext())
+            {
+                // Fetch all relevant data in a single query
+                var attendanceData = context.Attendances
+                    .Where(attendance => attendance.AttendanceDate >= startDate && attendance.AttendanceDate <= endDate)
+                    .Select(attendance => new
+                    {
+                        Employee = attendance.Employee,
+                        AttendanceStatuses = attendance.AttendanceAttendanceStatuses
+                            .Select(aas => aas.AttendanceStatus.Status)
+                            .ToList()
+                    })
+                    .ToList();
+
+                // Group by employee and calculate attendance metrics
+                var lateArrivalsAndEarlyDepartures = attendanceData
+                    .GroupBy(ad => ad.Employee)
+                    .Select(g => new LateArrivalsAndEarlyDeparture
+                    {
+                        Name = g.Key.Name,
+                        Department = g.Key.Department.Name,
+                        TotalDaysLate = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Late"),
+                        TotalDaysEarly = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Early"),
+                        Id = g.Key.EmployeeId
+                    })
+                    .ToList();
+
+                return lateArrivalsAndEarlyDepartures;
+            }
+        }
+
+        public List<LateArrivalsAndEarlyDepartureForSpecificEmployee> GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(int id, DateTime startDate, DateTime endDate)
+        {
+            using (var context = new AttendEaseContext())
+            {
+                // Fetch all relevant data in a single query
+                var attendanceData = 
+                    context.Employees.Where(employee => employee.EmployeeId == id).FirstOrDefault()?
+                    .Attendances.Where(attendance => attendance.AttendanceDate >= startDate && attendance.AttendanceDate <= endDate)
+                    .Where
+                        (
+                        attendance => attendance.AttendanceAttendanceStatuses.Any(aas => aas.AttendanceStatus.Status == "Late") 
+                        || 
+                        attendance.AttendanceAttendanceStatuses.Any(aas => aas.AttendanceStatus.Status == "Early")
+                        )
+                    .ToList();
+
+                // 
+                var lateArrivalsAndEarlyDepartureForSpecificEmployee = attendanceData
+                    .Select(attendance => new LateArrivalsAndEarlyDepartureForSpecificEmployee
+                    {
+                        Date = attendance.AttendanceDate,
+                        CheckInTime = attendance.CheckInTime,
+                        CheckOutTime = attendance.CheckOutTime,
+                        TotalsHourOfWorking = attendance.CheckOutTime - attendance.CheckInTime,
+                        LateOrEarly = (
+                            !attendance.AttendanceAttendanceStatuses.Any(aas => aas.AttendanceStatus.Status == "Late")
+                            ? "Early"
+                            : !attendance.AttendanceAttendanceStatuses.Any(aas => aas.AttendanceStatus.Status == "Early")
+                            ? "Late"
+                            : "Late & Early"
+                            )
+                    })
+                    .ToList();
+
+                return lateArrivalsAndEarlyDepartureForSpecificEmployee;
             }
         }
         #endregion
@@ -189,11 +262,34 @@ namespace AttendEase.BusinessLogic
             {
                 public string Name { get; set; }
                 public string Department { get; set; }
+                public string Status { get; set; }
                 public TimeSpan CheckInTime { get; set; }
                 public TimeSpan CheckOutTime { get; set; }
-                public string Status { get; set; }
                 public string IsLate { get; set; }
                 public string IsEarly { get; set; }
+            }
+
+            public class LateArrivalsAndEarlyDeparture
+            {
+                public string Name { get; set; }
+                public string Department{ get; set; }
+                public int TotalDaysLate { get; set;}
+                public int TotalDaysEarly { get; set; }
+                public int Id { get; set; }
+            }
+            public class LateArrivalsAndEarlyDepartureForSpecificEmployee
+            {
+                public DateTime Date { get; set; }
+                public TimeSpan? CheckInTime { get; set; }
+                public TimeSpan? CheckOutTime { get; set; }
+                public TimeSpan? TotalsHourOfWorking { get; set; }
+                public string LateOrEarly { get; set; }
+
+            //public string Name { get; set; }
+            //    public string Department { get; set; }
+            //    public int TotalDaysLate { get; set; }
+            //    public int TotalDaysEarly { get; set; }
+            //    public int Id { get; set; }
             }
         #endregion
 
