@@ -29,61 +29,52 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetPassword));
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
+            btn_signIn = new PictureBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            textBox1 = new TextBox();
+            txt_email = new TextBox();
             panel1 = new Panel();
             panel3 = new Panel();
             panel2 = new Panel();
-            pictureBox5 = new PictureBox();
-            label6 = new Label();
-            pictureBox4 = new PictureBox();
-            label5 = new Label();
+            pb_showConfirm = new PictureBox();
+            lbl_showConfirm = new Label();
+            pb_showPassword = new PictureBox();
+            lbl_showPassword = new Label();
             panel6 = new Panel();
             panel7 = new Panel();
-            textBox3 = new TextBox();
+            txt_confirm = new TextBox();
             panel4 = new Panel();
             panel5 = new Panel();
-            textBox2 = new TextBox();
-            pictureBox3 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            txt_password = new TextBox();
+            btn_setPassword = new PictureBox();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)btn_signIn).BeginInit();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pb_showConfirm).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pb_showPassword).BeginInit();
             panel6.SuspendLayout();
             panel7.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btn_setPassword).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // btn_signIn
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(32, 23);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(536, 803);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(105, 239);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(358, 48);
-            pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox2.TabIndex = 2;
-            pictureBox2.TabStop = false;
+            btn_signIn.Cursor = Cursors.Hand;
+            btn_signIn.Image = (Image)resources.GetObject("btn_signIn.Image");
+            btn_signIn.Location = new Point(105, 239);
+            btn_signIn.Name = "btn_signIn";
+            btn_signIn.Size = new Size(358, 48);
+            btn_signIn.SizeMode = PictureBoxSizeMode.AutoSize;
+            btn_signIn.TabIndex = 2;
+            btn_signIn.TabStop = false;
+            btn_signIn.Click += btn_signIn_Click;
             // 
             // label1
             // 
@@ -129,15 +120,15 @@
             label4.TabIndex = 6;
             label4.Text = "Confirm Password";
             // 
-            // textBox1
+            // txt_email
             // 
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.FromArgb(38, 32, 59);
-            textBox1.Location = new Point(14, 11);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(327, 24);
-            textBox1.TabIndex = 8;
+            txt_email.BorderStyle = BorderStyle.None;
+            txt_email.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_email.ForeColor = Color.FromArgb(38, 32, 59);
+            txt_email.Location = new Point(14, 11);
+            txt_email.Name = "txt_email";
+            txt_email.Size = new Size(327, 24);
+            txt_email.TabIndex = 8;
             // 
             // panel1
             // 
@@ -151,7 +142,7 @@
             // panel3
             // 
             panel3.BackColor = Color.White;
-            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(txt_email);
             panel3.Location = new Point(1, 1);
             panel3.Name = "panel3";
             panel3.Size = new Size(355, 46);
@@ -159,69 +150,69 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(pictureBox5);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(pictureBox4);
-            panel2.Controls.Add(label5);
+            panel2.Controls.Add(pb_showConfirm);
+            panel2.Controls.Add(lbl_showConfirm);
+            panel2.Controls.Add(pb_showPassword);
+            panel2.Controls.Add(lbl_showPassword);
             panel2.Controls.Add(panel6);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(panel1);
-            panel2.Controls.Add(pictureBox3);
+            panel2.Controls.Add(btn_setPassword);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
-            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(btn_signIn);
             panel2.Location = new Point(650, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(633, 853);
             panel2.TabIndex = 0;
             // 
-            // pictureBox5
+            // pb_showConfirm
             // 
-            pictureBox5.Cursor = Cursors.Hand;
-            pictureBox5.Image = Properties.Resources.Eye;
-            pictureBox5.Location = new Point(397, 535);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(18, 15);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 15;
-            pictureBox5.TabStop = false;
+            pb_showConfirm.Cursor = Cursors.Hand;
+            pb_showConfirm.Image = Properties.Resources.Eye;
+            pb_showConfirm.Location = new Point(397, 535);
+            pb_showConfirm.Name = "pb_showConfirm";
+            pb_showConfirm.Size = new Size(18, 15);
+            pb_showConfirm.SizeMode = PictureBoxSizeMode.StretchImage;
+            pb_showConfirm.TabIndex = 15;
+            pb_showConfirm.TabStop = false;
             // 
-            // label6
+            // lbl_showConfirm
             // 
-            label6.AutoSize = true;
-            label6.Cursor = Cursors.Hand;
-            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(38, 32, 59);
-            label6.Location = new Point(415, 532);
-            label6.Name = "label6";
-            label6.Size = new Size(47, 20);
-            label6.TabIndex = 14;
-            label6.Text = "Show";
+            lbl_showConfirm.AutoSize = true;
+            lbl_showConfirm.Cursor = Cursors.Hand;
+            lbl_showConfirm.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_showConfirm.ForeColor = Color.FromArgb(38, 32, 59);
+            lbl_showConfirm.Location = new Point(415, 532);
+            lbl_showConfirm.Name = "lbl_showConfirm";
+            lbl_showConfirm.Size = new Size(47, 20);
+            lbl_showConfirm.TabIndex = 14;
+            lbl_showConfirm.Text = "Show";
             // 
-            // pictureBox4
+            // pb_showPassword
             // 
-            pictureBox4.Cursor = Cursors.Hand;
-            pictureBox4.Image = Properties.Resources.Eye;
-            pictureBox4.Location = new Point(397, 430);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(18, 15);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 13;
-            pictureBox4.TabStop = false;
+            pb_showPassword.Cursor = Cursors.Hand;
+            pb_showPassword.Image = Properties.Resources.Eye;
+            pb_showPassword.Location = new Point(397, 430);
+            pb_showPassword.Name = "pb_showPassword";
+            pb_showPassword.Size = new Size(18, 15);
+            pb_showPassword.SizeMode = PictureBoxSizeMode.StretchImage;
+            pb_showPassword.TabIndex = 13;
+            pb_showPassword.TabStop = false;
             // 
-            // label5
+            // lbl_showPassword
             // 
-            label5.AutoSize = true;
-            label5.Cursor = Cursors.Hand;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(38, 32, 59);
-            label5.Location = new Point(415, 427);
-            label5.Name = "label5";
-            label5.Size = new Size(47, 20);
-            label5.TabIndex = 2;
-            label5.Text = "Show";
+            lbl_showPassword.AutoSize = true;
+            lbl_showPassword.Cursor = Cursors.Hand;
+            lbl_showPassword.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_showPassword.ForeColor = Color.FromArgb(38, 32, 59);
+            lbl_showPassword.Location = new Point(415, 427);
+            lbl_showPassword.Name = "lbl_showPassword";
+            lbl_showPassword.Size = new Size(47, 20);
+            lbl_showPassword.TabIndex = 2;
+            lbl_showPassword.Text = "Show";
             // 
             // panel6
             // 
@@ -235,22 +226,22 @@
             // panel7
             // 
             panel7.BackColor = Color.White;
-            panel7.Controls.Add(textBox3);
+            panel7.Controls.Add(txt_confirm);
             panel7.Location = new Point(1, 1);
             panel7.Name = "panel7";
             panel7.Size = new Size(355, 46);
             panel7.TabIndex = 10;
             // 
-            // textBox3
+            // txt_confirm
             // 
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.ForeColor = Color.FromArgb(38, 32, 59);
-            textBox3.Location = new Point(14, 11);
-            textBox3.Name = "textBox3";
-            textBox3.PasswordChar = '*';
-            textBox3.Size = new Size(327, 24);
-            textBox3.TabIndex = 8;
+            txt_confirm.BorderStyle = BorderStyle.None;
+            txt_confirm.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_confirm.ForeColor = Color.FromArgb(38, 32, 59);
+            txt_confirm.Location = new Point(14, 11);
+            txt_confirm.Name = "txt_confirm";
+            txt_confirm.PasswordChar = '*';
+            txt_confirm.Size = new Size(327, 24);
+            txt_confirm.TabIndex = 8;
             // 
             // panel4
             // 
@@ -264,33 +255,43 @@
             // panel5
             // 
             panel5.BackColor = Color.White;
-            panel5.Controls.Add(textBox2);
+            panel5.Controls.Add(txt_password);
             panel5.Location = new Point(1, 1);
             panel5.Name = "panel5";
             panel5.Size = new Size(355, 46);
             panel5.TabIndex = 10;
             // 
-            // textBox2
+            // txt_password
             // 
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.ForeColor = Color.FromArgb(38, 32, 59);
-            textBox2.Location = new Point(14, 11);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(327, 24);
-            textBox2.TabIndex = 8;
+            txt_password.BorderStyle = BorderStyle.None;
+            txt_password.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_password.ForeColor = Color.FromArgb(38, 32, 59);
+            txt_password.Location = new Point(14, 11);
+            txt_password.Name = "txt_password";
+            txt_password.PasswordChar = '*';
+            txt_password.Size = new Size(327, 24);
+            txt_password.TabIndex = 8;
             // 
-            // pictureBox3
+            // btn_setPassword
             // 
-            pictureBox3.Cursor = Cursors.Hand;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(105, 662);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(357, 48);
-            pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox3.TabIndex = 7;
-            pictureBox3.TabStop = false;
+            btn_setPassword.Cursor = Cursors.Hand;
+            btn_setPassword.Image = (Image)resources.GetObject("btn_setPassword.Image");
+            btn_setPassword.Location = new Point(105, 662);
+            btn_setPassword.Name = "btn_setPassword";
+            btn_setPassword.Size = new Size(357, 48);
+            btn_setPassword.SizeMode = PictureBoxSizeMode.AutoSize;
+            btn_setPassword.TabIndex = 7;
+            btn_setPassword.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(32, 23);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(536, 803);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
             // 
             // SetPassword
             // 
@@ -302,47 +303,47 @@
             Controls.Add(panel2);
             Name = "SetPassword";
             Text = "Form1";
-            Load += this.SetPassword_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            Load += SetPassword_Load;
+            ((System.ComponentModel.ISupportInitialize)btn_signIn).EndInit();
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pb_showConfirm).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pb_showPassword).EndInit();
             panel6.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             panel4.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btn_setPassword).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
+        private PictureBox btn_signIn;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox textBox1;
+        private TextBox txt_email;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
-        private PictureBox pictureBox3;
+        private PictureBox btn_setPassword;
         private Panel panel4;
         private Panel panel5;
-        private TextBox textBox2;
+        private TextBox txt_password;
         private Panel panel6;
         private Panel panel7;
-        private TextBox textBox3;
-        private Label label5;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox5;
-        private Label label6;
+        private TextBox txt_confirm;
+        private Label lbl_showPassword;
+        private PictureBox pb_showPassword;
+        private PictureBox pb_showConfirm;
+        private Label lbl_showConfirm;
+        private PictureBox pictureBox1;
     }
 }

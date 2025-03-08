@@ -23,5 +23,14 @@ namespace AttendEase.Presentation
             var dailyAttendance = attendanceService.GetAttendanceInSpecificPeriod(new DateTime(2025, 02, 23), new DateTime(2025, 02, 27));
             //dataGridView1.DataSource = dailyAttendance;
         }
+
+        private void btn_signIn_Click(object sender, EventArgs e)
+        {
+            SignInForm signInForm = new SignInForm();
+            signInForm.StartPosition = FormStartPosition.Manual;
+            signInForm.Location = this.Location;
+            signInForm.Show();
+            this.Close();
+        }
     }
 }

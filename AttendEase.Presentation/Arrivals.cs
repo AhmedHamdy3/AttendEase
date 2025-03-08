@@ -43,6 +43,7 @@ namespace AttendEase.Presentation
             ShowArrivals();
         }
 
+
         private void dtp_startDate_ValueChanged(object sender, EventArgs e)
         {
             if (isDetails == 0)
@@ -86,10 +87,7 @@ namespace AttendEase.Presentation
         {
             var lateArrivalsAndEarlyDepartureForSpecificEmployee = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(dtp_startDate.Value, dtp_endDate.Value, this.id);
             table.fillTable(lateArrivalsAndEarlyDepartureForSpecificEmployee, new string[] { "Employee", "Date", "Check In", "Check Out", "Total Time", "type" }, "ArrivalDetails", null, null);
-
-
         }
-
         private void pb_back_Click(object sender, EventArgs e)
         {
             isDetails = 0;
