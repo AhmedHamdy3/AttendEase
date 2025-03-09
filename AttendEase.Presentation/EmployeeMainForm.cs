@@ -1,8 +1,4 @@
-﻿using AttendEase.BusinessLogic;
-using AttendEase.Presentation.Attendance;
-using AttendEase.Presentation.CustomControls;
-using AttendEase.Presentation.Properties;
-using Microsoft.Extensions.Configuration;
+﻿using AttendEase.Presentation.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,17 +11,17 @@ using System.Windows.Forms;
 
 namespace AttendEase.Presentation
 {
-    public partial class HRDashboard : Form
+    public partial class EmployeeMainForm : Form
     {
         private Button currentButton;
-        AttendanceService attendanceService;
         ProfileImage profileImage;
-        public HRDashboard()
+
+        public EmployeeMainForm()
         {
             InitializeComponent();
         }
 
-        private void HRDashboard_Load(object sender, EventArgs e)
+        private void EmployeeMainForm_Load(object sender, EventArgs e)
         {
             #region Set The Profile Image
             profileImage = new ProfileImage();
@@ -40,66 +36,32 @@ namespace AttendEase.Presentation
             profileImage.BringToFront();
             #endregion
 
-            // Add the name of the employee
             lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
             lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
 
+            // Add the name of the employee
             btn_dashboard.PerformClick();
-
         }
-
-
         private void btn_dashboard_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, (Image)Properties.Resources.Home_Active);
-        }
-
-        private void btn_employees_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, (Image)Properties.Resources.Management_Active);
-        }
-
-        private void btn_schedules_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, (Image)Properties.Resources.Calendar_Active);
-        }
-
-        private void btn_attendance_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, (Image)Properties.Resources.Attendance_Active);
 
             this.pnl_formLoader.Controls.Clear();
-            AttendanceSummary attendanceSummaryForm = new AttendanceSummary() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            attendanceSummaryForm.FormBorderStyle = FormBorderStyle.None;
-            this.pnl_formLoader.Controls.Add(attendanceSummaryForm);
-            attendanceSummaryForm.Show();
-        }
-
-        private void btn_arrivals_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, (Image)Properties.Resources.Clock_Active);
-
-            this.pnl_formLoader.Controls.Clear();
-            Arrivals attendanceSummaryForm = new Arrivals() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            attendanceSummaryForm.FormBorderStyle = FormBorderStyle.None;
-            this.pnl_formLoader.Controls.Add(attendanceSummaryForm);
-            attendanceSummaryForm.Show();
-        }
-
-        private void btn_frequentAbsent_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, (Image)Properties.Resources.Calendar_Delete_Active);
-
-            this.pnl_formLoader.Controls.Clear();
-            FrequentAbsence frequentAbsence = new FrequentAbsence() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            frequentAbsence.FormBorderStyle = FormBorderStyle.None;
-            this.pnl_formLoader.Controls.Add(frequentAbsence);
-            frequentAbsence.Show();
+            EmployeeDashboard employeeDashboard = new EmployeeDashboard() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            employeeDashboard.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(employeeDashboard);
+            employeeDashboard.Show();
         }
 
         private void btn_leaveRequest_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, (Image)Properties.Resources.Inquiry_Active);
+
+            this.pnl_formLoader.Controls.Clear();
+            EmployeeLeaveRequests employeeLeaveRequests = new EmployeeLeaveRequests() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            employeeLeaveRequests.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(employeeLeaveRequests);
+            employeeLeaveRequests.Show();
         }
 
         private void ActivateButton(object btnSender, Image img)
@@ -135,16 +97,6 @@ namespace AttendEase.Presentation
                         previousBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(236, 240, 255);
                         if (previousBtn.Name == "btn_dashboard")
                             previousBtn.Image = (Image)Properties.Resources.Home;
-                        else if (previousBtn.Name == "btn_employees")
-                            previousBtn.Image = (Image)Properties.Resources.Management;
-                        else if (previousBtn.Name == "btn_schedules")
-                            previousBtn.Image = (Image)Properties.Resources.Planner;
-                        else if (previousBtn.Name == "btn_attendance")
-                            previousBtn.Image = (Image)Properties.Resources.Attendance;
-                        else if (previousBtn.Name == "btn_arrivals")
-                            previousBtn.Image = (Image)Properties.Resources.Clock;
-                        else if (previousBtn.Name == "btn_frequentAbsent")
-                            previousBtn.Image = (Image)Properties.Resources.Calendar_Delete;
                         else if (previousBtn.Name == "btn_leaveRequest")
                             previousBtn.Image = (Image)Properties.Resources.Inquiry;
                     }

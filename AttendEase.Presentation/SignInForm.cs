@@ -71,10 +71,10 @@ namespace AttendEase.Presentation
                 }
                 else if(employee.JobTitle == "Employee")
                 {
-                    EmployeeDashboard employeeDashboard = new EmployeeDashboard();
-                    employeeDashboard.StartPosition = FormStartPosition.Manual;
-                    employeeDashboard.Location = this.Location;
-                    employeeDashboard.Show();
+                    EmployeeMainForm employeeMainForm= new EmployeeMainForm();
+                    employeeMainForm.StartPosition = FormStartPosition.Manual;
+                    employeeMainForm.Location = this.Location;
+                    employeeMainForm.Show();
                 }
                 this.Close();   
             }

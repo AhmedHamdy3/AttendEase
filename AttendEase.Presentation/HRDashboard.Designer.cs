@@ -96,6 +96,7 @@
             btn_logout.Text = "       Logout";
             btn_logout.TextAlign = ContentAlignment.MiddleLeft;
             btn_logout.UseVisualStyleBackColor = false;
+            btn_logout.Click += btn_logout_Click;
             // 
             // flowLayoutPanel8
             // 

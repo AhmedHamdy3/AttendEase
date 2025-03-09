@@ -59,7 +59,6 @@ namespace AttendEase.Presentation
                         MessageBox.Show("The password has been set successfully.");
                         csb_singIn.PerformClick();
                     }
-
                 }
             }
             else
