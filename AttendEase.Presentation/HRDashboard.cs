@@ -23,6 +23,7 @@ namespace AttendEase.Presentation
         public HRDashboard()
         {
             InitializeComponent();
+            this.AutoScaleMode = AutoScaleMode.None;
         }
 
         private void HRDashboard_Load(object sender, EventArgs e)
@@ -37,7 +38,6 @@ namespace AttendEase.Presentation
 
             // Add the CircularPictureBox to the form
             this.Controls.Add(profileImage);
-
             profileImage.BringToFront();
             #endregion
 

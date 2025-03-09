@@ -107,7 +107,7 @@ namespace AttendEase.Presentation.CustomControls
                         cellPanel.Cursor = Cursors.Hand;
                         cellLabel.Cursor = Cursors.Hand;
 
-                        if (guide == "Arrivals")
+                        if (guide == "Arrivals" || guide == "FrequentAbsences")
                         {
                             cellPanel.MouseUp += (sender, e) =>
                             {

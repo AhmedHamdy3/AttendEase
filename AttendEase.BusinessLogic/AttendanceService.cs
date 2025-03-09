@@ -241,6 +241,28 @@ namespace AttendEase.BusinessLogic
                 return FrequentAbsences;
             }
         }
+
+        public List<EmployeeAbsences> GetAbsencesSpecificPeriodForSpecificEmployee(DateTime startDate, DateTime endDate, int id)
+        {
+            using(var context = new AttendEaseContext())
+            {
+                var attendanceData =
+                context.Employees.Where(employee => employee.EmployeeId == id).FirstOrDefault()?
+                .Attendances.Where(attendance => attendance.AttendanceDate >= startDate && attendance.AttendanceDate <= endDate)
+                .Where(attendance => attendance.AttendanceAttendanceStatuses.Any(aas => aas.AttendanceStatus.Status == "Absent"))
+                .ToList();
+                
+                var employeeAbcences = attendanceData.Select( attendance => new EmployeeAbsences()
+                    {
+                        Name = attendance.Employee.Name,
+                        date = attendance.AttendanceDate,
+                        ReasonOfAbsence = null // ************************************************************************ update this
+                })
+                    .ToList();
+
+                return employeeAbcences;
+            }
+        }
         #endregion
 
         #region Helper Functions
@@ -343,6 +365,13 @@ namespace AttendEase.BusinessLogic
             public int TotalDaysAbsent { get; set; }
             public double AbsencePrecentage { get; set; }
             public int Id { get; set; }
+        }
+
+        public class EmployeeAbsences
+        {
+            public string Name { get; set; }
+            public DateTime date { get; set; }
+            public string ReasonOfAbsence { get; set; }
         }
         #endregion
 

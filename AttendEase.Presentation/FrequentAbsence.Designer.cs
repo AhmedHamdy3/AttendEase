@@ -134,6 +134,7 @@
             btn_back.TextAlign = ContentAlignment.MiddleLeft;
             btn_back.UseVisualStyleBackColor = false;
             btn_back.Visible = false;
+            btn_back.Click += btn_back_Click_1;
             // 
             // button1
             // 

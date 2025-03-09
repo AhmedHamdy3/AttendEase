@@ -55,7 +55,7 @@ namespace AttendEase.Presentation
 
 
 
-        private void GetLateAndEarlyForSpecificEmployee(int id)
+        private void GetAbsencesForSpecificEmployee(int id)
         {
             isDetails = 1;
             this.id = id;
@@ -67,12 +67,12 @@ namespace AttendEase.Presentation
         private void ShowFrequentAbsence()
         {
             var FrequentAbsence = attendanceService.GetFrequentAbsenceInSpecificPeriod(dtp_startDate.Value, dtp_endDate.Value);
-            table.fillTable(FrequentAbsence, new[] { "Employee", "Department", "Present", "Absent", "Precentage" }, "FrequentAbsences", null, null);
+            table.fillTable(FrequentAbsence, new[] { "Employee", "Department", "Present", "Absent", "Precentage" }, "FrequentAbsences", null, GetAbsencesForSpecificEmployee);
         }
         private void ShowFrequentAbsenceDetail()
         {
-            //var AbsencesForSpecificEmployee = attendanceService.GetAbsencesSpecificPeriodForSpecificEmployee(dtp_startDate.Value, dtp_endDate.Value, this.id);
-            //table.fillTable(lateArrivalsAndEarlyDepartureForSpecificEmployee, new string[] { "Employee", "Date", "Reaseon of Absence" }, "", null, null);
+            var AbsencesForSpecificEmployee = attendanceService.GetAbsencesSpecificPeriodForSpecificEmployee(dtp_startDate.Value, dtp_endDate.Value, this.id);
+            table.fillTable(AbsencesForSpecificEmployee, new string[] { "Employee", "Date", "Reaseon of Absence" }, "", null, null);
         }
         private void btn_back_Click(object sender, EventArgs e)
         {
@@ -105,6 +105,15 @@ namespace AttendEase.Presentation
             {
                 ShowFrequentAbsenceDetail();
             }
+        }
+
+        private void btn_back_Click_1(object sender, EventArgs e)
+        {
+            isDetails = 0;
+            table.tablePanel.Location = new Point(30, 240);
+            table.tablePanel.Size = new Size(888, 570);
+            btn_back.Visible = false;
+            ShowFrequentAbsence();
         }
     }
 }
