@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HRDashboard));
             panel1 = new Panel();
             pnl_sideBar = new Panel();
+            btn_logout = new CustomControls.CustomButton();
             flowLayoutPanel8 = new FlowLayoutPanel();
             btn_employees = new Button();
             btn_schedules = new Button();
@@ -43,7 +44,6 @@
             label1 = new Label();
             panel3 = new Panel();
             pnl_formLoader = new Panel();
-            btn_logout = new CustomControls.CustomButton();
             panel1.SuspendLayout();
             pnl_sideBar.SuspendLayout();
             panel3.SuspendLayout();
@@ -76,6 +76,26 @@
             pnl_sideBar.Name = "pnl_sideBar";
             pnl_sideBar.Size = new Size(300, 853);
             pnl_sideBar.TabIndex = 1;
+            // 
+            // btn_logout
+            // 
+            btn_logout.BackColor = Color.FromArgb(102, 122, 138);
+            btn_logout.BorderRadius = 0;
+            btn_logout.Cursor = Cursors.Hand;
+            btn_logout.FlatAppearance.BorderSize = 0;
+            btn_logout.FlatStyle = FlatStyle.Flat;
+            btn_logout.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_logout.ForeColor = Color.White;
+            btn_logout.Image = (Image)resources.GetObject("btn_logout.Image");
+            btn_logout.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_logout.Location = new Point(20, 775);
+            btn_logout.Name = "btn_logout";
+            btn_logout.Padding = new Padding(12, 0, 0, 0);
+            btn_logout.Size = new Size(260, 44);
+            btn_logout.TabIndex = 0;
+            btn_logout.Text = "       Logout";
+            btn_logout.TextAlign = ContentAlignment.MiddleLeft;
+            btn_logout.UseVisualStyleBackColor = false;
             // 
             // flowLayoutPanel8
             // 
@@ -189,7 +209,7 @@
             btn_frequentAbsent.Padding = new Padding(12, 0, 0, 0);
             btn_frequentAbsent.Size = new Size(260, 48);
             btn_frequentAbsent.TabIndex = 20;
-            btn_frequentAbsent.Text = "   Frequent Absent";
+            btn_frequentAbsent.Text = "   Frequent Absence";
             btn_frequentAbsent.TextAlign = ContentAlignment.MiddleLeft;
             btn_frequentAbsent.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_frequentAbsent.UseVisualStyleBackColor = true;
@@ -275,26 +295,6 @@
             pnl_formLoader.Name = "pnl_formLoader";
             pnl_formLoader.Size = new Size(972, 853);
             pnl_formLoader.TabIndex = 13;
-            // 
-            // btn_logout
-            // 
-            btn_logout.BackColor = Color.FromArgb(102, 122, 138);
-            btn_logout.BorderRadius = 0;
-            btn_logout.Cursor = Cursors.Hand;
-            btn_logout.FlatAppearance.BorderSize = 0;
-            btn_logout.FlatStyle = FlatStyle.Flat;
-            btn_logout.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_logout.ForeColor = Color.White;
-            btn_logout.Image = (Image)resources.GetObject("btn_logout.Image");
-            btn_logout.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_logout.Location = new Point(20, 775);
-            btn_logout.Name = "btn_logout";
-            btn_logout.Padding = new Padding(12, 0, 0, 0);
-            btn_logout.Size = new Size(260, 44);
-            btn_logout.TabIndex = 0;
-            btn_logout.Text = "       Logout";
-            btn_logout.TextAlign = ContentAlignment.MiddleLeft;
-            btn_logout.UseVisualStyleBackColor = false;
             // 
             // HRDashboard
             // 

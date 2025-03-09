@@ -65,6 +65,7 @@ namespace AttendEase.Presentation.CustomControls
                 var startDate = properties.FirstOrDefault(p => p.Name == "StartDate"); // ******************
                 var endDate = properties.FirstOrDefault(p => p.Name == "EndDate"); // ******************
                 var id = properties.FirstOrDefault(p => p.Name == "Id"); // ******************
+                
 
                 Panel rowData = new Panel();
                 rowData.Size = new Size(this.width, cellHeight);
@@ -81,10 +82,15 @@ namespace AttendEase.Presentation.CustomControls
                     Label cellLabel = new Label();
                     var cellValue = properties[col].GetValue(item);
                     
+
                     // Show the Date only
                     if (cellValue is DateTime)
                     {
                         cellLabel.Text = ((DateTime)cellValue).ToShortDateString() ?? "-"; ; // Get property 
+                    }
+                    else if(cellValue is Double && guide == "FrequentAbsences")
+                    {
+                        cellLabel.Text = cellValue.ToString() + "%";
                     }
                     else
                     {

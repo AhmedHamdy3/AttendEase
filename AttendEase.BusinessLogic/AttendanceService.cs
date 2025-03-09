@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AttendEase.BusinessLogic.AttendanceService;
 
 namespace AttendEase.BusinessLogic
 {
@@ -198,6 +199,50 @@ namespace AttendEase.BusinessLogic
         }
         #endregion
 
+        #region Frequent Absence
+        public List<FrequentAbsence> GetFrequentAbsenceInSpecificPeriod(DateTime startDate, DateTime endDate)
+        {
+            using (var context = new AttendEaseContext())
+            {
+                // Fetch all relevant data in a single query
+                var attendanceData = context.Attendances
+                    .Where(attendance => attendance.AttendanceDate >= startDate && attendance.AttendanceDate <= endDate)
+                    .Select(attendance => new
+                    {
+                        Employee = attendance.Employee,
+                        AttendanceStatuses = attendance.AttendanceAttendanceStatuses
+                            .Select(aas => aas.AttendanceStatus.Status)
+                            .ToList()
+                    })
+                    .ToList();
+
+                var FrequentAbsences = attendanceData
+                    .GroupBy(ad => ad.Employee)
+                    .Select(g => new
+                    {
+                        Name = g.Key.Name,
+                        Department = g.Key.Department.Name,
+                        TotalDaysPresent = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Present"),
+                        TotalDaysAbsent = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Absent"),
+                        Id = g.Key.EmployeeId
+                    }).
+                    Select(ab => new FrequentAbsence
+                    {
+                        Name = ab.Name,
+                        Department = ab.Department,
+                        TotalDaysAbsent = ab.TotalDaysAbsent,
+                        TotalDaysPresent = ab.TotalDaysPresent,
+                        AbsencePrecentage = Math.Round((double)ab.TotalDaysAbsent / (ab.TotalDaysPresent + ab.TotalDaysAbsent) * 100),
+                        Id = ab.Id
+                    })
+                    .Where(a => a.AbsencePrecentage > 10 )
+                    .ToList();
+
+                return FrequentAbsences;
+            }
+        }
+        #endregion
+
         #region Helper Functions
         public AttendanceSummary GetSummaryAttendance(DateTime startDate, DateTime endDate)
         {
@@ -288,13 +333,17 @@ namespace AttendEase.BusinessLogic
                 public TimeSpan? CheckOutTime { get; set; }
                 public TimeSpan? TotalsHourOfWorking { get; set; }
                 public string LateOrEarly { get; set; }
-
-            //public string Name { get; set; }
-            //    public string Department { get; set; }
-            //    public int TotalDaysLate { get; set; }
-            //    public int TotalDaysEarly { get; set; }
-            //    public int Id { get; set; }
             }
+
+        public class FrequentAbsence
+        {
+            public string Name { get; set; }
+            public string Department { get; set; }
+            public int TotalDaysPresent { get; set; }
+            public int TotalDaysAbsent { get; set; }
+            public double AbsencePrecentage { get; set; }
+            public int Id { get; set; }
+        }
         #endregion
 
     }

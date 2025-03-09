@@ -89,6 +89,11 @@ namespace AttendEase.Presentation
         {
             ActivateButton(sender, (Image)Properties.Resources.Calendar_Delete_Active);
 
+            this.pnl_formLoader.Controls.Clear();
+            FrequentAbsence frequentAbsence = new FrequentAbsence() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            frequentAbsence.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(frequentAbsence);
+            frequentAbsence.Show();
         }
 
         private void btn_leaveRequest_Click(object sender, EventArgs e)
@@ -106,7 +111,7 @@ namespace AttendEase.Presentation
                     string a = "btn_arrivals_active.Image";
                     currentButton = (Button)btnSender;
                     currentButton.BackColor = Color.FromArgb(210, 219, 253);
-                    currentButton.ForeColor = Color.FromArgb(70, 95, 241);
+                    currentButton.ForeColor = ColorTranslator.FromHtml("#4C94FF");
                     currentButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
                     currentButton.Image = img;
                     currentButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 219, 253);
