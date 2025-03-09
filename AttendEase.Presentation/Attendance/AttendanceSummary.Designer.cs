@@ -33,10 +33,9 @@
             lbl_title = new Label();
             btn_cb_summaryType = new Button();
             cb_summaryType = new ComboBox();
-            pb_back = new PictureBox();
             lbl_details_header = new Label();
+            btn_back = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pb_back).BeginInit();
             SuspendLayout();
             // 
             // pictureBox9
@@ -85,19 +84,6 @@
             cb_summaryType.TabIndex = 9;
             cb_summaryType.SelectedIndexChanged += cb_summarType_SelectedIndexChanged;
             // 
-            // pb_back
-            // 
-            pb_back.Cursor = Cursors.Hand;
-            pb_back.Image = Properties.Resources.Text_button;
-            pb_back.Location = new Point(29, 180);
-            pb_back.Name = "pb_back";
-            pb_back.Size = new Size(175, 24);
-            pb_back.SizeMode = PictureBoxSizeMode.AutoSize;
-            pb_back.TabIndex = 16;
-            pb_back.TabStop = false;
-            pb_back.Visible = false;
-            pb_back.Click += pb_back_Click;
-            // 
             // lbl_details_header
             // 
             lbl_details_header.AutoSize = true;
@@ -107,14 +93,36 @@
             lbl_details_header.Size = new Size(0, 38);
             lbl_details_header.TabIndex = 17;
             // 
+            // btn_back
+            // 
+            btn_back.BackColor = Color.Transparent;
+            btn_back.Cursor = Cursors.Hand;
+            btn_back.FlatAppearance.BorderSize = 0;
+            btn_back.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn_back.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btn_back.FlatStyle = FlatStyle.Flat;
+            btn_back.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_back.ForeColor = Color.FromArgb(63, 140, 255);
+            btn_back.Image = (Image)resources.GetObject("btn_back.Image");
+            btn_back.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_back.Location = new Point(29, 180);
+            btn_back.Name = "btn_back";
+            btn_back.Size = new Size(176, 29);
+            btn_back.TabIndex = 24;
+            btn_back.Text = "      Back to Attendance";
+            btn_back.TextAlign = ContentAlignment.MiddleLeft;
+            btn_back.UseVisualStyleBackColor = false;
+            btn_back.Visible = false;
+            btn_back.Click += btn_back_Click;
+            // 
             // AttendanceSummary
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(972, 853);
+            Controls.Add(btn_back);
             Controls.Add(lbl_details_header);
-            Controls.Add(pb_back);
             Controls.Add(cb_summaryType);
             Controls.Add(btn_cb_summaryType);
             Controls.Add(pictureBox9);
@@ -124,7 +132,6 @@
             Text = "AttendanceSummary";
             Load += AttendanceSummary_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pb_back).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -134,7 +141,7 @@
         private Label lbl_title;
         private Button btn_cb_summaryType;
         private ComboBox cb_summaryType;
-        private PictureBox pb_back;
         private Label lbl_details_header;
+        private Button btn_back;
     }
 }

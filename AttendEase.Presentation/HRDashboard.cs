@@ -1,6 +1,7 @@
 ﻿using AttendEase.BusinessLogic;
 using AttendEase.Presentation.Attendance;
 using AttendEase.Presentation.CustomControls;
+using AttendEase.Presentation.Properties;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -16,21 +17,12 @@ namespace AttendEase.Presentation
 {
     public partial class HRDashboard : Form
     {
+        private Button currentButton;
         AttendanceService attendanceService;
         ProfileImage profileImage;
         public HRDashboard()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox6_MouseHover(object sender, EventArgs e)
-        {
-            bl_arrivals.Visible = true;
-        }
-
-        private void pictureBox6_MouseLeave(object sender, EventArgs e)
-        {
-            bl_arrivals.Visible = false;
         }
 
         private void HRDashboard_Load(object sender, EventArgs e)
@@ -51,68 +43,40 @@ namespace AttendEase.Presentation
 
         }
 
-        #region Navbar Click 
-        private void pb_dashboard_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            pb_dashboard.SendToBack();
-            pb_arrivals_active.SendToBack();
-            pb_attendance_active.SendToBack();
-            pb_employees_active.SendToBack();
-            pb_frequent_absent_active.SendToBack();
-            pb_leave_request_active.SendToBack();
-            pb_schedule_active.SendToBack();
-
-
+        //ActivateButton(sender);
         }
 
-        private void pb_employees_Click(object sender, EventArgs e)
+        private void btn_dashboard_Click(object sender, EventArgs e)
         {
-            pb_dashboard_active.SendToBack();
-            pb_arrivals_active.SendToBack();
-            pb_attendance_active.SendToBack();
-            pb_employees.SendToBack();
-            pb_frequent_absent_active.SendToBack();
-            pb_leave_request_active.SendToBack();
-            pb_schedule_active.SendToBack();
+            ActivateButton(sender, (Image)Properties.Resources.Home_Active);
         }
 
-        private void pb_schedule_Click(object sender, EventArgs e)
+        private void btn_employees_Click(object sender, EventArgs e)
         {
-            pb_dashboard_active.SendToBack();
-            pb_arrivals_active.SendToBack();
-            pb_attendance_active.SendToBack();
-            pb_employees_active.SendToBack();
-            pb_frequent_absent_active.SendToBack();
-            pb_leave_request_active.SendToBack();
-            pb_schedule.SendToBack();
+            ActivateButton(sender, (Image)Properties.Resources.Management_Active);
         }
 
-        private void pb_attendance_Click(object sender, EventArgs e)
+        private void btn_schedules_Click(object sender, EventArgs e)
         {
-            pb_dashboard_active.SendToBack();
-            pb_arrivals_active.SendToBack();
-            pb_attendance.SendToBack();
-            pb_employees_active.SendToBack();
-            pb_frequent_absent_active.SendToBack();
-            pb_leave_request_active.SendToBack();
-            pb_schedule_active.SendToBack();
+            ActivateButton(sender, (Image)Properties.Resources.Calendar_Active);
+        }
+
+        private void btn_attendance_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, (Image)Properties.Resources.Attendance_Active);
 
             this.pnl_formLoader.Controls.Clear();
-            AttendanceSummary attendanceSummaryForm = new AttendanceSummary() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true};
+            AttendanceSummary attendanceSummaryForm = new AttendanceSummary() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             attendanceSummaryForm.FormBorderStyle = FormBorderStyle.None;
             this.pnl_formLoader.Controls.Add(attendanceSummaryForm);
             attendanceSummaryForm.Show();
         }
 
-        private void pb_arrivals_Click(object sender, EventArgs e)
+        private void btn_arrivals_Click(object sender, EventArgs e)
         {
-            pb_dashboard_active.SendToBack();
-            pb_arrivals.SendToBack();
-            pb_attendance_active.SendToBack();
-            pb_employees_active.SendToBack();
-            pb_frequent_absent_active.SendToBack();
-            pb_leave_request_active.SendToBack();
-            pb_schedule_active.SendToBack();
+            ActivateButton(sender, (Image)Properties.Resources.Clock_Active);
 
             this.pnl_formLoader.Controls.Clear();
             Arrivals attendanceSummaryForm = new Arrivals() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -121,100 +85,66 @@ namespace AttendEase.Presentation
             attendanceSummaryForm.Show();
         }
 
-        private void pb_frequent_absent_Click(object sender, EventArgs e)
+        private void btn_frequentAbsent_Click(object sender, EventArgs e)
         {
-            pb_dashboard_active.SendToBack();
-            pb_arrivals_active.SendToBack();
-            pb_attendance_active.SendToBack();
-            pb_employees_active.SendToBack();
-            pb_frequent_absent.SendToBack();
-            pb_leave_request_active.SendToBack();
-            pb_schedule_active.SendToBack();
+            ActivateButton(sender, (Image)Properties.Resources.Calendar_Delete_Active);
+
         }
 
-        private void pb_leave_request_Click(object sender, EventArgs e)
+        private void btn_leaveRequest_Click(object sender, EventArgs e)
         {
-            pb_dashboard_active.SendToBack();
-            pb_arrivals_active.SendToBack();
-            pb_attendance_active.SendToBack();
-            pb_employees_active.SendToBack();
-            pb_frequent_absent_active.SendToBack();
-            pb_leave_request.SendToBack();
-            pb_schedule_active.SendToBack();
-        }
-        #endregion
-
-        #region Navbar Hover
-        private void pb_dashboard_MouseHover(object sender, EventArgs e)
-        {
-            bl_dashboard.Visible = true;
+            ActivateButton(sender, (Image)Properties.Resources.Inquiry_Active);
         }
 
-        private void pb_dashboard_MouseLeave(object sender, EventArgs e)
+        private void ActivateButton(object btnSender, Image img)
         {
-            bl_dashboard.Visible = false;
+            if (btnSender != null)
+            {
+                if (currentButton != (Button)btnSender)
+                {
+                    DisableButton();
+                    string a = "btn_arrivals_active.Image";
+                    currentButton = (Button)btnSender;
+                    currentButton.BackColor = Color.FromArgb(210, 219, 253);
+                    currentButton.ForeColor = Color.FromArgb(70, 95, 241);
+                    currentButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                    currentButton.Image = img;
+                    currentButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 219, 253);
+                    currentButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 219, 253);
+                }
+            }
         }
-
-        private void pb_employees_MouseHover(object sender, EventArgs e)
+        private void DisableButton()
         {
-            bl_employees.Visible = true;
+            foreach (Control ctrl in pnl_sideBar.Controls)
+            {
+                if (ctrl.GetType() == typeof(Button))
+                {
+                    Button? previousBtn = ctrl as Button;
+                    if (previousBtn != null)
+                    {
+                        previousBtn.BackColor = Color.White;
+                        previousBtn.ForeColor = Color.FromArgb(93, 114, 133);
+                        previousBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                        previousBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(236, 240, 255);
+                        previousBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(236, 240, 255);
+                        if (previousBtn.Name == "btn_dashboard")
+                            previousBtn.Image = (Image)Properties.Resources.Home;
+                        else if (previousBtn.Name == "btn_employees")
+                            previousBtn.Image = (Image)Properties.Resources.Management;
+                        else if (previousBtn.Name == "btn_schedules")
+                            previousBtn.Image = (Image)Properties.Resources.Planner;
+                        else if (previousBtn.Name == "btn_attendance")
+                            previousBtn.Image = (Image)Properties.Resources.Attendance;
+                        else if (previousBtn.Name == "btn_arrivals")
+                            previousBtn.Image = (Image)Properties.Resources.Clock;
+                        else if (previousBtn.Name == "btn_frequentAbsent")
+                            previousBtn.Image = (Image)Properties.Resources.Calendar_Delete;
+                        else if (previousBtn.Name == "btn_leaveRequest")
+                            previousBtn.Image = (Image)Properties.Resources.Inquiry;
+                    }
+                }
+            }
         }
-
-        private void pb_employees_MouseLeave(object sender, EventArgs e)
-        {
-            bl_employees.Visible = false;
-        }
-
-        private void pb_schedule_MouseHover(object sender, EventArgs e)
-        {
-            bl_schedule.Visible = true;
-        }
-
-        private void pb_schedule_MouseLeave(object sender, EventArgs e)
-        {
-            bl_schedule.Visible = false;
-        }
-
-        private void pb_attendance_MouseHover(object sender, EventArgs e)
-        {
-            bl_attendance.Visible = true;
-        }
-
-        private void pb_attendance_MouseLeave(object sender, EventArgs e)
-        {
-            bl_attendance.Visible = false;
-        }
-
-        private void pb_arrivals_MouseHover(object sender, EventArgs e)
-        {
-            bl_arrivals.Visible = true;
-        }
-
-        private void pb_arrivals_MouseLeave(object sender, EventArgs e)
-        {
-            bl_arrivals.Visible = false;
-        }
-
-        private void pb_frequent_absent_MouseHover(object sender, EventArgs e)
-        {
-            bl_frequent_absent.Visible = true;
-        }
-
-        private void pb_frequent_absent_MouseLeave(object sender, EventArgs e)
-        {
-            bl_frequent_absent.Visible = false;
-        }
-
-        private void pb_leave_request_MouseHover(object sender, EventArgs e)
-        {
-            bl_leave_requests.Visible = true;
-        }
-
-        private void pb_leave_request_MouseLeave(object sender, EventArgs e)
-        {
-            bl_leave_requests.Visible = false;
-        }
-        #endregion
-
     }
 }

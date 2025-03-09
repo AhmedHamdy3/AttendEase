@@ -57,7 +57,7 @@ namespace AttendEase.Presentation.Attendance
         {
             lbl_details_header.Text = $"Attendance for the Day: {StartDate: MMMM d, yyyy}";
             lbl_title.Visible = false;
-            pb_back.Visible = true;
+            btn_back.Visible = true;
             btn_cb_summaryType.Visible = false;
             cb_summaryType.Visible = false;
 
@@ -81,7 +81,7 @@ namespace AttendEase.Presentation.Attendance
 
             var attendancePeriod = attendanceService.GetAttendanceInSpecificPeriod(StartDate, EndDate);
             lbl_title.Visible = false;
-            pb_back.Visible = true;
+            btn_back.Visible = true;
             btn_cb_summaryType.Visible = false;
             cb_summaryType.Visible = false;
             table.fillTable(attendancePeriod, new[] { "Employee", "Department", "Present", "Absent", "Late", "Early" }, "", null, null);
@@ -89,17 +89,6 @@ namespace AttendEase.Presentation.Attendance
 
         private void cb_summarType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CheckTheValueOfComboBoxAndUpdateTheTable();
-        }
-
-        private void pb_back_Click(object sender, EventArgs e)
-        {
-            lbl_details_header.Text = "";
-            lbl_title.Visible = true;
-            pb_back.Visible = false;
-            btn_cb_summaryType.Visible = true;
-            cb_summaryType.Visible = true;
-
             CheckTheValueOfComboBoxAndUpdateTheTable();
         }
 
@@ -117,6 +106,17 @@ namespace AttendEase.Presentation.Attendance
             {
                 MonthlySelected();
             }
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            lbl_details_header.Text = "";
+            lbl_title.Visible = true;
+            btn_back.Visible = false;
+            btn_cb_summaryType.Visible = true;
+            cb_summaryType.Visible = true;
+
+            CheckTheValueOfComboBoxAndUpdateTheTable();
         }
     }
 }

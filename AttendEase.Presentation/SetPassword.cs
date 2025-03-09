@@ -1,5 +1,6 @@
 using AttendEase.BusinessLogic;
 using AttendEase.DataAccess.Entities;
+using AttendEase.Presentation.CustomControls;
 using Microsoft.Extensions.Configuration;
 
 namespace AttendEase.Presentation
@@ -7,6 +8,9 @@ namespace AttendEase.Presentation
     public partial class SetPassword : Form
     {
         private readonly AttendanceService attendanceService;
+        private bool isVisiblePass = false;
+        private bool isVisibleConf = false;
+
         public SetPassword()
         {
             InitializeComponent();
@@ -24,13 +28,50 @@ namespace AttendEase.Presentation
             //dataGridView1.DataSource = dailyAttendance;
         }
 
-        private void btn_signIn_Click(object sender, EventArgs e)
+
+        private void csb_setPassword_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void csb_singIn_Click(object sender, EventArgs e)
         {
             SignInForm signInForm = new SignInForm();
             signInForm.StartPosition = FormStartPosition.Manual;
             signInForm.Location = this.Location;
             signInForm.Show();
             this.Close();
+        }
+
+        private void btn_showPassword_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (!isVisiblePass)
+            {
+                txt_password.PasswordChar = '\0';
+                btn.Image = (Image)Properties.Resources.Invisible;
+            }
+            else
+            {
+                txt_password.PasswordChar = '*';
+                btn.Image = (Image)Properties.Resources.Eye1;
+            }
+            isVisiblePass = !isVisiblePass;
+        }
+
+        private void btn_showConfirm_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (!isVisibleConf)
+            {
+                txt_confirm.PasswordChar = '\0';
+                btn.Image = (Image)Properties.Resources.Invisible;
+            }
+            else
+            {
+                txt_confirm.PasswordChar = '*';
+                btn.Image = (Image)Properties.Resources.Eye1;
+            }
+            isVisibleConf = !isVisibleConf;
         }
     }
 }

@@ -74,7 +74,7 @@ namespace AttendEase.Presentation
             this.id = id;
             table.tablePanel.Location = new Point(30, 280);
             table.tablePanel.Size = new Size(888, 530);
-            pb_back.Visible = true;
+            btn_back.Visible = true;
             ShowArrivalsDetail();
         }
 
@@ -86,14 +86,14 @@ namespace AttendEase.Presentation
         private void ShowArrivalsDetail()
         {
             var lateArrivalsAndEarlyDepartureForSpecificEmployee = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(dtp_startDate.Value, dtp_endDate.Value, this.id);
-            table.fillTable(lateArrivalsAndEarlyDepartureForSpecificEmployee, new string[] { "Employee", "Date", "Check In", "Check Out", "Total Time", "type" }, "ArrivalDetails", null, null);
+            table.fillTable(lateArrivalsAndEarlyDepartureForSpecificEmployee, new string[] { "Employee", "Date", "Check In", "Check Out", "Total Time", "type" }, "", null, null);
         }
-        private void pb_back_Click(object sender, EventArgs e)
+        private void btn_back_Click(object sender, EventArgs e)
         {
             isDetails = 0;
             table.tablePanel.Location = new Point(30, 240);
             table.tablePanel.Size = new Size(888, 570);
-            pb_back.Visible = false;
+            btn_back.Visible = false;
             ShowArrivals();
         }
     }

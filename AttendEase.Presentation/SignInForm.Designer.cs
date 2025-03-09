@@ -33,26 +33,25 @@
             txt_password = new TextBox();
             panel5 = new Panel();
             panel2 = new Panel();
-            pb_showPassword = new PictureBox();
-            lbl_showPassword = new Label();
+            btn_showPassword = new Button();
+            panel8 = new Panel();
+            csb_singIn = new CustomControls.CustomButton();
+            csb_setPassword = new CustomControls.CustomButton();
+            csb_signIn = new CustomControls.CustomButton();
             panel4 = new Panel();
             label1 = new Label();
             panel1 = new Panel();
             panel3 = new Panel();
             txt_email = new TextBox();
-            btn_signIn = new PictureBox();
             label2 = new Label();
             label3 = new Label();
-            btn_setPassword = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel5.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pb_showPassword).BeginInit();
+            panel8.SuspendLayout();
             panel4.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btn_signIn).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btn_setPassword).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -87,42 +86,101 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(pb_showPassword);
-            panel2.Controls.Add(lbl_showPassword);
+            panel2.Controls.Add(btn_showPassword);
+            panel2.Controls.Add(panel8);
+            panel2.Controls.Add(csb_signIn);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(panel1);
-            panel2.Controls.Add(btn_signIn);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
-            panel2.Controls.Add(btn_setPassword);
             panel2.Location = new Point(634, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(633, 853);
             panel2.TabIndex = 4;
             // 
-            // pb_showPassword
+            // btn_showPassword
             // 
-            pb_showPassword.Cursor = Cursors.Hand;
-            pb_showPassword.Image = Properties.Resources.Eye;
-            pb_showPassword.Location = new Point(397, 430);
-            pb_showPassword.Name = "pb_showPassword";
-            pb_showPassword.Size = new Size(18, 15);
-            pb_showPassword.SizeMode = PictureBoxSizeMode.StretchImage;
-            pb_showPassword.TabIndex = 13;
-            pb_showPassword.TabStop = false;
+            btn_showPassword.BackColor = Color.Transparent;
+            btn_showPassword.Cursor = Cursors.Hand;
+            btn_showPassword.FlatAppearance.BorderSize = 0;
+            btn_showPassword.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn_showPassword.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btn_showPassword.FlatStyle = FlatStyle.Flat;
+            btn_showPassword.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_showPassword.ForeColor = Color.FromArgb(38, 32, 59);
+            btn_showPassword.Image = Properties.Resources.Eye1;
+            btn_showPassword.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_showPassword.Location = new Point(393, 422);
+            btn_showPassword.Name = "btn_showPassword";
+            btn_showPassword.Size = new Size(76, 29);
+            btn_showPassword.TabIndex = 19;
+            btn_showPassword.Text = "     Show";
+            btn_showPassword.TextAlign = ContentAlignment.MiddleLeft;
+            btn_showPassword.UseVisualStyleBackColor = false;
+            btn_showPassword.Click += btn_showPassword_Click;
             // 
-            // lbl_showPassword
+            // panel8
             // 
-            lbl_showPassword.AutoSize = true;
-            lbl_showPassword.Cursor = Cursors.Hand;
-            lbl_showPassword.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_showPassword.ForeColor = Color.FromArgb(38, 32, 59);
-            lbl_showPassword.Location = new Point(415, 427);
-            lbl_showPassword.Name = "lbl_showPassword";
-            lbl_showPassword.Size = new Size(47, 20);
-            lbl_showPassword.TabIndex = 2;
-            lbl_showPassword.Text = "Show";
+            panel8.BackColor = Color.FromArgb(236, 240, 255);
+            panel8.Controls.Add(csb_singIn);
+            panel8.Controls.Add(csb_setPassword);
+            panel8.Location = new Point(105, 239);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(358, 48);
+            panel8.TabIndex = 18;
+            // 
+            // csb_singIn
+            // 
+            csb_singIn.BackColor = Color.FromArgb(70, 95, 241);
+            csb_singIn.BorderRadius = 7;
+            csb_singIn.FlatAppearance.BorderSize = 0;
+            csb_singIn.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 95, 241);
+            csb_singIn.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 95, 241);
+            csb_singIn.FlatStyle = FlatStyle.Flat;
+            csb_singIn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            csb_singIn.ForeColor = Color.White;
+            csb_singIn.Location = new Point(179, 2);
+            csb_singIn.Name = "csb_singIn";
+            csb_singIn.Size = new Size(174, 43);
+            csb_singIn.TabIndex = 19;
+            csb_singIn.Text = "Sign In";
+            csb_singIn.UseVisualStyleBackColor = false;
+            // 
+            // csb_setPassword
+            // 
+            csb_setPassword.BackColor = Color.FromArgb(236, 240, 255);
+            csb_setPassword.BorderRadius = 7;
+            csb_setPassword.Cursor = Cursors.Hand;
+            csb_setPassword.FlatAppearance.BorderSize = 0;
+            csb_setPassword.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 219, 253);
+            csb_setPassword.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 219, 253);
+            csb_setPassword.FlatStyle = FlatStyle.Flat;
+            csb_setPassword.Font = new Font("Segoe UI", 9F);
+            csb_setPassword.ForeColor = Color.FromArgb(156, 154, 165);
+            csb_setPassword.Location = new Point(3, 2);
+            csb_setPassword.Name = "csb_setPassword";
+            csb_setPassword.Size = new Size(174, 43);
+            csb_setPassword.TabIndex = 18;
+            csb_setPassword.Text = "Set Password";
+            csb_setPassword.UseVisualStyleBackColor = false;
+            csb_setPassword.Click += csb_setPassword_Click;
+            // 
+            // csb_signIn
+            // 
+            csb_signIn.BackColor = Color.FromArgb(70, 95, 241);
+            csb_signIn.BorderRadius = 10;
+            csb_signIn.Cursor = Cursors.Hand;
+            csb_signIn.FlatAppearance.BorderSize = 0;
+            csb_signIn.FlatStyle = FlatStyle.Flat;
+            csb_signIn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            csb_signIn.ForeColor = Color.White;
+            csb_signIn.Location = new Point(105, 556);
+            csb_signIn.Name = "csb_signIn";
+            csb_signIn.Size = new Size(362, 50);
+            csb_signIn.TabIndex = 17;
+            csb_signIn.Text = "Sign In";
+            csb_signIn.UseVisualStyleBackColor = false;
             // 
             // panel4
             // 
@@ -172,17 +230,6 @@
             txt_email.Size = new Size(327, 24);
             txt_email.TabIndex = 8;
             // 
-            // btn_signIn
-            // 
-            btn_signIn.Cursor = Cursors.Hand;
-            btn_signIn.Image = (Image)resources.GetObject("btn_signIn.Image");
-            btn_signIn.Location = new Point(105, 556);
-            btn_signIn.Name = "btn_signIn";
-            btn_signIn.Size = new Size(357, 48);
-            btn_signIn.SizeMode = PictureBoxSizeMode.AutoSize;
-            btn_signIn.TabIndex = 7;
-            btn_signIn.TabStop = false;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -205,18 +252,6 @@
             label3.TabIndex = 5;
             label3.Text = "Password";
             // 
-            // btn_setPassword
-            // 
-            btn_setPassword.Cursor = Cursors.Hand;
-            btn_setPassword.Image = (Image)resources.GetObject("btn_setPassword.Image");
-            btn_setPassword.Location = new Point(105, 239);
-            btn_setPassword.Name = "btn_setPassword";
-            btn_setPassword.Size = new Size(358, 48);
-            btn_setPassword.SizeMode = PictureBoxSizeMode.AutoSize;
-            btn_setPassword.TabIndex = 2;
-            btn_setPassword.TabStop = false;
-            btn_setPassword.Click += btn_setPassword_Click;
-            // 
             // SignInForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -232,13 +267,11 @@
             panel5.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pb_showPassword).EndInit();
+            panel8.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)btn_signIn).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btn_setPassword).EndInit();
             ResumeLayout(false);
         }
 
@@ -248,16 +281,17 @@
         private TextBox txt_password;
         private Panel panel5;
         private Panel panel2;
-        private PictureBox pb_showPassword;
-        private Label lbl_showPassword;
         private Panel panel4;
         private Label label1;
         private Panel panel1;
         private Panel panel3;
         private TextBox txt_email;
-        private PictureBox btn_signIn;
         private Label label2;
         private Label label3;
-        private PictureBox btn_setPassword;
+        private CustomControls.CustomButton csb_signIn;
+        private Panel panel8;
+        private CustomControls.CustomButton csb_singIn;
+        private CustomControls.CustomButton csb_setPassword;
+        private Button btn_showPassword;
     }
 }

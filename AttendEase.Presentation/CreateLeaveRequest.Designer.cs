@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateLeaveRequest));
             cb_summaryType = new ComboBox();
             btn_cb_summaryType = new Button();
             label1 = new Label();
@@ -45,12 +44,11 @@
             bottomBorderPanel2 = new CustomControls.BottomBorderPanel();
             dateTimePicker1 = new DateTimePicker();
             button2 = new Button();
-            pictureBox2 = new PictureBox();
+            customButton1 = new CustomControls.CustomButton();
             panel2.SuspendLayout();
             bottomBorderPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             bottomBorderPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // cb_summaryType
@@ -226,16 +224,21 @@
             button2.TabIndex = 30;
             button2.UseVisualStyleBackColor = false;
             // 
-            // pictureBox2
+            // customButton1
             // 
-            pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(320, 528);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(167, 61);
-            pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox2.TabIndex = 31;
-            pictureBox2.TabStop = false;
+            customButton1.BackColor = Color.FromArgb(70, 95, 241);
+            customButton1.BorderRadius = 10;
+            customButton1.Cursor = Cursors.Hand;
+            customButton1.FlatAppearance.BorderSize = 0;
+            customButton1.FlatStyle = FlatStyle.Flat;
+            customButton1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            customButton1.ForeColor = Color.White;
+            customButton1.Location = new Point(274, 528);
+            customButton1.Name = "customButton1";
+            customButton1.Size = new Size(213, 51);
+            customButton1.TabIndex = 32;
+            customButton1.Text = "Send Request";
+            customButton1.UseVisualStyleBackColor = false;
             // 
             // CreateLeaveRequest
             // 
@@ -243,7 +246,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(503, 606);
-            Controls.Add(pictureBox2);
+            Controls.Add(customButton1);
             Controls.Add(bottomBorderPanel2);
             Controls.Add(button2);
             Controls.Add(pictureBox1);
@@ -264,7 +267,6 @@
             bottomBorderPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             bottomBorderPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -286,6 +288,6 @@
         private CustomControls.BottomBorderPanel bottomBorderPanel2;
         private DateTimePicker dateTimePicker1;
         private Button button2;
-        private PictureBox pictureBox2;
+        private CustomControls.CustomButton customButton1;
     }
 }

@@ -37,11 +37,10 @@
             bottomBorderPanel2 = new CustomControls.BottomBorderPanel();
             dtp_endDate = new DateTimePicker();
             button1 = new Button();
-            pb_back = new PictureBox();
+            btn_back = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             bottomBorderPanel1.SuspendLayout();
             bottomBorderPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pb_back).BeginInit();
             SuspendLayout();
             // 
             // pictureBox9
@@ -129,17 +128,27 @@
             button1.TabIndex = 22;
             button1.UseVisualStyleBackColor = false;
             // 
-            // pb_back
+            // btn_back
             // 
-            pb_back.Image = Properties.Resources.Text_button__1_;
-            pb_back.Location = new Point(27, 239);
-            pb_back.Name = "pb_back";
-            pb_back.Size = new Size(148, 24);
-            pb_back.SizeMode = PictureBoxSizeMode.AutoSize;
-            pb_back.TabIndex = 19;
-            pb_back.TabStop = false;
-            pb_back.Visible = false;
-            pb_back.Click += pb_back_Click;
+            btn_back.BackColor = Color.Transparent;
+            btn_back.Cursor = Cursors.Hand;
+            btn_back.FlatAppearance.BorderSize = 0;
+            btn_back.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn_back.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btn_back.FlatStyle = FlatStyle.Flat;
+            btn_back.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_back.ForeColor = Color.FromArgb(63, 140, 255);
+            btn_back.Image = (Image)resources.GetObject("btn_back.Image");
+            btn_back.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_back.Location = new Point(29, 240);
+            btn_back.Name = "btn_back";
+            btn_back.Size = new Size(163, 29);
+            btn_back.TabIndex = 23;
+            btn_back.Text = "      Back to Arrivals";
+            btn_back.TextAlign = ContentAlignment.MiddleLeft;
+            btn_back.UseVisualStyleBackColor = false;
+            btn_back.Visible = false;
+            btn_back.Click += btn_back_Click;
             // 
             // Arrivals
             // 
@@ -147,7 +156,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(972, 853);
-            Controls.Add(pb_back);
+            Controls.Add(btn_back);
             Controls.Add(bottomBorderPanel2);
             Controls.Add(button1);
             Controls.Add(bottomBorderPanel1);
@@ -161,7 +170,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             bottomBorderPanel1.ResumeLayout(false);
             bottomBorderPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pb_back).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -176,6 +184,6 @@
         private CustomControls.BottomBorderPanel bottomBorderPanel2;
         private DateTimePicker dtp_endDate;
         private Button button1;
-        private PictureBox pb_back;
+        private Button btn_back;
     }
 }
