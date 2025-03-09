@@ -127,7 +127,7 @@ namespace AttendEase.BusinessLogic
         #region Late Arrivals & Early Departure
         public List<LateArrivalsAndEarlyDeparture> GetLateArrivalsAndEarlyDepartureInSpecificPeriod(DateTime startDate, DateTime endDate)
         {
-            using(var context = new AttendEaseContext())
+            using(var context = new AttendEaseContext(this.connectionString))
             {
                 // Fetch all relevant data in a single query
                 var attendanceData = context.Attendances
@@ -161,7 +161,7 @@ namespace AttendEase.BusinessLogic
 
         public List<LateArrivalsAndEarlyDepartureForSpecificEmployee> GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(DateTime startDate, DateTime endDate, int id)
         {
-            using (var context = new AttendEaseContext())
+            using (var context = new AttendEaseContext(this.connectionString))
             {
                 // Fetch all relevant data in a single query
                 var attendanceData = 
@@ -202,7 +202,7 @@ namespace AttendEase.BusinessLogic
         #region Frequent Absence
         public List<FrequentAbsence> GetFrequentAbsenceInSpecificPeriod(DateTime startDate, DateTime endDate)
         {
-            using (var context = new AttendEaseContext())
+            using (var context = new AttendEaseContext(this.connectionString))
             {
                 // Fetch all relevant data in a single query
                 var attendanceData = context.Attendances
@@ -244,7 +244,7 @@ namespace AttendEase.BusinessLogic
 
         public List<EmployeeAbsences> GetAbsencesSpecificPeriodForSpecificEmployee(DateTime startDate, DateTime endDate, int id)
         {
-            using(var context = new AttendEaseContext())
+            using(var context = new AttendEaseContext(this.connectionString))
             {
                 var attendanceData =
                 context.Employees.Where(employee => employee.EmployeeId == id).FirstOrDefault()?
@@ -301,61 +301,61 @@ namespace AttendEase.BusinessLogic
         #endregion
 
         #region Data Transfer Objects
-            public class AttendanceSummary
-            {
-                public DateTime StartDate { get; set; }
-                public DateTime EndDate { get; set; }
-                public int Present { get; set; }
-                public int Absent { get; set; }
-                public int Late { get; set; }
-                public int Early { get; set; }
-            }
+        public class AttendanceSummary
+        {
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+            public int Present { get; set; }
+            public int Absent { get; set; }
+            public int Late { get; set; }
+            public int Early { get; set; }
+        }
 
-            public class DateRange
-            {
-                public DateTime StartDate { get; set; }
-                public DateTime EndDate { get; set; }
-            }
+        public class DateRange
+        {
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+        }
 
-            public class EmployeeAttendanceInSpecificPeriod
-            {
-                public string Name { get; set; }
-                public string Department { get; set; }
-                public int TotalDaysPresent { get; set; }
-                public int TotalDaysAbsent { get; set; }
-                public int TotalDaysLate { get; set; }
-                public int TotalDaysEarly { get; set; }
-            }
+        public class EmployeeAttendanceInSpecificPeriod
+        {
+            public string Name { get; set; }
+            public string Department { get; set; }
+            public int TotalDaysPresent { get; set; }
+            public int TotalDaysAbsent { get; set; }
+            public int TotalDaysLate { get; set; }
+            public int TotalDaysEarly { get; set; }
+        }
 
-            public class EmployeeAttendanceInSpecificDay
-            {
-                public string Name { get; set; }
-                public string Department { get; set; }
-                public string Status { get; set; }
-                public TimeSpan CheckInTime { get; set; }
-                public TimeSpan CheckOutTime { get; set; }
-                public string IsLate { get; set; }
-                public string IsEarly { get; set; }
-            }
+        public class EmployeeAttendanceInSpecificDay
+        {
+            public string Name { get; set; }
+            public string Department { get; set; }
+            public string Status { get; set; }
+            public TimeSpan CheckInTime { get; set; }
+            public TimeSpan CheckOutTime { get; set; }
+            public string IsLate { get; set; }
+            public string IsEarly { get; set; }
+        }
 
-            public class LateArrivalsAndEarlyDeparture
-            {
-                public string Name { get; set; }
-                public string Department{ get; set; }
-                public int TotalDaysLate { get; set;}
-                public int TotalDaysEarly { get; set; }
-                public int Id { get; set; }
-            }
-            public class LateArrivalsAndEarlyDepartureForSpecificEmployee
-            {
-                public string Name{ get; set; }
+        public class LateArrivalsAndEarlyDeparture
+        {
+            public string Name { get; set; }
+            public string Department{ get; set; }
+            public int TotalDaysLate { get; set;}
+            public int TotalDaysEarly { get; set; }
+            public int Id { get; set; }
+        }
+        public class LateArrivalsAndEarlyDepartureForSpecificEmployee
+        {
+            public string Name{ get; set; }
 
-                public DateTime Date { get; set; }
-                public TimeSpan? CheckInTime { get; set; }
-                public TimeSpan? CheckOutTime { get; set; }
-                public TimeSpan? TotalsHourOfWorking { get; set; }
-                public string LateOrEarly { get; set; }
-            }
+            public DateTime Date { get; set; }
+            public TimeSpan? CheckInTime { get; set; }
+            public TimeSpan? CheckOutTime { get; set; }
+            public TimeSpan? TotalsHourOfWorking { get; set; }
+            public string LateOrEarly { get; set; }
+        }
 
         public class FrequentAbsence
         {

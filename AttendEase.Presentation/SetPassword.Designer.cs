@@ -37,6 +37,8 @@
             panel1 = new Panel();
             panel3 = new Panel();
             panel2 = new Panel();
+            lbl_confirmError = new Label();
+            lbl_passwordError = new Label();
             btn_showConfirm = new Button();
             btn_showPassword = new Button();
             panel8 = new Panel();
@@ -135,6 +137,8 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(lbl_confirmError);
+            panel2.Controls.Add(lbl_passwordError);
             panel2.Controls.Add(btn_showConfirm);
             panel2.Controls.Add(btn_showPassword);
             panel2.Controls.Add(panel8);
@@ -150,6 +154,28 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(633, 853);
             panel2.TabIndex = 0;
+            // 
+            // lbl_confirmError
+            // 
+            lbl_confirmError.AutoSize = true;
+            lbl_confirmError.BackColor = Color.Transparent;
+            lbl_confirmError.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_confirmError.ForeColor = Color.FromArgb(192, 0, 0);
+            lbl_confirmError.Location = new Point(103, 604);
+            lbl_confirmError.Name = "lbl_confirmError";
+            lbl_confirmError.Size = new Size(0, 17);
+            lbl_confirmError.TabIndex = 21;
+            // 
+            // lbl_passwordError
+            // 
+            lbl_passwordError.AutoSize = true;
+            lbl_passwordError.BackColor = Color.Transparent;
+            lbl_passwordError.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_passwordError.ForeColor = Color.FromArgb(192, 0, 0);
+            lbl_passwordError.Location = new Point(103, 499);
+            lbl_passwordError.Name = "lbl_passwordError";
+            lbl_passwordError.Size = new Size(0, 17);
+            lbl_passwordError.TabIndex = 20;
             // 
             // btn_showConfirm
             // 
@@ -284,6 +310,7 @@
             txt_confirm.PasswordChar = '*';
             txt_confirm.Size = new Size(327, 24);
             txt_confirm.TabIndex = 8;
+            txt_confirm.TextChanged += txt_confirm_TextChanged;
             // 
             // panel4
             // 
@@ -313,6 +340,7 @@
             txt_password.PasswordChar = '*';
             txt_password.Size = new Size(327, 24);
             txt_password.TabIndex = 8;
+            txt_password.TextChanged += txt_password_TextChanged;
             // 
             // pictureBox1
             // 
@@ -373,5 +401,7 @@
         private CustomControls.CustomButton csb_singIn;
         private Button btn_showPassword;
         private Button btn_showConfirm;
+        private Label lbl_confirmError;
+        private Label lbl_passwordError;
     }
 }

@@ -23,7 +23,6 @@ namespace AttendEase.Presentation
         public HRDashboard()
         {
             InitializeComponent();
-            this.AutoScaleMode = AutoScaleMode.None;
         }
 
         private void HRDashboard_Load(object sender, EventArgs e)
@@ -35,6 +34,10 @@ namespace AttendEase.Presentation
             profileImage.BorderStyle = BorderStyle.None; // Remove border
             profileImage.SizeMode = PictureBoxSizeMode.StretchImage; // Stretch image to fit
             profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
+            
+            // Add the name of the employee
+            lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
+            lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
 
             // Add the CircularPictureBox to the form
             this.Controls.Add(profileImage);

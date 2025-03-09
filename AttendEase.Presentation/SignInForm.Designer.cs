@@ -181,6 +181,7 @@
             csb_signIn.TabIndex = 17;
             csb_signIn.Text = "Sign In";
             csb_signIn.UseVisualStyleBackColor = false;
+            csb_signIn.Click += csb_signIn_Click;
             // 
             // panel4
             // 

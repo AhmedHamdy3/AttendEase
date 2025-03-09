@@ -41,7 +41,7 @@
             btn_leaveRequest = new Button();
             btn_dashboard = new Button();
             label2 = new Label();
-            label1 = new Label();
+            lbl_employeeName = new Label();
             panel3 = new Panel();
             pnl_formLoader = new Panel();
             panel1.SuspendLayout();
@@ -71,7 +71,7 @@
             pnl_sideBar.Controls.Add(btn_leaveRequest);
             pnl_sideBar.Controls.Add(btn_dashboard);
             pnl_sideBar.Controls.Add(label2);
-            pnl_sideBar.Controls.Add(label1);
+            pnl_sideBar.Controls.Add(lbl_employeeName);
             pnl_sideBar.Location = new Point(0, 0);
             pnl_sideBar.Name = "pnl_sideBar";
             pnl_sideBar.Size = new Size(300, 853);
@@ -269,16 +269,16 @@
             label2.TabIndex = 1;
             label2.Text = "Some user text here";
             // 
-            // label1
+            // lbl_employeeName
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(93, 114, 133);
-            label1.Location = new Point(94, 133);
-            label1.Name = "label1";
-            label1.Size = new Size(114, 46);
-            label1.TabIndex = 0;
-            label1.Text = "Name";
+            lbl_employeeName.AutoSize = true;
+            lbl_employeeName.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_employeeName.ForeColor = Color.FromArgb(93, 114, 133);
+            lbl_employeeName.Location = new Point(94, 133);
+            lbl_employeeName.Name = "lbl_employeeName";
+            lbl_employeeName.Size = new Size(114, 46);
+            lbl_employeeName.TabIndex = 0;
+            lbl_employeeName.Text = "Name";
             // 
             // panel3
             // 
@@ -319,7 +319,7 @@
         private Panel panel1;
         private Panel pnl_sideBar;
         private Panel panel3;
-        private Label label1;
+        private Label lbl_employeeName;
         private Label label2;
         private PictureBox pictureBox1;
         private FlowLayoutPanel flowLayoutPanel8;

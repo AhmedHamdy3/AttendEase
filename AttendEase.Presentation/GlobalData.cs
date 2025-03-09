@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AttendEase.DataAccess.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace AttendEase.Presentation
     public static class GlobalData
     {
         public static StartForm startForm;
+        public static Employee RegisterEmployee;
     }
 }
