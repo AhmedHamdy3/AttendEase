@@ -9,7 +9,7 @@ namespace AttendEase.DataAccess.Entities
     public class LeaveRequest
     {
         public int LeaveRequestId { get; set; }
-        public string Title { get; set; }
+        public string? Title { get; set; }
         public string LeaveType { get; set; } // Sick, Vacation
         public string? Description { get; set; }
         public DateTime CreationTime { get; set; }

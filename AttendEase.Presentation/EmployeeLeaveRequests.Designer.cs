@@ -28,17 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeLeaveRequests));
+            lbl_title = new Label();
+            csb_addRequest = new CustomControls.CustomButton();
             SuspendLayout();
             // 
-            // label1
+            // lbl_title
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(73, 90);
-            label1.Name = "label1";
-            label1.Size = new Size(180, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Employee Leave Requests";
+            lbl_title.AutoSize = true;
+            lbl_title.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_title.ForeColor = Color.FromArgb(10, 22, 41);
+            lbl_title.Location = new Point(12, 24);
+            lbl_title.Name = "lbl_title";
+            lbl_title.Size = new Size(307, 62);
+            lbl_title.TabIndex = 25;
+            lbl_title.Text = "My Requests";
+            // 
+            // csb_addRequest
+            // 
+            csb_addRequest.BackColor = Color.FromArgb(70, 95, 241);
+            csb_addRequest.BorderRadius = 10;
+            csb_addRequest.Cursor = Cursors.Hand;
+            csb_addRequest.FlatAppearance.BorderSize = 0;
+            csb_addRequest.FlatStyle = FlatStyle.Flat;
+            csb_addRequest.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            csb_addRequest.ForeColor = Color.White;
+            csb_addRequest.Image = (Image)resources.GetObject("csb_addRequest.Image");
+            csb_addRequest.ImageAlign = ContentAlignment.MiddleLeft;
+            csb_addRequest.Location = new Point(727, 42);
+            csb_addRequest.Name = "csb_addRequest";
+            csb_addRequest.Padding = new Padding(25, 0, 0, 0);
+            csb_addRequest.Size = new Size(209, 50);
+            csb_addRequest.TabIndex = 27;
+            csb_addRequest.Text = "Add Request";
+            csb_addRequest.UseVisualStyleBackColor = false;
             // 
             // EmployeeLeaveRequests
             // 
@@ -46,16 +69,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(972, 853);
-            Controls.Add(label1);
+            Controls.Add(csb_addRequest);
+            Controls.Add(lbl_title);
             FormBorderStyle = FormBorderStyle.None;
             Name = "EmployeeLeaveRequests";
             Text = "EmployeeLeaveRequests";
+            Load += EmployeeLeaveRequests_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Label lbl_title;
+        private CustomControls.CustomButton csb_addRequest;
     }
 }

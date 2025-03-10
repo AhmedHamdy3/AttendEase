@@ -114,7 +114,7 @@ namespace AttendEase.DataAccess.Entities
             modelBuilder.Entity<WorkDay>().Property(w => w.EndTime).HasColumnType("time(0)");
 
             // Unique constraint for DayOfWeek
-            modelBuilder.Entity<WorkDay>().HasIndex(w => w.DayOfWeek).IsUnique();
+            modelBuilder.Entity<WorkDay>().HasIndex(w => new { w.DayOfWeek, w.StartTime, w.EndTime}).IsUnique();
             #endregion
 
             #region ScheduleWorkDay
@@ -184,9 +184,10 @@ namespace AttendEase.DataAccess.Entities
             modelBuilder.Entity<LeaveRequest>().Property(lr => lr.CreationTime)
                    .HasDefaultValueSql("GETDATE()"); // Default to current timestamp
 
-            modelBuilder.Entity<LeaveRequest>().Property(lr => lr.Status).HasMaxLength(20);
+            modelBuilder.Entity<LeaveRequest>().Property(lr => lr.Status).HasMaxLength(20).HasDefaultValue("Pending"); ;
             modelBuilder.Entity<LeaveRequest>().Property(lr => lr.StartDate).HasColumnType("date");
             modelBuilder.Entity<LeaveRequest>().Property(lr => lr.EndDate).HasColumnType("date");
+            modelBuilder.Entity<LeaveRequest>().Property(lr => lr.IsRead).HasDefaultValue(false);
 
             #endregion
 

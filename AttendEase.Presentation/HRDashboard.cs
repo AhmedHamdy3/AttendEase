@@ -119,6 +119,7 @@ namespace AttendEase.Presentation
                 }
             }
         }
+
         private void DisableButton()
         {
             foreach (Control ctrl in pnl_sideBar.Controls)

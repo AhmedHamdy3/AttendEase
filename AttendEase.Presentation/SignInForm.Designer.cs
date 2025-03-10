@@ -86,6 +86,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.White;
             panel2.Controls.Add(btn_showPassword);
             panel2.Controls.Add(panel8);
             panel2.Controls.Add(csb_signIn);
