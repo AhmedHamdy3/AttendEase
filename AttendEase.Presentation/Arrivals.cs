@@ -34,13 +34,13 @@ namespace AttendEase.Presentation
         private void Arrivals_Load(object sender, EventArgs e)
         {
             table = new Table(888, 570, 30, 240);
-            this.Controls.Add(table.tablePanel);
             var month = AttendanceService.GetPreviousMonth(DateTime.Now, 0);
 
             dtp_startDate.Value = month.StartDate;
             dtp_endDate.Value = month.EndDate;
 
             ShowArrivals();
+            this.Controls.Add(table.tablePanel);
         }
 
 

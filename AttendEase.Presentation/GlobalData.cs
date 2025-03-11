@@ -11,5 +11,9 @@ namespace AttendEase.Presentation
     {
         public static StartForm startForm;
         public static Employee RegisterEmployee;
+        public static int EmployeeId = 1;
+        public static int X = 600;
+        public static int Y= 200;
+
     }
 }

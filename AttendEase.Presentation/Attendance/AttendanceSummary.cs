@@ -34,8 +34,8 @@ namespace AttendEase.Presentation.Attendance
         private void AttendanceSummary_Load(object sender, EventArgs e)
         {
             cb_summaryType.SelectedIndex = 0;
-            this.Controls.Add(table.tablePanel);
             DailySelected();
+            this.Controls.Add(table.tablePanel);
         }
         private void DailySelected()
         {

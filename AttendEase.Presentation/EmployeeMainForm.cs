@@ -15,11 +15,43 @@ namespace AttendEase.Presentation
     {
         private Button currentButton;
         ProfileImage profileImage;
+        private Panel overlayPanel;
 
         public EmployeeMainForm()
         {
             InitializeComponent();
+
+            //overlayPanel = new Panel
+            //{
+            //    BackColor = Color.FromArgb(10,0,0,0),
+            //    Size = this.ClientSize,
+            //    Location = Point.Empty,
+            //    Visible = false,
+            //    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
+            //};
+            //overlayPanel.Paint += OverlayPanel_Paint; // Add a Paint event handler for transparency
+            //this.Controls.Add(overlayPanel);
+            //overlayPanel.BringToFront();
         }
+        //private void OverlayPanel_Paint(object sender, PaintEventArgs e)
+        //{
+        //    // Make the overlay semi-transparent
+        //    using (var brush = new SolidBrush(Color.FromArgb(2, 0, 0, 0)))
+        //    {
+        //        e.Graphics.FillRectangle(brush, overlayPanel.ClientRectangle);
+        //    }
+        //}
+
+        //public void showOverlay()
+        //{
+        //    profileImage.SendToBack();
+        //    overlayPanel.Visible = true;
+        //}
+        //public void removeOverlay()
+        //{
+        //    profileImage.BringToFront();
+        //    overlayPanel.Visible = false;
+        //}
 
         private void EmployeeMainForm_Load(object sender, EventArgs e)
         {
@@ -36,7 +68,7 @@ namespace AttendEase.Presentation
             profileImage.BringToFront();
             #endregion
 
-            lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
+            //lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
             lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
 
             // Add the name of the employee
@@ -61,6 +93,9 @@ namespace AttendEase.Presentation
             EmployeeLeaveRequests employeeLeaveRequests = new EmployeeLeaveRequests() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             employeeLeaveRequests.FormBorderStyle = FormBorderStyle.None;
             this.pnl_formLoader.Controls.Add(employeeLeaveRequests);
+            //employeeLeaveRequests.showOverlayAction = showOverlay;
+            //employeeLeaveRequests.removeOverlayAction= removeOverlay;
+
             employeeLeaveRequests.Show();
         }
 

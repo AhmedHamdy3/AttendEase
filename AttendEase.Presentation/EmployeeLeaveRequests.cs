@@ -1,4 +1,5 @@
 ﻿using AttendEase.BusinessLogic;
+using AttendEase.DataAccess.Entities;
 using AttendEase.Presentation.CustomControls;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -17,6 +18,10 @@ namespace AttendEase.Presentation
     {
         LeaveRequestsService leaveRequestsService;
         Table table;
+        //public Action removeOverlayAction;
+        //public Action showOverlayAction;
+
+
         public EmployeeLeaveRequests()
         {
             InitializeComponent();
@@ -28,12 +33,40 @@ namespace AttendEase.Presentation
             leaveRequestsService = new LeaveRequestsService(connectionString);
         }
 
-        private void EmployeeLeaveRequests_Load(object sender, EventArgs e)
+        async private void EmployeeLeaveRequests_Load(object sender, EventArgs e)
         {
             table = new Table(888, 570, 30, 240);
+            ShowRequests();
             this.Controls.Add(table.tablePanel);
-            var leaveRequests = leaveRequestsService.GetLeaveRequests(GlobalData.RegisterEmployee.EmployeeId);
+        }
+        private void ShowRequests()
+        {
+            var leaveRequests = leaveRequestsService.GetLeaveRequests(GlobalData.EmployeeId);
             table.fillTable(leaveRequests, new[] { "Request Type", "Duraton", "Start Day", "End Day", "Status" }, "", null, null);
+
+        }
+
+        public void removeOverlay()
+        {
+            //removeOverlayAction();
+        }
+        private void csb_addRequest_Click(object sender, EventArgs e)
+        {
+            CreateLeaveRequest createLeaveRequest = new CreateLeaveRequest();
+            createLeaveRequest.AddLeaveRequest = AddLeaveRequest;
+            //createLeaveRequest.removeOverlay = removeOverlay;
+            createLeaveRequest.StartPosition = FormStartPosition.Manual;
+            createLeaveRequest.Location = new Point(GlobalData.X, GlobalData.Y);
+            //showOverlayAction();
+            createLeaveRequest.ShowDialog();
+            createLeaveRequest.BringToFront();
+            this.SendToBack();
+        }
+
+        private void AddLeaveRequest(LeaveRequest leaveRequest)
+        {
+            leaveRequestsService.AddRequest(leaveRequest);
+            ShowRequests();
         }
     }
 }

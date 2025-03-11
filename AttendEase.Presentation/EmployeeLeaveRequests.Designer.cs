@@ -62,6 +62,7 @@
             csb_addRequest.TabIndex = 27;
             csb_addRequest.Text = "Add Request";
             csb_addRequest.UseVisualStyleBackColor = false;
+            csb_addRequest.Click += csb_addRequest_Click;
             // 
             // EmployeeLeaveRequests
             // 

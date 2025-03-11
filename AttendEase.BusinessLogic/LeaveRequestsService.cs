@@ -28,7 +28,7 @@ namespace AttendEase.BusinessLogic
                     RequestType = leaveRequest.LeaveType,
                     StartDate = leaveRequest.StartDate,
                     EndDate = leaveRequest.EndDate,
-                    Duration = (leaveRequest.EndDate - leaveRequest.StartDate).Days,
+                    Duration = (leaveRequest.EndDate - leaveRequest.StartDate).Days + 1,
                     Status = leaveRequest.Status,
                 })
                 .ToList();
@@ -36,6 +36,24 @@ namespace AttendEase.BusinessLogic
                 return leaveRequests;
             }
         }
+
+        public void AddRequest(LeaveRequest leaveRequest)
+        {
+            using (var context = new AttendEaseContext())
+            {
+                //LeaveRequest leaveRequest = new LeaveRequest()
+                //{
+                //    LeaveType = requestType,
+                //    StartDate = startDate,
+                //    EndDate = endDate,
+                //    Description = comment,
+                //    EmployeeId = EmployeeId
+                //};
+                context.LeaveRequests.Add(leaveRequest);
+                context.SaveChanges();
+            }    
+        }
+
         #region Data Transfer Objects
         public class LeaveRequestForSpecificEmployee
         {

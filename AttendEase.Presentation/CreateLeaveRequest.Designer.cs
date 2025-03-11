@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cb_summaryType = new ComboBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateLeaveRequest));
+            cb_requestType = new ComboBox();
             btn_cb_summaryType = new Button();
             label1 = new Label();
-            richTextBox1 = new RichTextBox();
+            rb_comment = new RichTextBox();
             panel2 = new Panel();
             label3 = new Label();
             dtp_startDate = new DateTimePicker();
@@ -40,26 +41,24 @@
             label5 = new Label();
             bottomBorderPanel1 = new CustomControls.BottomBorderPanel();
             label6 = new Label();
-            pictureBox1 = new PictureBox();
             bottomBorderPanel2 = new CustomControls.BottomBorderPanel();
-            dateTimePicker1 = new DateTimePicker();
+            dtp_endDate = new DateTimePicker();
             button2 = new Button();
-            customButton1 = new CustomControls.CustomButton();
+            csb_sendRequest = new CustomControls.CustomButton();
+            csb_close = new CustomControls.CustomButton();
             panel2.SuspendLayout();
             bottomBorderPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             bottomBorderPanel2.SuspendLayout();
             SuspendLayout();
             // 
-            // cb_summaryType
+            // cb_requestType
             // 
-            cb_summaryType.FlatStyle = FlatStyle.Flat;
-            cb_summaryType.FormattingEnabled = true;
-            cb_summaryType.Items.AddRange(new object[] { "Sick Leave", "Vacation", "Unpaid Leave" });
-            cb_summaryType.Location = new Point(31, 155);
-            cb_summaryType.Name = "cb_summaryType";
-            cb_summaryType.Size = new Size(181, 28);
-            cb_summaryType.TabIndex = 12;
+            cb_requestType.FlatStyle = FlatStyle.Flat;
+            cb_requestType.FormattingEnabled = true;
+            cb_requestType.Location = new Point(31, 155);
+            cb_requestType.Name = "cb_requestType";
+            cb_requestType.Size = new Size(181, 28);
+            cb_requestType.TabIndex = 12;
             // 
             // btn_cb_summaryType
             // 
@@ -86,20 +85,20 @@
             label1.TabIndex = 14;
             label1.Text = "Request Type";
             // 
-            // richTextBox1
+            // rb_comment
             // 
-            richTextBox1.BorderStyle = BorderStyle.None;
-            richTextBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            richTextBox1.Location = new Point(12, 12);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(447, 138);
-            richTextBox1.TabIndex = 15;
-            richTextBox1.Text = "";
+            rb_comment.BorderStyle = BorderStyle.None;
+            rb_comment.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rb_comment.Location = new Point(12, 12);
+            rb_comment.Name = "rb_comment";
+            rb_comment.Size = new Size(447, 138);
+            rb_comment.TabIndex = 15;
+            rb_comment.Text = "";
             // 
             // panel2
             // 
             panel2.BackColor = Color.White;
-            panel2.Controls.Add(richTextBox1);
+            panel2.Controls.Add(rb_comment);
             panel2.Location = new Point(17, 345);
             panel2.Name = "panel2";
             panel2.Size = new Size(470, 162);
@@ -181,34 +180,23 @@
             label6.TabIndex = 27;
             label6.Text = "Add Request";
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Image = Properties.Resources.Icon;
-            pictureBox1.Location = new Point(444, 21);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(44, 44);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 28;
-            pictureBox1.TabStop = false;
-            // 
             // bottomBorderPanel2
             // 
             bottomBorderPanel2.BackColor = Color.White;
-            bottomBorderPanel2.Controls.Add(dateTimePicker1);
+            bottomBorderPanel2.Controls.Add(dtp_endDate);
             bottomBorderPanel2.Location = new Point(265, 255);
             bottomBorderPanel2.Name = "bottomBorderPanel2";
             bottomBorderPanel2.Size = new Size(195, 24);
             bottomBorderPanel2.TabIndex = 29;
             // 
-            // dateTimePicker1
+            // dtp_endDate
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(-1, -1);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(197, 27);
-            dateTimePicker1.TabIndex = 18;
-            dateTimePicker1.Value = new DateTime(2025, 3, 7, 0, 0, 0, 0);
+            dtp_endDate.Format = DateTimePickerFormat.Short;
+            dtp_endDate.Location = new Point(-1, -1);
+            dtp_endDate.Name = "dtp_endDate";
+            dtp_endDate.Size = new Size(197, 27);
+            dtp_endDate.TabIndex = 18;
+            dtp_endDate.Value = new DateTime(2025, 3, 7, 0, 0, 0, 0);
             // 
             // button2
             // 
@@ -224,21 +212,38 @@
             button2.TabIndex = 30;
             button2.UseVisualStyleBackColor = false;
             // 
-            // customButton1
+            // csb_sendRequest
             // 
-            customButton1.BackColor = Color.FromArgb(70, 95, 241);
-            customButton1.BorderRadius = 10;
-            customButton1.Cursor = Cursors.Hand;
-            customButton1.FlatAppearance.BorderSize = 0;
-            customButton1.FlatStyle = FlatStyle.Flat;
-            customButton1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            customButton1.ForeColor = Color.White;
-            customButton1.Location = new Point(274, 528);
-            customButton1.Name = "customButton1";
-            customButton1.Size = new Size(213, 51);
-            customButton1.TabIndex = 32;
-            customButton1.Text = "Send Request";
-            customButton1.UseVisualStyleBackColor = false;
+            csb_sendRequest.BackColor = Color.FromArgb(70, 95, 241);
+            csb_sendRequest.BorderRadius = 10;
+            csb_sendRequest.Cursor = Cursors.Hand;
+            csb_sendRequest.FlatAppearance.BorderSize = 0;
+            csb_sendRequest.FlatStyle = FlatStyle.Flat;
+            csb_sendRequest.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            csb_sendRequest.ForeColor = Color.White;
+            csb_sendRequest.Location = new Point(274, 528);
+            csb_sendRequest.Name = "csb_sendRequest";
+            csb_sendRequest.Size = new Size(213, 51);
+            csb_sendRequest.TabIndex = 32;
+            csb_sendRequest.Text = "Send Request";
+            csb_sendRequest.UseVisualStyleBackColor = false;
+            csb_sendRequest.Click += csb_sendRequest_Click;
+            // 
+            // csb_close
+            // 
+            csb_close.BackColor = Color.FromArgb(243, 248, 252);
+            csb_close.BorderRadius = 0;
+            csb_close.Cursor = Cursors.Hand;
+            csb_close.FlatAppearance.BorderSize = 0;
+            csb_close.FlatStyle = FlatStyle.Flat;
+            csb_close.ForeColor = Color.Black;
+            csb_close.Image = (Image)resources.GetObject("csb_close.Image");
+            csb_close.Location = new Point(442, 21);
+            csb_close.Name = "csb_close";
+            csb_close.Size = new Size(45, 45);
+            csb_close.TabIndex = 33;
+            csb_close.UseVisualStyleBackColor = false;
+            csb_close.Click += csb_close_Click;
             // 
             // CreateLeaveRequest
             // 
@@ -246,10 +251,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(503, 606);
-            Controls.Add(customButton1);
+            Controls.Add(csb_close);
+            Controls.Add(csb_sendRequest);
             Controls.Add(bottomBorderPanel2);
             Controls.Add(button2);
-            Controls.Add(pictureBox1);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -258,24 +263,24 @@
             Controls.Add(label3);
             Controls.Add(panel2);
             Controls.Add(label1);
-            Controls.Add(cb_summaryType);
+            Controls.Add(cb_requestType);
             Controls.Add(btn_cb_summaryType);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CreateLeaveRequest";
             Text = "CreateLeaveRequest";
+            Load += CreateLeaveRequest_Load;
             panel2.ResumeLayout(false);
             bottomBorderPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             bottomBorderPanel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private ComboBox cb_summaryType;
+        private ComboBox cb_requestType;
         private Button btn_cb_summaryType;
         private Label label1;
-        private RichTextBox richTextBox1;
+        private RichTextBox rb_comment;
         private Panel panel2;
         private Label label3;
         private DateTimePicker dtp_startDate;
@@ -284,10 +289,11 @@
         private Label label5;
         private CustomControls.BottomBorderPanel bottomBorderPanel1;
         private Label label6;
-        private PictureBox pictureBox1;
+        private PictureBox pb_close;
         private CustomControls.BottomBorderPanel bottomBorderPanel2;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtp_endDate;
         private Button button2;
-        private CustomControls.CustomButton customButton1;
+        private CustomControls.CustomButton csb_sendRequest;
+        private CustomControls.CustomButton csb_close;
     }
 }

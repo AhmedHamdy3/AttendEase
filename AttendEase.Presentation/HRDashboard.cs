@@ -41,7 +41,7 @@ namespace AttendEase.Presentation
             #endregion
 
             // Add the name of the employee
-            lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
+            //lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
             lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
 
             btn_dashboard.PerformClick();
