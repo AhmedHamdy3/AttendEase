@@ -2,6 +2,7 @@
 using AttendEase.Presentation.Attendance;
 using AttendEase.Presentation.CustomControls;
 using AttendEase.Presentation.Properties;
+using AttendEase.Presentation.Scedual;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -62,6 +63,11 @@ namespace AttendEase.Presentation
         private void btn_schedules_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, (Image)Properties.Resources.Calendar_Active);
+            this.pnl_formLoader.Controls.Clear();
+            Scedual_details scedual_Details_form = new Scedual_details() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            scedual_Details_form.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(scedual_Details_form);
+            scedual_Details_form.Show();
         }
 
         private void btn_attendance_Click(object sender, EventArgs e)
