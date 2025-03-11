@@ -1,5 +1,10 @@
 ﻿using AttendEase.BusinessLogic;
 using AttendEase.Presentation.CustomControls;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.StyledXmlParser.Jsoup.Nodes;
+//using iTextSharp.text;
+//using iTextSharp.text.pdf;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -7,16 +12,31 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+//using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AttendEase.BusinessLogic.AttendanceService;
+
 
 namespace AttendEase.Presentation.Attendance
 {
+    public enum Flag
+    {
+        DailyAttendance,
+        WeeklyAttendance,
+        MonthlyAttendance,
+        AttendanceDay,
+        AttendanceWeek,
+        AttendanceMonth
+    }
     public partial class AttendanceSummary : Form
     {
         AttendanceService attendanceService;
-        Table table;
+        CustomTable table;
+        Flag flag;
+        int page;
+        DateTime startDate, endDate;
         public AttendanceSummary()
         {
             InitializeComponent();
@@ -28,28 +48,36 @@ namespace AttendEase.Presentation.Attendance
             var connectionString = configSection["SQLServerConnection"] ?? null;
 
             attendanceService = new AttendanceService(connectionString);
-            table = new Table(888, 570, 30, 240);
+
+            table = new CustomTable(888, 570, 30, 240);
+            ccb_summaryType.SelectedIndex = 0;
+            DailySelected();
+            flag = Flag.DailyAttendance;
+            page = 0;
+            this.Controls.Add(table.tablePanel);
         }
 
         private void AttendanceSummary_Load(object sender, EventArgs e)
         {
-            ccb_summaryType.SelectedIndex = 0;
-
-            DailySelected();
-            this.Controls.Add(table.tablePanel);
         }
         private void DailySelected()
         {
+            flag = Flag.DailyAttendance;
+            page = 0;
             var dailyAttendanceSummary = attendanceService.GetPageOfDailyAttendanceSummary(0);
             table.fillTable(dailyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Day", AttendanceInSpecificDay, null);
         }
         private void WeeklySelected()
         {
+            flag = Flag.WeeklyAttendance;
+            page = 0;
             var WeeklyAttendanceSummary = attendanceService.GetPageOfWeeklyAttendanceSummary(0);
             table.fillTable(WeeklyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Period", AttendanceInSpecificWeek, null);
         }
         private void MonthlySelected()
         {
+            flag = Flag.MonthlyAttendance;
+            page = 0;
             var MonthyAttendanceSummary = attendanceService.GetPageOfMonthlyAttendanceSummary(0);
             table.fillTable(MonthyAttendanceSummary, new[] { "Start Date", "End Date", "Prsent", "Absent", "Late", "Early" }, "Period", AttendanceInSpecificMonth, null);
         }
@@ -61,25 +89,29 @@ namespace AttendEase.Presentation.Attendance
             btn_back.Visible = true;
             ccb_summaryType.Visible = false;
 
-
+            flag = Flag.AttendanceDay;
+            startDate = StartDate; endDate = EndDate;
             var attendanceDay = attendanceService.GetAttendanceInSpecificDay(StartDate);
             table.fillTable(attendanceDay, new[] { "Employee", "Department", "Status", "CheckIn", "CheckOut", "Late", "Early" }, "", null, null);
         }
         private void AttendanceInSpecificWeek(DateTime StartDate, DateTime EndDate)
         {
             lbl_details_header.Text = $"Attendance for the Week: {StartDate: MMMM d, yyyy} to {EndDate: MMMM d, yyyy}";
+            flag = Flag.AttendanceWeek;
+            startDate = StartDate; endDate = EndDate;
             commonBetweenWeekAndMonth(StartDate, EndDate);
         }
 
         private void AttendanceInSpecificMonth(DateTime StartDate, DateTime EndDate)
         {
             commonBetweenWeekAndMonth(StartDate, EndDate);
+            flag = Flag.AttendanceMonth;
+            startDate = StartDate; endDate = EndDate;
             lbl_details_header.Text = $"Attendance for the Month: {StartDate: MMMM d, yyyy} to {EndDate: MMMM d, yyyy}";
         }
 
         private void commonBetweenWeekAndMonth(DateTime StartDate, DateTime EndDate)
         {
-
             var attendancePeriod = attendanceService.GetAttendanceInSpecificPeriod(StartDate, EndDate);
             lbl_title.Visible = false;
             btn_back.Visible = true;
@@ -119,6 +151,40 @@ namespace AttendEase.Presentation.Attendance
         {
             CheckTheValueOfComboBoxAndUpdateTheTable();
 
+        }
+
+        private void cbtn_exportPdf_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                // Set the file filter to show only PDF files
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1; // Default to PDF files
+                saveFileDialog.RestoreDirectory = true; // Restore the previous directory
+                saveFileDialog.Title = "Save PDF File"; // Dialog title
+                saveFileDialog.DefaultExt = "pdf"; // Default file extension
+                
+                // Show the dialog and check if the user clicked OK
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName; // Get the selected file path
+                    if (flag == Flag.DailyAttendance || flag == Flag.WeeklyAttendance || flag == Flag.MonthlyAttendance)
+                    {
+                        attendanceService.ExportPdf(page, flag.ToString(), filePath);
+                    }
+                    else if (flag == Flag.AttendanceDay)
+                    {
+                        attendanceService.ExportPdf(startDate, flag.ToString(), filePath);
+                    }
+                    else if (flag == Flag.AttendanceWeek || flag == Flag.AttendanceMonth)
+                    {
+                        attendanceService.ExportPdf(startDate, endDate, flag.ToString(), filePath);
+                    }
+
+                }
+
+
+            }
         }
     }
 }

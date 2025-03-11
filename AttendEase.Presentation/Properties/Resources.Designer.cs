@@ -443,6 +443,26 @@ namespace AttendEase.Presentation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Spin_1x_0_8s_200px_200px {
+            get {
+                object obj = ResourceManager.GetObject("Spin@1x-0.8s-200px-200px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Spin_1x_01 {
+            get {
+                object obj = ResourceManager.GetObject("Spin@1x-01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tabs {
             get {
                 object obj = ResourceManager.GetObject("Tabs", resourceCulture);

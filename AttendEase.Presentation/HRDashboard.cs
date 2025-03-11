@@ -66,15 +66,32 @@ namespace AttendEase.Presentation
 
         private void btn_attendance_Click(object sender, EventArgs e)
         {
+            using(WaitForm frm = new WaitForm(loadAttendance))
+            {
+                //this.SendToBack();
+                frm.ShowDialog(this);
+            }
+
             ActivateButton(sender, (Image)Properties.Resources.Attendance_Active);
-
-            this.pnl_formLoader.Controls.Clear();
-            AttendanceSummary attendanceSummaryForm = new AttendanceSummary() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            attendanceSummaryForm.FormBorderStyle = FormBorderStyle.None;
-            this.pnl_formLoader.Controls.Add(attendanceSummaryForm);
-            attendanceSummaryForm.Show();
         }
-
+        public void loadAttendance()
+        {
+            // Check if Invoke is required (if we're not on the UI thread)
+            if (pnl_formLoader.InvokeRequired)
+            {
+                // Use Invoke to marshal the call to the UI thread
+                pnl_formLoader.Invoke(new Action(loadAttendance));
+            }
+            else
+            {
+                // We're on the UI thread, so it's safe to update the control
+                this.pnl_formLoader.Controls.Clear();
+                AttendanceSummary attendanceSummaryForm = new AttendanceSummary(){Dock = DockStyle.Fill, TopLevel = false, TopMost = true};
+                attendanceSummaryForm.FormBorderStyle = FormBorderStyle.None;
+                this.pnl_formLoader.Controls.Add(attendanceSummaryForm);
+                attendanceSummaryForm.Show();
+            }
+        }
         private void btn_arrivals_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, (Image)Properties.Resources.Clock_Active);

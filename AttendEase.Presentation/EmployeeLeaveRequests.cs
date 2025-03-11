@@ -17,7 +17,7 @@ namespace AttendEase.Presentation
     public partial class EmployeeLeaveRequests : Form
     {
         LeaveRequestsService leaveRequestsService;
-        Table table;
+        CustomTable table;
         //public Action removeOverlayAction;
         //public Action showOverlayAction;
 
@@ -35,7 +35,7 @@ namespace AttendEase.Presentation
 
         async private void EmployeeLeaveRequests_Load(object sender, EventArgs e)
         {
-            table = new Table(888, 570, 30, 240);
+            table = new CustomTable(888, 570, 30, 240);
             ShowRequests();
             this.Controls.Add(table.tablePanel);
         }

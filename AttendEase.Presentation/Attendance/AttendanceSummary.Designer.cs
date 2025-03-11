@@ -34,6 +34,7 @@
             lbl_details_header = new Label();
             btn_back = new Button();
             ccb_summaryType = new CustomControls.CustomComboBox();
+            cbtn_exportPdf = new CustomControls.CustomButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             SuspendLayout();
             // 
@@ -108,12 +109,30 @@
             ccb_summaryType.TabIndex = 25;
             ccb_summaryType.OnSelectedIndexChanged += ccb_summaryType_OnSelectedIndexChanged;
             // 
+            // cbtn_exportPdf
+            // 
+            cbtn_exportPdf.BackColor = Color.Pink;
+            cbtn_exportPdf.BorderRadius = 10;
+            cbtn_exportPdf.Cursor = Cursors.Hand;
+            cbtn_exportPdf.FlatAppearance.BorderSize = 0;
+            cbtn_exportPdf.FlatStyle = FlatStyle.Flat;
+            cbtn_exportPdf.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cbtn_exportPdf.ForeColor = Color.White;
+            cbtn_exportPdf.Location = new Point(624, 26);
+            cbtn_exportPdf.Name = "cbtn_exportPdf";
+            cbtn_exportPdf.Size = new Size(313, 50);
+            cbtn_exportPdf.TabIndex = 26;
+            cbtn_exportPdf.Text = "customButton1";
+            cbtn_exportPdf.UseVisualStyleBackColor = false;
+            cbtn_exportPdf.Click += cbtn_exportPdf_Click;
+            // 
             // AttendanceSummary
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(972, 853);
+            Controls.Add(cbtn_exportPdf);
             Controls.Add(ccb_summaryType);
             Controls.Add(btn_back);
             Controls.Add(lbl_details_header);
@@ -134,5 +153,6 @@
         private Label lbl_details_header;
         private Button btn_back;
         private CustomControls.CustomComboBox ccb_summaryType;
+        private CustomControls.CustomButton cbtn_exportPdf;
     }
 }

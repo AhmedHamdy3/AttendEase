@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AttendEase.Presentation.CustomControls
 {
-    internal class Table
+    public class CustomTable
     {
         public Panel tablePanel;
         private int width;
-        private Table(int width, int height, int xDim, int yDim)
+        public CustomTable(int width, int height, int xDim, int yDim)
         {
             this.width = width;
             tablePanel = new Panel();
@@ -19,7 +19,7 @@ namespace AttendEase.Presentation.CustomControls
             tablePanel.AutoScroll = true; // Enable scrolling if the table is large
             tablePanel.BackColor = Color.White;
         }
-        
+
         public void fillTable<T>(List<T> data, string[] headers, string guide, Action<DateTime, DateTime> foo1, Action<int> foo2)
         {
             //MessageBox.Show("Table Fill");
@@ -65,11 +65,11 @@ namespace AttendEase.Presentation.CustomControls
                 var startDate = properties.FirstOrDefault(p => p.Name == "StartDate"); // ******************
                 var endDate = properties.FirstOrDefault(p => p.Name == "EndDate"); // ******************
                 var id = properties.FirstOrDefault(p => p.Name == "Id"); // ******************
-                
+
 
                 Panel rowData = new Panel();
                 rowData.Size = new Size(this.width, cellHeight);
-                rowData.Location = new Point(0, ((row + 1) * cellHeight ));
+                rowData.Location = new Point(0, ((row + 1) * cellHeight));
                 for (int col = 0; col < headers.Length; col++)
                 {
                     // Create a panel for each cell
@@ -81,14 +81,14 @@ namespace AttendEase.Presentation.CustomControls
                     // Add a label to the panel (for example content)
                     Label cellLabel = new Label();
                     var cellValue = properties[col].GetValue(item);
-                    
+
 
                     // Show the Date only
                     if (cellValue is DateTime)
                     {
                         cellLabel.Text = ((DateTime)cellValue).ToShortDateString() ?? "-"; ; // Get property 
                     }
-                    else if(cellValue is Double && guide == "FrequentAbsences")
+                    else if (cellValue is Double && guide == "FrequentAbsences")
                     {
                         cellLabel.Text = cellValue.ToString() + "%";
                     }
@@ -96,7 +96,7 @@ namespace AttendEase.Presentation.CustomControls
                     {
                         cellLabel.Text = cellValue?.ToString() ?? "-"; // Get property value
                     }
-                    
+
                     cellLabel.AutoSize = true;
                     cellLabel.Location = new Point(10, 15); // Adjust position as needed
                     cellLabel.ForeColor = Color.FromArgb(10, 22, 41);
@@ -119,7 +119,7 @@ namespace AttendEase.Presentation.CustomControls
                                 foo2((int)id.GetValue(item));
                             };
                         }
-                        else if (guide == "Day" || guide == "Period") 
+                        else if (guide == "Day" || guide == "Period")
                         {
                             cellPanel.MouseUp += (sender, e) =>
                             {

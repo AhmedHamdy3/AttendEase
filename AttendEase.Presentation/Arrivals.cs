@@ -16,7 +16,7 @@ namespace AttendEase.Presentation
     public partial class Arrivals : Form
     {
         AttendanceService attendanceService;
-        Table table;
+        CustomTable table;
         int isDetails = 0;
         int id = -1;
         public Arrivals()
@@ -33,7 +33,7 @@ namespace AttendEase.Presentation
 
         private void Arrivals_Load(object sender, EventArgs e)
         {
-            table = new Table(888, 570, 30, 240);
+            table = new CustomTable(888, 570, 30, 240);
             var month = AttendanceService.GetPreviousMonth(DateTime.Now, 0);
 
             cdtp_startDate.Value = month.StartDate;

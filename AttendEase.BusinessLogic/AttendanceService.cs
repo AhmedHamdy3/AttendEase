@@ -2,9 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+//using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Kernel.Pdf;
+using iText.Layout.Properties;
+using System.IO;
 using static AttendEase.BusinessLogic.AttendanceService;
+using iText.IO.Font.Constants;
+using iText.Kernel.Font;
 
 namespace AttendEase.BusinessLogic
 {
@@ -79,10 +87,10 @@ namespace AttendEase.BusinessLogic
                         Name = attendance.Employee.Name,
                         Department = attendance.Employee.Department.Name,
                         Status = status,
-                        CheckInTime = checkInTime,
-                        CheckOutTime = checkOutTime,
-                        IsLate = late,
-                        IsEarly = early,
+                        CheckIn = checkInTime,
+                        CheckOut = checkOutTime,
+                        Late = late,
+                        Early = early,
                     });
                 }
                 return employeeAttendances;
@@ -112,14 +120,53 @@ namespace AttendEase.BusinessLogic
                     {
                         Name = g.Key.Name,
                         Department = g.Key.Department.Name,
-                        TotalDaysPresent = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Present"),
-                        TotalDaysAbsent = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Absent"),
-                        TotalDaysLate = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Late"),
-                        TotalDaysEarly = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Early")
+                        Present = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Present"),
+                        Absent = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Absent"),
+                        Late = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Late"),
+                        Early = g.SelectMany(ad => ad.AttendanceStatuses).Count(status => status == "Early")
                     })
                     .ToList();
 
                 return employeeAttendances;
+            }
+        }
+        #endregion
+
+        #region Export Attendance Files
+        public void ExportPdf(int page, string type, string path)
+        {
+            if(type == "DailyAttendance")
+            {
+                var data = GetPageOfDailyAttendanceSummary(page);
+                ExportToPdf<AttendanceSummary>(data, path, "Daily Attendance Summary");
+            }
+            else if (type == "WeeklyAttendance")
+            {
+                var data = GetPageOfWeeklyAttendanceSummary(page);
+                ExportToPdf<AttendanceSummary>(data, path, "Weekly Attendance Summary");
+            }
+            else if (type == "MonthlyAttendance")
+            {
+                var data = GetPageOfMonthlyAttendanceSummary(page);
+                ExportToPdf<AttendanceSummary>(data, path, "Monthly Attendance Summary");
+            }
+        }
+        public void ExportPdf(DateTime date, string type, string path)
+        {
+                var data = GetAttendanceInSpecificDay(date);
+                ExportToPdf<EmployeeAttendanceInSpecificDay>(data, path, $"Attendance Report For {date.ToShortDateString()}");
+        }
+
+        public void ExportPdf(DateTime startDate, DateTime endDate, string type, string path)
+        {
+            var data = GetAttendanceInSpecificPeriod(startDate, endDate);
+            if (type == "AttendanceWeek")
+            {
+                ExportToPdf<EmployeeAttendanceInSpecificPeriod>(data, path, $"Attendance Report For The Week: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}");
+            }
+            else if(type == "AttendanceMonth")
+            {
+                ExportToPdf<EmployeeAttendanceInSpecificPeriod>(data, path, $"Attendance Report For The Month: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}");
             }
         }
         #endregion
@@ -298,6 +345,62 @@ namespace AttendEase.BusinessLogic
 
             return new DateRange { StartDate = StartDate, EndDate = EndDate };
         }
+
+        public void ExportToPdf<T>(List<T> data, string filePath, string Header="")
+        {
+            using (PdfWriter writer = new PdfWriter(filePath))
+            {
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    Document document = new Document(pdf);
+
+                    // Add a header to the document
+                    Paragraph header = new Paragraph($"{Header}")
+                        .SetTextAlignment(TextAlignment.CENTER) // Center-align the header text
+                        .SetFontSize(18); // Set the font size
+                    header.SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD)); // Make the text bold (optional)
+                    document.Add(header);
+
+                    // Add some space between the header and the table
+                    document.Add(new Paragraph("\n")); // Add a blank line or use SetMarginBottom to add space
+
+                    // Create a table with the number of columns equal to the properties of T
+                    iText.Layout.Element.Table table = new iText.Layout.Element.Table(UnitValue.CreatePercentArray(typeof(T).GetProperties().Length)).UseAllAvailableWidth();
+
+                    // Add headers
+                    foreach (var prop in typeof(T).GetProperties())
+                    {
+                        table.AddHeaderCell(prop.Name);
+                    }
+
+                    // Add data rows
+                    foreach (var item in data)
+                    {
+                        foreach (var prop in typeof(T).GetProperties())
+                        {
+                            var value = prop.GetValue(item);
+                            string cellValue;
+
+                            // Check if the property type is DateTime
+                            if (value is DateTime dateTimeValue)
+                            {
+                                // Format the DateTime to show only the date part
+                                cellValue = dateTimeValue.ToShortDateString(); // or use .ToString("yyyy-MM-dd") for a specific format
+                            }
+                            else
+                            {
+                                // For non-DateTime values, use the default ToString() or an empty string if null
+                                cellValue = value?.ToString() ?? string.Empty;
+                            }
+
+                            table.AddCell(cellValue);
+                        }
+                    }
+
+                    document.Add(table);
+                }
+            }
+        }
         #endregion
 
         #region Data Transfer Objects
@@ -321,10 +424,10 @@ namespace AttendEase.BusinessLogic
         {
             public string Name { get; set; }
             public string Department { get; set; }
-            public int TotalDaysPresent { get; set; }
-            public int TotalDaysAbsent { get; set; }
-            public int TotalDaysLate { get; set; }
-            public int TotalDaysEarly { get; set; }
+            public int Present { get; set; }
+            public int Absent { get; set; }
+            public int Late { get; set; }
+            public int Early { get; set; }
         }
 
         public class EmployeeAttendanceInSpecificDay
@@ -332,10 +435,10 @@ namespace AttendEase.BusinessLogic
             public string Name { get; set; }
             public string Department { get; set; }
             public string Status { get; set; }
-            public TimeSpan CheckInTime { get; set; }
-            public TimeSpan CheckOutTime { get; set; }
-            public string IsLate { get; set; }
-            public string IsEarly { get; set; }
+            public TimeSpan CheckIn { get; set; }
+            public TimeSpan CheckOut { get; set; }
+            public string Late { get; set; }
+            public string Early { get; set; }
         }
 
         public class LateArrivalsAndEarlyDeparture

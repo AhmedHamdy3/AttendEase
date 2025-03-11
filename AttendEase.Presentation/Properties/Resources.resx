@@ -145,8 +145,8 @@
   <data name="Attendance Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Attendance Active1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Tabs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Tabs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="calendarDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendarDark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Management Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Management Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,11 +172,17 @@
   <data name="Clock Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Clock Active1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Tabs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tabs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Nav Item1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Nav Item1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Inquiry1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Inquiry1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Spin@1x-0.8s-200px-200px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Spin@1x-0.8s-200px-200px.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Nav Item (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Nav Item (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,8 +193,11 @@
   <data name="Text button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Text button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Home Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Home Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="calendarWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendarWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendarWhite1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendarWhite1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Invisible" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Invisible.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,8 +229,8 @@
   <data name="Clock" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Clock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="calendarDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calendarDark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Home Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Home Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Nav Item (12)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Nav Item (12).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,10 +244,7 @@
   <data name="Nav Item (16)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Nav Item (16).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="calendarWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calendarWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="calendarWhite1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calendarWhite1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Spin@1x-01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Spin@1x-0.8s-200px-200px1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
