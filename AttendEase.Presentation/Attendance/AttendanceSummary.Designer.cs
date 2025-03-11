@@ -31,10 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceSummary));
             pictureBox9 = new PictureBox();
             lbl_title = new Label();
-            btn_cb_summaryType = new Button();
-            cb_summaryType = new ComboBox();
             lbl_details_header = new Label();
             btn_back = new Button();
+            ccb_summaryType = new CustomControls.CustomComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             SuspendLayout();
             // 
@@ -58,31 +57,6 @@
             lbl_title.Size = new Size(278, 62);
             lbl_title.TabIndex = 13;
             lbl_title.Text = "Attendance";
-            // 
-            // btn_cb_summaryType
-            // 
-            btn_cb_summaryType.BackColor = Color.White;
-            btn_cb_summaryType.FlatAppearance.BorderSize = 0;
-            btn_cb_summaryType.FlatAppearance.MouseDownBackColor = Color.White;
-            btn_cb_summaryType.FlatAppearance.MouseOverBackColor = Color.White;
-            btn_cb_summaryType.FlatStyle = FlatStyle.Flat;
-            btn_cb_summaryType.ForeColor = SystemColors.ControlText;
-            btn_cb_summaryType.Location = new Point(29, 171);
-            btn_cb_summaryType.Name = "btn_cb_summaryType";
-            btn_cb_summaryType.Size = new Size(355, 46);
-            btn_cb_summaryType.TabIndex = 10;
-            btn_cb_summaryType.UseVisualStyleBackColor = false;
-            // 
-            // cb_summaryType
-            // 
-            cb_summaryType.FlatStyle = FlatStyle.Flat;
-            cb_summaryType.FormattingEnabled = true;
-            cb_summaryType.Items.AddRange(new object[] { "Daily", "Weekly", "Monthly" });
-            cb_summaryType.Location = new Point(45, 180);
-            cb_summaryType.Name = "cb_summaryType";
-            cb_summaryType.Size = new Size(327, 28);
-            cb_summaryType.TabIndex = 9;
-            cb_summaryType.SelectedIndexChanged += cb_summarType_SelectedIndexChanged;
             // 
             // lbl_details_header
             // 
@@ -115,16 +89,34 @@
             btn_back.Visible = false;
             btn_back.Click += btn_back_Click;
             // 
+            // ccb_summaryType
+            // 
+            ccb_summaryType.BackColor = Color.White;
+            ccb_summaryType.BorderColor = Color.White;
+            ccb_summaryType.BorderSize = 0;
+            ccb_summaryType.DropDownStyle = ComboBoxStyle.DropDown;
+            ccb_summaryType.Font = new Font("Segoe UI", 9F);
+            ccb_summaryType.ForeColor = Color.DimGray;
+            ccb_summaryType.IconColor = Color.FromArgb(10, 22, 41);
+            ccb_summaryType.Items.AddRange(new object[] { "Daily", "Weekly", "Monthly" });
+            ccb_summaryType.ListBackColor = Color.White;
+            ccb_summaryType.ListTextColor = Color.FromArgb(10, 22, 41);
+            ccb_summaryType.Location = new Point(29, 171);
+            ccb_summaryType.MinimumSize = new Size(200, 30);
+            ccb_summaryType.Name = "ccb_summaryType";
+            ccb_summaryType.Size = new Size(355, 46);
+            ccb_summaryType.TabIndex = 25;
+            ccb_summaryType.OnSelectedIndexChanged += ccb_summaryType_OnSelectedIndexChanged;
+            // 
             // AttendanceSummary
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(972, 853);
+            Controls.Add(ccb_summaryType);
             Controls.Add(btn_back);
             Controls.Add(lbl_details_header);
-            Controls.Add(cb_summaryType);
-            Controls.Add(btn_cb_summaryType);
             Controls.Add(pictureBox9);
             Controls.Add(lbl_title);
             FormBorderStyle = FormBorderStyle.None;
@@ -139,9 +131,8 @@
         #endregion
         private PictureBox pictureBox9;
         private Label lbl_title;
-        private Button btn_cb_summaryType;
-        private ComboBox cb_summaryType;
         private Label lbl_details_header;
         private Button btn_back;
+        private CustomControls.CustomComboBox ccb_summaryType;
     }
 }

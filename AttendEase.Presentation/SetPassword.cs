@@ -31,9 +31,9 @@ namespace AttendEase.Presentation
 
         private void csb_setPassword_Click(object sender, EventArgs e)
         {
-            string email = txt_email.Text;
-            string password = txt_password.Text;
-            string confirm = txt_confirm.Text;
+            string email = ctxt_email.Text;
+            string password = ctxt_password.Text;
+            string confirm = ctxt_confirm.Text;
             Employee employee = employeesService.GetEmployee(email);
             if (employee != null)
             {
@@ -54,7 +54,8 @@ namespace AttendEase.Presentation
                         flag = 0;
                         MessageBox.Show("Confirm Password is not correct.");
                     }
-                    if (flag == 1) { 
+                    if (flag == 1)
+                    {
                         employeesService.UpdatePassword(email, password);
                         MessageBox.Show("The password has been set successfully.");
                         csb_singIn.PerformClick();
@@ -81,12 +82,12 @@ namespace AttendEase.Presentation
             Button btn = (Button)sender;
             if (!isVisiblePass)
             {
-                txt_password.PasswordChar = '\0';
+                ctxt_password.PasswordChar = false;
                 btn.Image = (Image)Properties.Resources.Invisible;
             }
             else
             {
-                txt_password.PasswordChar = '*';
+                ctxt_password.PasswordChar = true;
                 btn.Image = (Image)Properties.Resources.Eye1;
             }
             isVisiblePass = !isVisiblePass;
@@ -97,12 +98,12 @@ namespace AttendEase.Presentation
             Button btn = (Button)sender;
             if (!isVisibleConf)
             {
-                txt_confirm.PasswordChar = '\0';
+                ctxt_confirm.PasswordChar = false;
                 btn.Image = (Image)Properties.Resources.Invisible;
             }
             else
             {
-                txt_confirm.PasswordChar = '*';
+                ctxt_confirm.PasswordChar = true;
                 btn.Image = (Image)Properties.Resources.Eye1;
             }
             isVisibleConf = !isVisibleConf;
@@ -110,7 +111,18 @@ namespace AttendEase.Presentation
 
         private void txt_password_TextChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(txt_password.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"))
+
+
+        }
+
+        private void txt_confirm_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ctxt_password__TextChanged(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(ctxt_password.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"))
             {
                 lbl_passwordError.Text = "Password must be at least 8 characters long and include at\nleast one uppercase letter, one lowercase letter, and one number.";
             }
@@ -118,12 +130,11 @@ namespace AttendEase.Presentation
             {
                 lbl_passwordError.Text = "";
             }
-
         }
 
-        private void txt_confirm_TextChanged(object sender, EventArgs e)
+        private void ctxt_confirm__TextChanged(object sender, EventArgs e)
         {
-            if (txt_password.Text != txt_confirm.Text)
+            if (ctxt_password.Text != ctxt_confirm.Text)
             {
                 lbl_confirmError.Text = "Password & Confirm Password aren't matched";
             }

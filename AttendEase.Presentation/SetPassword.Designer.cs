@@ -33,10 +33,10 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            txt_email = new TextBox();
-            panel1 = new Panel();
-            panel3 = new Panel();
             panel2 = new Panel();
+            ctxt_confirm = new CustomControls.CustomTextBox();
+            ctxt_password = new CustomControls.CustomTextBox();
+            ctxt_email = new CustomControls.CustomTextBox();
             lbl_confirmError = new Label();
             lbl_passwordError = new Label();
             btn_showConfirm = new Button();
@@ -45,21 +45,9 @@
             csb_singIn = new CustomControls.CustomButton();
             customButton1 = new CustomControls.CustomButton();
             csb_setPassword = new CustomControls.CustomButton();
-            panel6 = new Panel();
-            panel7 = new Panel();
-            txt_confirm = new TextBox();
-            panel4 = new Panel();
-            panel5 = new Panel();
-            txt_password = new TextBox();
             pictureBox1 = new PictureBox();
-            panel1.SuspendLayout();
-            panel3.SuspendLayout();
             panel2.SuspendLayout();
             panel8.SuspendLayout();
-            panel6.SuspendLayout();
-            panel7.SuspendLayout();
-            panel4.SuspendLayout();
-            panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -107,46 +95,18 @@
             label4.TabIndex = 6;
             label4.Text = "Confirm Password";
             // 
-            // txt_email
-            // 
-            txt_email.BorderStyle = BorderStyle.None;
-            txt_email.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_email.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_email.Location = new Point(14, 11);
-            txt_email.Name = "txt_email";
-            txt_email.Size = new Size(327, 24);
-            txt_email.TabIndex = 8;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(181, 191, 249);
-            panel1.Controls.Add(panel3);
-            panel1.Location = new Point(105, 347);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(357, 48);
-            panel1.TabIndex = 9;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.Controls.Add(txt_email);
-            panel3.Location = new Point(1, 1);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(355, 46);
-            panel3.TabIndex = 10;
-            // 
             // panel2
             // 
+            panel2.Controls.Add(ctxt_confirm);
+            panel2.Controls.Add(ctxt_password);
+            panel2.Controls.Add(ctxt_email);
             panel2.Controls.Add(lbl_confirmError);
             panel2.Controls.Add(lbl_passwordError);
             panel2.Controls.Add(btn_showConfirm);
             panel2.Controls.Add(btn_showPassword);
             panel2.Controls.Add(panel8);
             panel2.Controls.Add(csb_setPassword);
-            panel2.Controls.Add(panel6);
-            panel2.Controls.Add(panel4);
             panel2.Controls.Add(label1);
-            panel2.Controls.Add(panel1);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
@@ -154,6 +114,56 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(633, 853);
             panel2.TabIndex = 0;
+            // 
+            // ctxt_confirm
+            // 
+            ctxt_confirm.BackColor = Color.White;
+            ctxt_confirm.BorderColor = Color.FromArgb(181, 191, 249);
+            ctxt_confirm.BorderFocusColor = Color.FromArgb(181, 191, 249);
+            ctxt_confirm.BorderSize = 1;
+            ctxt_confirm.ForeColor = Color.FromArgb(38, 32, 59);
+            ctxt_confirm.Location = new Point(105, 556);
+            ctxt_confirm.Multiline = false;
+            ctxt_confirm.Name = "ctxt_confirm";
+            ctxt_confirm.Padding = new Padding(13);
+            ctxt_confirm.PasswordChar = true;
+            ctxt_confirm.Size = new Size(357, 47);
+            ctxt_confirm.TabIndex = 24;
+            ctxt_confirm.UnderlinedStyle = false;
+            ctxt_confirm._TextChanged += ctxt_confirm__TextChanged;
+            // 
+            // ctxt_password
+            // 
+            ctxt_password.BackColor = Color.White;
+            ctxt_password.BorderColor = Color.FromArgb(181, 191, 249);
+            ctxt_password.BorderFocusColor = Color.FromArgb(181, 191, 249);
+            ctxt_password.BorderSize = 1;
+            ctxt_password.ForeColor = Color.FromArgb(38, 32, 59);
+            ctxt_password.Location = new Point(105, 451);
+            ctxt_password.Multiline = false;
+            ctxt_password.Name = "ctxt_password";
+            ctxt_password.Padding = new Padding(13);
+            ctxt_password.PasswordChar = true;
+            ctxt_password.Size = new Size(357, 47);
+            ctxt_password.TabIndex = 23;
+            ctxt_password.UnderlinedStyle = false;
+            ctxt_password._TextChanged += ctxt_password__TextChanged;
+            // 
+            // ctxt_email
+            // 
+            ctxt_email.BackColor = Color.White;
+            ctxt_email.BorderColor = Color.FromArgb(181, 191, 249);
+            ctxt_email.BorderFocusColor = Color.FromArgb(181, 191, 249);
+            ctxt_email.BorderSize = 1;
+            ctxt_email.ForeColor = Color.FromArgb(38, 32, 59);
+            ctxt_email.Location = new Point(105, 347);
+            ctxt_email.Multiline = false;
+            ctxt_email.Name = "ctxt_email";
+            ctxt_email.Padding = new Padding(13);
+            ctxt_email.PasswordChar = false;
+            ctxt_email.Size = new Size(357, 47);
+            ctxt_email.TabIndex = 22;
+            ctxt_email.UnderlinedStyle = false;
             // 
             // lbl_confirmError
             // 
@@ -282,66 +292,6 @@
             csb_setPassword.UseVisualStyleBackColor = false;
             csb_setPassword.Click += csb_setPassword_Click;
             // 
-            // panel6
-            // 
-            panel6.BackColor = Color.FromArgb(181, 191, 249);
-            panel6.Controls.Add(panel7);
-            panel6.Location = new Point(105, 556);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(357, 48);
-            panel6.TabIndex = 12;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.White;
-            panel7.Controls.Add(txt_confirm);
-            panel7.Location = new Point(1, 1);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(355, 46);
-            panel7.TabIndex = 10;
-            // 
-            // txt_confirm
-            // 
-            txt_confirm.BorderStyle = BorderStyle.None;
-            txt_confirm.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_confirm.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_confirm.Location = new Point(14, 11);
-            txt_confirm.Name = "txt_confirm";
-            txt_confirm.PasswordChar = '*';
-            txt_confirm.Size = new Size(327, 24);
-            txt_confirm.TabIndex = 8;
-            txt_confirm.TextChanged += txt_confirm_TextChanged;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(181, 191, 249);
-            panel4.Controls.Add(panel5);
-            panel4.Location = new Point(105, 451);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(357, 48);
-            panel4.TabIndex = 11;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.White;
-            panel5.Controls.Add(txt_password);
-            panel5.Location = new Point(1, 1);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(355, 46);
-            panel5.TabIndex = 10;
-            // 
-            // txt_password
-            // 
-            txt_password.BorderStyle = BorderStyle.None;
-            txt_password.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_password.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_password.Location = new Point(14, 11);
-            txt_password.Name = "txt_password";
-            txt_password.PasswordChar = '*';
-            txt_password.Size = new Size(327, 24);
-            txt_password.TabIndex = 8;
-            txt_password.TextChanged += txt_password_TextChanged;
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
@@ -363,18 +313,9 @@
             Name = "SetPassword";
             Text = "Form1";
             Load += SetPassword_Load;
-            panel1.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel8.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -384,16 +325,7 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox txt_email;
-        private Panel panel1;
         private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
-        private TextBox txt_password;
-        private Panel panel6;
-        private Panel panel7;
-        private TextBox txt_confirm;
         private PictureBox pictureBox1;
         private CustomControls.CustomButton csb_setPassword;
         private CustomControls.CustomButton customButton1;
@@ -403,5 +335,8 @@
         private Button btn_showConfirm;
         private Label lbl_confirmError;
         private Label lbl_passwordError;
+        private CustomControls.CustomTextBox ctxt_confirm;
+        private CustomControls.CustomTextBox ctxt_password;
+        private CustomControls.CustomTextBox ctxt_email;
     }
 }

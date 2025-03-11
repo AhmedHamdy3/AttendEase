@@ -33,7 +33,8 @@ namespace AttendEase.Presentation.Attendance
 
         private void AttendanceSummary_Load(object sender, EventArgs e)
         {
-            cb_summaryType.SelectedIndex = 0;
+            ccb_summaryType.SelectedIndex = 0;
+
             DailySelected();
             this.Controls.Add(table.tablePanel);
         }
@@ -58,8 +59,8 @@ namespace AttendEase.Presentation.Attendance
             lbl_details_header.Text = $"Attendance for the Day: {StartDate: MMMM d, yyyy}";
             lbl_title.Visible = false;
             btn_back.Visible = true;
-            btn_cb_summaryType.Visible = false;
-            cb_summaryType.Visible = false;
+            ccb_summaryType.Visible = false;
+
 
             var attendanceDay = attendanceService.GetAttendanceInSpecificDay(StartDate);
             table.fillTable(attendanceDay, new[] { "Employee", "Department", "Status", "CheckIn", "CheckOut", "Late", "Early" }, "", null, null);
@@ -82,27 +83,22 @@ namespace AttendEase.Presentation.Attendance
             var attendancePeriod = attendanceService.GetAttendanceInSpecificPeriod(StartDate, EndDate);
             lbl_title.Visible = false;
             btn_back.Visible = true;
-            btn_cb_summaryType.Visible = false;
-            cb_summaryType.Visible = false;
-            table.fillTable(attendancePeriod, new[] { "Employee", "Department", "Present", "Absent", "Late", "Early" }, "", null, null);
-        }
+            ccb_summaryType.Visible = false;
 
-        private void cb_summarType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CheckTheValueOfComboBoxAndUpdateTheTable();
+            table.fillTable(attendancePeriod, new[] { "Employee", "Department", "Present", "Absent", "Late", "Early" }, "", null, null);
         }
 
         private void CheckTheValueOfComboBoxAndUpdateTheTable()
         {
-            if (cb_summaryType.SelectedIndex == 0)
+            if (ccb_summaryType.SelectedIndex == 0)
             {
                 DailySelected();
             }
-            else if (cb_summaryType.SelectedIndex == 1)
+            else if (ccb_summaryType.SelectedIndex == 1)
             {
                 WeeklySelected();
             }
-            else if (cb_summaryType.SelectedIndex == 2)
+            else if (ccb_summaryType.SelectedIndex == 2)
             {
                 MonthlySelected();
             }
@@ -113,10 +109,16 @@ namespace AttendEase.Presentation.Attendance
             lbl_details_header.Text = "";
             lbl_title.Visible = true;
             btn_back.Visible = false;
-            btn_cb_summaryType.Visible = true;
-            cb_summaryType.Visible = true;
+            ccb_summaryType.Visible = true;
+
 
             CheckTheValueOfComboBoxAndUpdateTheTable();
+        }
+
+        private void ccb_summaryType_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckTheValueOfComboBoxAndUpdateTheTable();
+
         }
     }
 }

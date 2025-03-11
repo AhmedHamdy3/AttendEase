@@ -29,50 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateLeaveRequest));
-            cb_requestType = new ComboBox();
-            btn_cb_summaryType = new Button();
             label1 = new Label();
-            rb_comment = new RichTextBox();
-            panel2 = new Panel();
             label3 = new Label();
-            dtp_startDate = new DateTimePicker();
-            button1 = new Button();
             label4 = new Label();
             label5 = new Label();
-            bottomBorderPanel1 = new CustomControls.BottomBorderPanel();
             label6 = new Label();
-            bottomBorderPanel2 = new CustomControls.BottomBorderPanel();
-            dtp_endDate = new DateTimePicker();
-            button2 = new Button();
             csb_sendRequest = new CustomControls.CustomButton();
             csb_close = new CustomControls.CustomButton();
-            panel2.SuspendLayout();
-            bottomBorderPanel1.SuspendLayout();
-            bottomBorderPanel2.SuspendLayout();
+            cdtp_startDate = new CustomControls.CustomDateTimePicker();
+            cdtp_endDate = new CustomControls.CustomDateTimePicker();
+            ccb_requestType = new CustomControls.CustomComboBox();
+            ctxt_comment = new CustomControls.CustomTextBox();
             SuspendLayout();
-            // 
-            // cb_requestType
-            // 
-            cb_requestType.FlatStyle = FlatStyle.Flat;
-            cb_requestType.FormattingEnabled = true;
-            cb_requestType.Location = new Point(31, 155);
-            cb_requestType.Name = "cb_requestType";
-            cb_requestType.Size = new Size(181, 28);
-            cb_requestType.TabIndex = 12;
-            // 
-            // btn_cb_summaryType
-            // 
-            btn_cb_summaryType.BackColor = Color.White;
-            btn_cb_summaryType.FlatAppearance.BorderSize = 0;
-            btn_cb_summaryType.FlatAppearance.MouseDownBackColor = Color.White;
-            btn_cb_summaryType.FlatAppearance.MouseOverBackColor = Color.White;
-            btn_cb_summaryType.FlatStyle = FlatStyle.Flat;
-            btn_cb_summaryType.ForeColor = SystemColors.ControlText;
-            btn_cb_summaryType.Location = new Point(17, 146);
-            btn_cb_summaryType.Name = "btn_cb_summaryType";
-            btn_cb_summaryType.Size = new Size(210, 46);
-            btn_cb_summaryType.TabIndex = 13;
-            btn_cb_summaryType.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -85,25 +53,6 @@
             label1.TabIndex = 14;
             label1.Text = "Request Type";
             // 
-            // rb_comment
-            // 
-            rb_comment.BorderStyle = BorderStyle.None;
-            rb_comment.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            rb_comment.Location = new Point(12, 12);
-            rb_comment.Name = "rb_comment";
-            rb_comment.Size = new Size(447, 138);
-            rb_comment.TabIndex = 15;
-            rb_comment.Text = "";
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.White;
-            panel2.Controls.Add(rb_comment);
-            panel2.Location = new Point(17, 345);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(470, 162);
-            panel2.TabIndex = 16;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -114,29 +63,6 @@
             label3.Size = new Size(86, 23);
             label3.TabIndex = 17;
             label3.Text = "Comment";
-            // 
-            // dtp_startDate
-            // 
-            dtp_startDate.Format = DateTimePickerFormat.Short;
-            dtp_startDate.Location = new Point(-1, -1);
-            dtp_startDate.Name = "dtp_startDate";
-            dtp_startDate.Size = new Size(197, 27);
-            dtp_startDate.TabIndex = 18;
-            dtp_startDate.Value = new DateTime(2025, 3, 7, 0, 0, 0, 0);
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.White;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseDownBackColor = Color.White;
-            button1.FlatAppearance.MouseOverBackColor = Color.White;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = SystemColors.ControlText;
-            button1.Location = new Point(17, 244);
-            button1.Name = "button1";
-            button1.Size = new Size(210, 46);
-            button1.TabIndex = 22;
-            button1.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -160,15 +86,6 @@
             label5.TabIndex = 26;
             label5.Text = "To";
             // 
-            // bottomBorderPanel1
-            // 
-            bottomBorderPanel1.BackColor = Color.White;
-            bottomBorderPanel1.Controls.Add(dtp_startDate);
-            bottomBorderPanel1.Location = new Point(17, 255);
-            bottomBorderPanel1.Name = "bottomBorderPanel1";
-            bottomBorderPanel1.Size = new Size(195, 24);
-            bottomBorderPanel1.TabIndex = 21;
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -179,38 +96,6 @@
             label6.Size = new Size(132, 28);
             label6.TabIndex = 27;
             label6.Text = "Add Request";
-            // 
-            // bottomBorderPanel2
-            // 
-            bottomBorderPanel2.BackColor = Color.White;
-            bottomBorderPanel2.Controls.Add(dtp_endDate);
-            bottomBorderPanel2.Location = new Point(265, 255);
-            bottomBorderPanel2.Name = "bottomBorderPanel2";
-            bottomBorderPanel2.Size = new Size(195, 24);
-            bottomBorderPanel2.TabIndex = 29;
-            // 
-            // dtp_endDate
-            // 
-            dtp_endDate.Format = DateTimePickerFormat.Short;
-            dtp_endDate.Location = new Point(-1, -1);
-            dtp_endDate.Name = "dtp_endDate";
-            dtp_endDate.Size = new Size(197, 27);
-            dtp_endDate.TabIndex = 18;
-            dtp_endDate.Value = new DateTime(2025, 3, 7, 0, 0, 0, 0);
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.White;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatAppearance.MouseDownBackColor = Color.White;
-            button2.FlatAppearance.MouseOverBackColor = Color.White;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = SystemColors.ControlText;
-            button2.Location = new Point(265, 244);
-            button2.Name = "button2";
-            button2.Size = new Size(210, 46);
-            button2.TabIndex = 30;
-            button2.UseVisualStyleBackColor = false;
             // 
             // csb_sendRequest
             // 
@@ -245,55 +130,106 @@
             csb_close.UseVisualStyleBackColor = false;
             csb_close.Click += csb_close_Click;
             // 
+            // cdtp_startDate
+            // 
+            cdtp_startDate.BorderColor = Color.FromArgb(181, 191, 249);
+            cdtp_startDate.BorderSize = 0;
+            cdtp_startDate.CustomFormat = "dd/MM/yyyy";
+            cdtp_startDate.Font = new Font("Segoe UI", 9.5F);
+            cdtp_startDate.Format = DateTimePickerFormat.Custom;
+            cdtp_startDate.Location = new Point(17, 244);
+            cdtp_startDate.MinimumSize = new Size(0, 46);
+            cdtp_startDate.Name = "cdtp_startDate";
+            cdtp_startDate.Size = new Size(210, 46);
+            cdtp_startDate.SkinColor = Color.White;
+            cdtp_startDate.TabIndex = 35;
+            cdtp_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            // 
+            // cdtp_endDate
+            // 
+            cdtp_endDate.BorderColor = Color.FromArgb(181, 191, 249);
+            cdtp_endDate.BorderSize = 0;
+            cdtp_endDate.CustomFormat = "dd/MM/yyyy";
+            cdtp_endDate.Font = new Font("Segoe UI", 9.5F);
+            cdtp_endDate.Format = DateTimePickerFormat.Custom;
+            cdtp_endDate.Location = new Point(265, 244);
+            cdtp_endDate.MinimumSize = new Size(0, 46);
+            cdtp_endDate.Name = "cdtp_endDate";
+            cdtp_endDate.Size = new Size(210, 46);
+            cdtp_endDate.SkinColor = Color.White;
+            cdtp_endDate.TabIndex = 36;
+            cdtp_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            // 
+            // ccb_requestType
+            // 
+            ccb_requestType.BackColor = Color.White;
+            ccb_requestType.BorderColor = Color.FromArgb(181, 191, 249);
+            ccb_requestType.BorderSize = 0;
+            ccb_requestType.DropDownStyle = ComboBoxStyle.DropDown;
+            ccb_requestType.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ccb_requestType.ForeColor = Color.FromArgb(10, 22, 41);
+            ccb_requestType.IconColor = Color.FromArgb(10, 22, 41);
+            ccb_requestType.ListBackColor = Color.White;
+            ccb_requestType.ListTextColor = Color.FromArgb(10, 22, 41);
+            ccb_requestType.Location = new Point(17, 146);
+            ccb_requestType.MinimumSize = new Size(200, 30);
+            ccb_requestType.Name = "ccb_requestType";
+            ccb_requestType.Size = new Size(223, 46);
+            ccb_requestType.TabIndex = 37;
+            // 
+            // ctxt_comment
+            // 
+            ctxt_comment.BackColor = Color.White;
+            ctxt_comment.BorderColor = Color.White;
+            ctxt_comment.BorderFocusColor = Color.White;
+            ctxt_comment.BorderSize = 0;
+            ctxt_comment.ForeColor = Color.FromArgb(38, 32, 59);
+            ctxt_comment.Location = new Point(17, 345);
+            ctxt_comment.Multiline = true;
+            ctxt_comment.Name = "ctxt_comment";
+            ctxt_comment.Padding = new Padding(13);
+            ctxt_comment.PasswordChar = false;
+            ctxt_comment.Size = new Size(470, 162);
+            ctxt_comment.TabIndex = 38;
+            ctxt_comment.UnderlinedStyle = false;
+            // 
             // CreateLeaveRequest
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(503, 606);
+            Controls.Add(ctxt_comment);
+            Controls.Add(ccb_requestType);
+            Controls.Add(cdtp_endDate);
+            Controls.Add(cdtp_startDate);
             Controls.Add(csb_close);
             Controls.Add(csb_sendRequest);
-            Controls.Add(bottomBorderPanel2);
-            Controls.Add(button2);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(bottomBorderPanel1);
-            Controls.Add(button1);
             Controls.Add(label3);
-            Controls.Add(panel2);
             Controls.Add(label1);
-            Controls.Add(cb_requestType);
-            Controls.Add(btn_cb_summaryType);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CreateLeaveRequest";
             Text = "CreateLeaveRequest";
             Load += CreateLeaveRequest_Load;
-            panel2.ResumeLayout(false);
-            bottomBorderPanel1.ResumeLayout(false);
-            bottomBorderPanel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private ComboBox cb_requestType;
-        private Button btn_cb_summaryType;
         private Label label1;
-        private RichTextBox rb_comment;
-        private Panel panel2;
         private Label label3;
-        private DateTimePicker dtp_startDate;
-        private Button button1;
         private Label label4;
         private Label label5;
-        private CustomControls.BottomBorderPanel bottomBorderPanel1;
         private Label label6;
         private PictureBox pb_close;
-        private CustomControls.BottomBorderPanel bottomBorderPanel2;
-        private DateTimePicker dtp_endDate;
-        private Button button2;
         private CustomControls.CustomButton csb_sendRequest;
         private CustomControls.CustomButton csb_close;
+        private CustomControls.CustomDateTimePicker cdtp_startDate;
+        private CustomControls.CustomDateTimePicker cdtp_endDate;
+        private CustomControls.CustomComboBox ccb_requestType;
+        private CustomControls.CustomTextBox ctxt_comment;
     }
 }

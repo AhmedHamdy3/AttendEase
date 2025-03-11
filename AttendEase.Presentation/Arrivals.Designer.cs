@@ -31,16 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Arrivals));
             pictureBox9 = new PictureBox();
             lbl_title = new Label();
-            dtp_startDate = new DateTimePicker();
-            bottomBorderPanel1 = new CustomControls.BottomBorderPanel();
-            btn_cb_summaryType = new Button();
-            bottomBorderPanel2 = new CustomControls.BottomBorderPanel();
-            dtp_endDate = new DateTimePicker();
-            button1 = new Button();
             btn_back = new Button();
+            cdtp_endDate = new CustomControls.CustomDateTimePicker();
+            cdtp_startDate = new CustomControls.CustomDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            bottomBorderPanel1.SuspendLayout();
-            bottomBorderPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox9
@@ -64,70 +58,6 @@
             lbl_title.TabIndex = 16;
             lbl_title.Text = "Arrivals";
             // 
-            // dtp_startDate
-            // 
-            dtp_startDate.Location = new Point(-1, -1);
-            dtp_startDate.Name = "dtp_startDate";
-            dtp_startDate.Size = new Size(357, 27);
-            dtp_startDate.TabIndex = 18;
-            dtp_startDate.Value = new DateTime(2025, 3, 7, 0, 0, 0, 0);
-            dtp_startDate.ValueChanged += dtp_startDate_ValueChanged;
-            // 
-            // bottomBorderPanel1
-            // 
-            bottomBorderPanel1.BackColor = Color.White;
-            bottomBorderPanel1.Controls.Add(dtp_startDate);
-            bottomBorderPanel1.Location = new Point(29, 182);
-            bottomBorderPanel1.Name = "bottomBorderPanel1";
-            bottomBorderPanel1.Size = new Size(355, 24);
-            bottomBorderPanel1.TabIndex = 19;
-            // 
-            // btn_cb_summaryType
-            // 
-            btn_cb_summaryType.BackColor = Color.White;
-            btn_cb_summaryType.FlatAppearance.BorderSize = 0;
-            btn_cb_summaryType.FlatAppearance.MouseDownBackColor = Color.White;
-            btn_cb_summaryType.FlatAppearance.MouseOverBackColor = Color.White;
-            btn_cb_summaryType.FlatStyle = FlatStyle.Flat;
-            btn_cb_summaryType.ForeColor = SystemColors.ControlText;
-            btn_cb_summaryType.Location = new Point(29, 171);
-            btn_cb_summaryType.Name = "btn_cb_summaryType";
-            btn_cb_summaryType.Size = new Size(355, 46);
-            btn_cb_summaryType.TabIndex = 20;
-            btn_cb_summaryType.UseVisualStyleBackColor = false;
-            // 
-            // bottomBorderPanel2
-            // 
-            bottomBorderPanel2.BackColor = Color.White;
-            bottomBorderPanel2.Controls.Add(dtp_endDate);
-            bottomBorderPanel2.Location = new Point(438, 181);
-            bottomBorderPanel2.Name = "bottomBorderPanel2";
-            bottomBorderPanel2.Size = new Size(355, 24);
-            bottomBorderPanel2.TabIndex = 21;
-            // 
-            // dtp_endDate
-            // 
-            dtp_endDate.Location = new Point(-1, -1);
-            dtp_endDate.Name = "dtp_endDate";
-            dtp_endDate.Size = new Size(357, 27);
-            dtp_endDate.TabIndex = 18;
-            dtp_endDate.Value = new DateTime(2025, 3, 7, 0, 0, 0, 0);
-            dtp_endDate.ValueChanged += dtp_endDate_ValueChanged;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.White;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseDownBackColor = Color.White;
-            button1.FlatAppearance.MouseOverBackColor = Color.White;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = SystemColors.ControlText;
-            button1.Location = new Point(438, 170);
-            button1.Name = "button1";
-            button1.Size = new Size(355, 46);
-            button1.TabIndex = 22;
-            button1.UseVisualStyleBackColor = false;
-            // 
             // btn_back
             // 
             btn_back.BackColor = Color.Transparent;
@@ -150,26 +80,50 @@
             btn_back.Visible = false;
             btn_back.Click += btn_back_Click;
             // 
+            // cdtp_endDate
+            // 
+            cdtp_endDate.BorderColor = Color.FromArgb(181, 191, 249);
+            cdtp_endDate.BorderSize = 0;
+            cdtp_endDate.Font = new Font("Segoe UI", 9.5F);
+            cdtp_endDate.Location = new Point(439, 171);
+            cdtp_endDate.MinimumSize = new Size(0, 46);
+            cdtp_endDate.Name = "cdtp_endDate";
+            cdtp_endDate.Size = new Size(355, 46);
+            cdtp_endDate.SkinColor = Color.White;
+            cdtp_endDate.TabIndex = 35;
+            cdtp_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_endDate.ValueChanged += cdtp_endDate_ValueChanged;
+            // 
+            // cdtp_startDate
+            // 
+            cdtp_startDate.BorderColor = Color.FromArgb(181, 191, 249);
+            cdtp_startDate.BorderSize = 0;
+            cdtp_startDate.Font = new Font("Segoe UI", 9.5F);
+            cdtp_startDate.Location = new Point(30, 171);
+            cdtp_startDate.MinimumSize = new Size(0, 46);
+            cdtp_startDate.Name = "cdtp_startDate";
+            cdtp_startDate.Size = new Size(355, 46);
+            cdtp_startDate.SkinColor = Color.White;
+            cdtp_startDate.TabIndex = 34;
+            cdtp_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_startDate.ValueChanged += cdtp_startDate_ValueChanged;
+            // 
             // Arrivals
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(972, 853);
+            Controls.Add(cdtp_endDate);
+            Controls.Add(cdtp_startDate);
             Controls.Add(btn_back);
-            Controls.Add(bottomBorderPanel2);
-            Controls.Add(button1);
-            Controls.Add(bottomBorderPanel1);
             Controls.Add(pictureBox9);
             Controls.Add(lbl_title);
-            Controls.Add(btn_cb_summaryType);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Arrivals";
             Text = "Arrivals";
             Load += Arrivals_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            bottomBorderPanel1.ResumeLayout(false);
-            bottomBorderPanel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -178,12 +132,8 @@
 
         private PictureBox pictureBox9;
         private Label lbl_title;
-        private DateTimePicker dtp_startDate;
-        private CustomControls.BottomBorderPanel bottomBorderPanel1;
-        private Button btn_cb_summaryType;
-        private CustomControls.BottomBorderPanel bottomBorderPanel2;
-        private DateTimePicker dtp_endDate;
-        private Button button1;
         private Button btn_back;
+        private CustomControls.CustomDateTimePicker cdtp_endDate;
+        private CustomControls.CustomDateTimePicker cdtp_startDate;
     }
 }

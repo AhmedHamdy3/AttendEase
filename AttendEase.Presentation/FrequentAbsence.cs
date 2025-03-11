@@ -35,8 +35,8 @@ namespace AttendEase.Presentation
             table = new Table(888, 570, 30, 240);
             var month = AttendanceService.GetPreviousMonth(DateTime.Now, 0);
 
-            dtp_startDate.Value = month.StartDate;
-            dtp_endDate.Value = month.EndDate;
+            cdtp_startDate.Value = month.StartDate;
+            cdtp_endDate.Value = month.EndDate;
 
             ShowFrequentAbsence();
             this.Controls.Add(table.tablePanel);
@@ -67,12 +67,12 @@ namespace AttendEase.Presentation
         }
         private void ShowFrequentAbsence()
         {
-            var FrequentAbsence = attendanceService.GetFrequentAbsenceInSpecificPeriod(dtp_startDate.Value, dtp_endDate.Value);
+            var FrequentAbsence = attendanceService.GetFrequentAbsenceInSpecificPeriod(cdtp_startDate.Value, cdtp_endDate.Value);
             table.fillTable(FrequentAbsence, new[] { "Employee", "Department", "Present", "Absent", "Precentage" }, "FrequentAbsences", null, GetAbsencesForSpecificEmployee);
         }
         private void ShowFrequentAbsenceDetail()
         {
-            var AbsencesForSpecificEmployee = attendanceService.GetAbsencesSpecificPeriodForSpecificEmployee(dtp_startDate.Value, dtp_endDate.Value, this.id);
+            var AbsencesForSpecificEmployee = attendanceService.GetAbsencesSpecificPeriodForSpecificEmployee(cdtp_startDate.Value, cdtp_endDate.Value, this.id);
             table.fillTable(AbsencesForSpecificEmployee, new string[] { "Employee", "Date", "Reaseon of Absence" }, "", null, null);
         }
         private void btn_back_Click(object sender, EventArgs e)
@@ -84,30 +84,6 @@ namespace AttendEase.Presentation
             ShowFrequentAbsence();
         }
 
-        private void dtp_startDate_ValueChanged(object sender, EventArgs e)
-        {
-            if (isDetails == 0)
-            {
-                ShowFrequentAbsence();
-            }
-            else if (isDetails == 1)
-            {
-                ShowFrequentAbsenceDetail();
-            }
-        }
-
-        private void dtp_endDate_ValueChanged(object sender, EventArgs e)
-        {
-            if (isDetails == 0)
-            {
-                ShowFrequentAbsence();
-            }
-            else if (isDetails == 1)
-            {
-                ShowFrequentAbsenceDetail();
-            }
-        }
-
         private void btn_back_Click_1(object sender, EventArgs e)
         {
             isDetails = 0;
@@ -115,6 +91,28 @@ namespace AttendEase.Presentation
             table.tablePanel.Size = new Size(888, 570);
             btn_back.Visible = false;
             ShowFrequentAbsence();
+        }
+        private void cdtp_startDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (isDetails == 0)
+            {
+                ShowFrequentAbsence();
+            }
+            else if (isDetails == 1)
+            {
+                ShowFrequentAbsenceDetail();
+            }
+        }
+        private void cdtp_endDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (isDetails == 0)
+            {
+                ShowFrequentAbsence();
+            }
+            else if (isDetails == 1)
+            {
+                ShowFrequentAbsenceDetail();
+            }
         }
     }
 }

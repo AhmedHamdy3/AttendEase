@@ -36,36 +36,11 @@ namespace AttendEase.Presentation
             table = new Table(888, 570, 30, 240);
             var month = AttendanceService.GetPreviousMonth(DateTime.Now, 0);
 
-            dtp_startDate.Value = month.StartDate;
-            dtp_endDate.Value = month.EndDate;
+            cdtp_startDate.Value = month.StartDate;
+            cdtp_endDate.Value = month.EndDate;
 
             ShowArrivals();
             this.Controls.Add(table.tablePanel);
-        }
-
-
-        private void dtp_startDate_ValueChanged(object sender, EventArgs e)
-        {
-            if (isDetails == 0)
-            {
-                ShowArrivals();
-            }
-            else if (isDetails == 1)
-            {
-                ShowArrivalsDetail();
-            }
-        }
-
-        private void dtp_endDate_ValueChanged(object sender, EventArgs e)
-        {
-            if (isDetails == 0)
-            {
-                ShowArrivals();
-            }
-            else if (isDetails == 1)
-            {
-                ShowArrivalsDetail();
-            }
         }
 
         private void GetLateAndEarlyForSpecificEmployee(int id)
@@ -80,12 +55,12 @@ namespace AttendEase.Presentation
 
         private void ShowArrivals()
         {
-            var lateArrivalsAndEarlyDeparture = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriod(dtp_startDate.Value, dtp_endDate.Value);
+            var lateArrivalsAndEarlyDeparture = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriod(cdtp_startDate.Value, cdtp_endDate.Value);
             table.fillTable(lateArrivalsAndEarlyDeparture, new[] { "Employee", "Department", "Late", "Early" }, "Arrivals", null, GetLateAndEarlyForSpecificEmployee);
         }
         private void ShowArrivalsDetail()
         {
-            var lateArrivalsAndEarlyDepartureForSpecificEmployee = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(dtp_startDate.Value, dtp_endDate.Value, this.id);
+            var lateArrivalsAndEarlyDepartureForSpecificEmployee = attendanceService.GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(cdtp_startDate.Value, cdtp_endDate.Value, this.id);
             table.fillTable(lateArrivalsAndEarlyDepartureForSpecificEmployee, new string[] { "Employee", "Date", "Check In", "Check Out", "Total Time", "type" }, "", null, null);
         }
         private void btn_back_Click(object sender, EventArgs e)
@@ -95,6 +70,30 @@ namespace AttendEase.Presentation
             table.tablePanel.Size = new Size(888, 570);
             btn_back.Visible = false;
             ShowArrivals();
+        }
+
+        private void cdtp_startDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (isDetails == 0)
+            {
+                ShowArrivals();
+            }
+            else if (isDetails == 1)
+            {
+                ShowArrivalsDetail();
+            }
+        }
+
+        private void cdtp_endDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (isDetails == 0)
+            {
+                ShowArrivals();
+            }
+            else if (isDetails == 1)
+            {
+                ShowArrivalsDetail();
+            }
         }
     }
 }

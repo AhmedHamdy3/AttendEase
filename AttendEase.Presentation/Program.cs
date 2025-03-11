@@ -11,7 +11,7 @@ namespace AttendEase.Presentation
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new HRDashboard());
+            Application.Run(new EmployeeMainForm());
         }
     }
 }

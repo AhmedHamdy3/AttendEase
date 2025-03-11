@@ -43,12 +43,12 @@ namespace AttendEase.Presentation
             Button btn = (Button)sender;
             if (!isVisiblePass)
             {
-                txt_password.PasswordChar = '\0';
+                ctxt_password.PasswordChar = false;
                 btn.Image = (Image)Properties.Resources.Invisible;
             }
             else
             {
-                txt_password.PasswordChar = '*';
+                ctxt_password.PasswordChar = true;
                 btn.Image = (Image)Properties.Resources.Eye1;
             }
             isVisiblePass = !isVisiblePass;
@@ -56,27 +56,27 @@ namespace AttendEase.Presentation
 
         private void csb_signIn_Click(object sender, EventArgs e)
         {
-            string email = txt_email.Text;
-            string password = txt_password.Text;
+            string email = ctxt_email.Text;
+            string password = ctxt_password.Text;
             Employee? employee = employeesService.GetEmployee(email, password);
             if (employee != null)
             {
                 GlobalData.RegisterEmployee = employee;
-                if(employee.JobTitle == "HR")
+                if (employee.JobTitle == "HR")
                 {
                     HRDashboard hrDashboard = new HRDashboard();
                     hrDashboard.StartPosition = FormStartPosition.Manual;
                     hrDashboard.Location = this.Location;
                     hrDashboard.Show();
                 }
-                else if(employee.JobTitle == "Employee")
+                else if (employee.JobTitle == "Employee")
                 {
-                    EmployeeMainForm employeeMainForm= new EmployeeMainForm();
+                    EmployeeMainForm employeeMainForm = new EmployeeMainForm();
                     employeeMainForm.StartPosition = FormStartPosition.Manual;
                     employeeMainForm.Location = this.Location;
                     employeeMainForm.Show();
                 }
-                this.Close();   
+                this.Close();
             }
             else
             {

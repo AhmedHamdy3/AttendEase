@@ -30,28 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInForm));
             pictureBox1 = new PictureBox();
-            txt_password = new TextBox();
-            panel5 = new Panel();
             panel2 = new Panel();
+            ctxt_password = new CustomControls.CustomTextBox();
+            ctxt_email = new CustomControls.CustomTextBox();
             btn_showPassword = new Button();
             panel8 = new Panel();
             csb_singIn = new CustomControls.CustomButton();
             csb_setPassword = new CustomControls.CustomButton();
             csb_signIn = new CustomControls.CustomButton();
-            panel4 = new Panel();
             label1 = new Label();
-            panel1 = new Panel();
-            panel3 = new Panel();
-            txt_email = new TextBox();
             label2 = new Label();
             label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel5.SuspendLayout();
             panel2.SuspendLayout();
             panel8.SuspendLayout();
-            panel4.SuspendLayout();
-            panel1.SuspendLayout();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -64,41 +56,53 @@
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
-            // txt_password
-            // 
-            txt_password.BorderStyle = BorderStyle.None;
-            txt_password.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_password.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_password.Location = new Point(14, 11);
-            txt_password.Name = "txt_password";
-            txt_password.PasswordChar = '*';
-            txt_password.Size = new Size(327, 24);
-            txt_password.TabIndex = 8;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.White;
-            panel5.Controls.Add(txt_password);
-            panel5.Location = new Point(1, 1);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(355, 46);
-            panel5.TabIndex = 10;
-            // 
             // panel2
             // 
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(ctxt_password);
+            panel2.Controls.Add(ctxt_email);
             panel2.Controls.Add(btn_showPassword);
             panel2.Controls.Add(panel8);
             panel2.Controls.Add(csb_signIn);
-            panel2.Controls.Add(panel4);
             panel2.Controls.Add(label1);
-            panel2.Controls.Add(panel1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
             panel2.Location = new Point(634, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(633, 853);
             panel2.TabIndex = 4;
+            // 
+            // ctxt_password
+            // 
+            ctxt_password.BackColor = Color.White;
+            ctxt_password.BorderColor = Color.FromArgb(181, 191, 249);
+            ctxt_password.BorderFocusColor = Color.FromArgb(181, 191, 249);
+            ctxt_password.BorderSize = 1;
+            ctxt_password.ForeColor = Color.FromArgb(38, 32, 59);
+            ctxt_password.Location = new Point(105, 451);
+            ctxt_password.Multiline = false;
+            ctxt_password.Name = "ctxt_password";
+            ctxt_password.Padding = new Padding(13);
+            ctxt_password.PasswordChar = true;
+            ctxt_password.Size = new Size(355, 47);
+            ctxt_password.TabIndex = 21;
+            ctxt_password.UnderlinedStyle = false;
+            // 
+            // ctxt_email
+            // 
+            ctxt_email.BackColor = Color.White;
+            ctxt_email.BorderColor = Color.FromArgb(181, 191, 249);
+            ctxt_email.BorderFocusColor = Color.FromArgb(181, 191, 249);
+            ctxt_email.BorderSize = 1;
+            ctxt_email.ForeColor = Color.FromArgb(38, 32, 59);
+            ctxt_email.Location = new Point(105, 347);
+            ctxt_email.Multiline = false;
+            ctxt_email.Name = "ctxt_email";
+            ctxt_email.Padding = new Padding(13);
+            ctxt_email.PasswordChar = false;
+            ctxt_email.Size = new Size(355, 47);
+            ctxt_email.TabIndex = 20;
+            ctxt_email.UnderlinedStyle = false;
             // 
             // btn_showPassword
             // 
@@ -184,15 +188,6 @@
             csb_signIn.UseVisualStyleBackColor = false;
             csb_signIn.Click += csb_signIn_Click;
             // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(181, 191, 249);
-            panel4.Controls.Add(panel5);
-            panel4.Location = new Point(105, 451);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(357, 48);
-            panel4.TabIndex = 11;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -203,34 +198,6 @@
             label1.Size = new Size(164, 38);
             label1.TabIndex = 3;
             label1.Text = "AttendEase";
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(181, 191, 249);
-            panel1.Controls.Add(panel3);
-            panel1.Location = new Point(105, 347);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(357, 48);
-            panel1.TabIndex = 9;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.Controls.Add(txt_email);
-            panel3.Location = new Point(1, 1);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(355, 46);
-            panel3.TabIndex = 10;
-            // 
-            // txt_email
-            // 
-            txt_email.BorderStyle = BorderStyle.None;
-            txt_email.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_email.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_email.Location = new Point(14, 11);
-            txt_email.Name = "txt_email";
-            txt_email.Size = new Size(327, 24);
-            txt_email.TabIndex = 8;
             // 
             // label2
             // 
@@ -265,29 +232,17 @@
             Name = "SignInForm";
             Text = "SignInForm";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel8.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private PictureBox pictureBox1;
-        private TextBox txt_password;
-        private Panel panel5;
         private Panel panel2;
-        private Panel panel4;
         private Label label1;
-        private Panel panel1;
-        private Panel panel3;
-        private TextBox txt_email;
         private Label label2;
         private Label label3;
         private CustomControls.CustomButton csb_signIn;
@@ -295,5 +250,7 @@
         private CustomControls.CustomButton csb_singIn;
         private CustomControls.CustomButton csb_setPassword;
         private Button btn_showPassword;
+        private CustomControls.CustomTextBox ctxt_password;
+        private CustomControls.CustomTextBox ctxt_email;
     }
 }

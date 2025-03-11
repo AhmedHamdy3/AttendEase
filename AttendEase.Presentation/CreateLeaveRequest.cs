@@ -31,14 +31,13 @@ namespace AttendEase.Presentation
         }
         private void CreateLeaveRequest_Load(object sender, EventArgs e)
         {
-            cb_requestType.DataSource = new List<Object>
+            ccb_requestType.DataSource = new List<Object>
             {
-                new { Name = "Sick Leave", Value = "Sick Leave" },
-                new { Name = "Vacation", Value = "Vacation" },
-                new { Name = "Leave Request", Value = "Leave Request" }
+                "Sick Leave",
+                "Vacation",
+                "Unpaid Leave"
             };
-            cb_requestType.DisplayMember = "Name";
-            cb_requestType.ValueMember = "Value";
+            ccb_requestType.SelectedIndex = 0;
         }
 
         private void csb_close_Click(object sender, EventArgs e)
@@ -49,11 +48,11 @@ namespace AttendEase.Presentation
 
         private void csb_sendRequest_Click(object sender, EventArgs e)
         {
-            string type = cb_requestType.SelectedValue.ToString();
-            DateTime startDate = dtp_startDate.Value;
-            DateTime endDate = dtp_endDate.Value;
-            var comment = rb_comment.Text;
-            
+            string type = ccb_requestType.SelectedItem.ToString();
+            DateTime startDate = cdtp_startDate.Value;
+            DateTime endDate = cdtp_endDate.Value;
+            var comment = ctxt_comment.Text;
+
             LeaveRequest leaveRequest = new LeaveRequest()
             {
                 LeaveType = type,
@@ -68,5 +67,9 @@ namespace AttendEase.Presentation
             this.Close();
         }
 
+        private void cb_requestType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
