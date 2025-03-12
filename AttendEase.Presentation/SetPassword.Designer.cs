@@ -311,6 +311,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Name = "SetPassword";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += SetPassword_Load;
             panel2.ResumeLayout(false);

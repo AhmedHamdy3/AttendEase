@@ -150,11 +150,12 @@
         a63wfADAgLJM0IaANWWDc+mockN5odwohEx+dM7V/wcMPUn/sSb4GwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btn_back.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAENJREFUOE9jYEADDu3/Fex7/98HYXQ5ggCuuef/f5INQNcM4qOrwQkGTjMIwDWT
-        g0HhRLEBFHsBBAavIejyRAFSkzIArFjCldL2apkAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAF5JREFUOE9jGJxAtfl9AxD/B2GoEPEAWTPJBqBrJskAbJpBGCqNHwAVYtVMDKZI
+        MwgzqDR9KMcmQSwGe4ESQ8AGgAAuQ6DSxAFshkCliAfohkCFSQPIhkCFBi1gYAAAWyr3PQCVQ9EAAAAA
+        SUVORK5CYII=
 </value>
   </data>
 </root>

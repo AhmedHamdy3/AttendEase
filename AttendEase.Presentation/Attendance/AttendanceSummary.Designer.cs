@@ -140,6 +140,7 @@
             Controls.Add(lbl_title);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AttendanceSummary";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AttendanceSummary";
             Load += AttendanceSummary_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();

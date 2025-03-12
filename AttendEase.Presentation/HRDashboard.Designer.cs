@@ -137,7 +137,7 @@
             btn_schedules.FlatStyle = FlatStyle.Flat;
             btn_schedules.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             btn_schedules.ForeColor = Color.FromArgb(93, 114, 133);
-            btn_schedules.Image = (Image)resources.GetObject("btn_schedules.Image");
+            btn_schedules.Image = Properties.Resources.Planner1;
             btn_schedules.ImageAlign = ContentAlignment.MiddleLeft;
             btn_schedules.Location = new Point(20, 351);
             btn_schedules.Name = "btn_schedules";
@@ -280,6 +280,7 @@
             lbl_employeeName.Size = new Size(114, 46);
             lbl_employeeName.TabIndex = 0;
             lbl_employeeName.Text = "Name";
+            lbl_employeeName.Click += lbl_employeeName_Click;
             // 
             // panel3
             // 
@@ -302,10 +303,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
-            ClientSize = new Size(1283, 853);
-            Controls.Add(panel3);
+            ClientSize = new Size(1282, 853);
             Controls.Add(pnl_formLoader);
+            Controls.Add(panel3);
             Name = "HRDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "HRDashboard";
             Load += HRDashboard_Load;
             panel1.ResumeLayout(false);

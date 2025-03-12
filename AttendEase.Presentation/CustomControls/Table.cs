@@ -150,5 +150,477 @@ namespace AttendEase.Presentation.CustomControls
                 tablePanel.Controls.Add(rowData);
             }
         }
+
+        //Overloaded fillTable for Employees
+        //public void fillTableV2<T>(List<T> data, string[] headers)
+        //{
+        //    int columnCount = headers.Length;
+        //    int cellWidth = this.width / columnCount;
+        //    int cellHeight = 50;
+
+
+        //    tablePanel.Controls.Clear();
+        //    tablePanel.AutoScroll = true;
+
+
+        //    Panel rowHeader = new Panel
+        //    {
+        //        Size = new Size(this.width, cellHeight),
+        //        Location = new Point(0, 0),
+        //        BackColor = Color.White
+        //    };
+
+        //    for (int col = 0; col < columnCount; col++)
+        //    {
+        //        Panel headerPanel = new Panel
+        //        {
+        //            Size = new Size(cellWidth, cellHeight),
+        //            Location = new Point(col * cellWidth, 0),
+        //            BorderStyle = BorderStyle.None
+        //        };
+
+        //        Label headerLabel = new Label
+        //        {
+        //            Text = headers[col],
+        //            Size = new Size(cellWidth, cellHeight),
+        //            TextAlign = ContentAlignment.MiddleCenter,
+        //            Font = new Font("Segoe UI", 10, FontStyle.Bold),
+        //            ForeColor = ColorTranslator.FromHtml("#B5B7C0"),
+        //            Dock = DockStyle.Fill
+        //        };
+
+        //        headerPanel.Controls.Add(headerLabel);
+        //        rowHeader.Controls.Add(headerPanel);
+        //    }
+
+        //    tablePanel.Controls.Add(rowHeader);
+
+
+        //    for (int row = 0; row < data.Count; row++)
+        //    {
+        //        var item = data[row];
+        //        var properties = typeof(T).GetProperties().ToDictionary(p => p.Name, p => p);
+
+        //        Panel rowData = new Panel
+        //        {
+        //            Size = new Size(this.width, cellHeight),
+        //            Location = new Point(0, (row + 1) * cellHeight),
+        //            BackColor = (row % 2 == 0) ? ColorTranslator.FromHtml("#E7EEFA") : Color.White
+        //        };
+
+        //        for (int col = 0; col < columnCount; col++)
+        //        {
+        //            Panel cellPanel = new Panel
+        //            {
+        //                Size = new Size(cellWidth, cellHeight),
+        //                Location = new Point(col * cellWidth, 0),
+        //                BorderStyle = BorderStyle.None
+        //            };
+
+        //            Label cellLabel = new Label
+        //            {
+        //                Size = new Size(cellWidth, cellHeight),
+        //                TextAlign = ContentAlignment.MiddleCenter,
+        //                Dock = DockStyle.Fill,
+        //                ForeColor = Color.FromArgb(10, 22, 41)
+        //            };
+
+
+        //            if (properties.ContainsKey(headers[col]))
+        //            {
+        //                var cellValue = properties[headers[col]].GetValue(item);
+        //                if (cellValue is DateTime dateValue)
+        //                {
+        //                    cellLabel.Text = dateValue.ToShortDateString();
+        //                }
+        //                else
+        //                {
+        //                    cellLabel.Text = cellValue?.ToString() ?? "-";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                cellLabel.Text = "-";
+        //            }
+
+        //            cellPanel.Controls.Add(cellLabel);
+        //            rowData.Controls.Add(cellPanel);
+        //        }
+
+        //        tablePanel.Controls.Add(rowData);
+        //    }
+        //}
+
+
+        //public void fillTableV2<T>(List<T> data, string[] headers)
+        //{
+        //    int columnCount = headers.Length;
+        //    int cellWidth = this.width / columnCount;
+        //    int cellHeight = 50;
+
+        //    tablePanel.Controls.Clear();
+        //    tablePanel.AutoScroll = true;
+
+        //    // Header Row
+        //    Panel rowHeader = new Panel
+        //    {
+        //        Size = new Size(this.width, cellHeight),
+        //        Location = new Point(0, 0),
+        //        BackColor = Color.White
+        //    };
+
+        //    for (int col = 0; col < columnCount; col++)
+        //    {
+        //        Panel headerPanel = new Panel
+        //        {
+        //            Size = new Size(cellWidth, cellHeight),
+        //            Location = new Point(col * cellWidth, 0),
+        //            BorderStyle = BorderStyle.None
+        //        };
+
+        //        Label headerLabel = new Label
+        //        {
+        //            Text = headers[col],
+        //            Size = new Size(cellWidth, cellHeight),
+        //            TextAlign = ContentAlignment.MiddleCenter,
+        //            Font = new Font("Segoe UI", 10, FontStyle.Bold),
+        //            ForeColor = ColorTranslator.FromHtml("#B5B7C0"),
+        //            Dock = DockStyle.Fill
+        //        };
+
+        //        headerPanel.Controls.Add(headerLabel);
+        //        rowHeader.Controls.Add(headerPanel);
+        //    }
+
+        //    tablePanel.Controls.Add(rowHeader);
+
+        //    // Rows
+        //    for (int row = 0; row < data.Count; row++)
+        //    {
+        //        var item = data[row];
+        //        var properties = typeof(T).GetProperties().ToDictionary(p => p.Name, p => p);
+
+
+        //        object idValue = null;
+        //        if (properties.ContainsKey("EmployeeId"))
+        //        {
+        //            idValue = properties["EmployeeId"].GetValue(item);
+        //        }
+
+        //        Panel rowData = new Panel
+        //        {
+        //            Size = new Size(this.width, cellHeight),
+        //            Location = new Point(0, (row + 1) * cellHeight),
+        //            BackColor = (row % 2 == 0) ? ColorTranslator.FromHtml("#E7EEFA") : Color.White,
+        //            Cursor = Cursors.Hand,
+        //            Tag = idValue 
+        //        };
+
+
+        //        rowData.Click += (sender, e) =>
+        //        {
+        //            var clickedRow = sender as Panel;
+        //            RowClicked(clickedRow.Tag);
+        //        };
+
+        //        for (int col = 0; col < columnCount; col++)
+        //        {
+        //            Panel cellPanel = new Panel
+        //            {
+        //                Size = new Size(cellWidth, cellHeight),
+        //                Location = new Point(col * cellWidth, 0),
+        //                BorderStyle = BorderStyle.None
+        //            };
+
+        //            Label cellLabel = new Label
+        //            {
+        //                Size = new Size(cellWidth, cellHeight),
+        //                TextAlign = ContentAlignment.MiddleCenter,
+        //                Dock = DockStyle.Fill,
+        //                ForeColor = Color.FromArgb(10, 22, 41),
+        //                Cursor = Cursors.Hand 
+        //            };
+
+        //            if (properties.ContainsKey(headers[col]))
+        //            {
+        //                var cellValue = properties[headers[col]].GetValue(item);
+        //                if (cellValue is DateTime dateValue)
+        //                {
+        //                    cellLabel.Text = dateValue.ToShortDateString();
+        //                }
+        //                else
+        //                {
+        //                    cellLabel.Text = cellValue?.ToString() ?? "-";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                cellLabel.Text = "-";
+        //            }
+
+
+        //            cellLabel.Click += (sender, e) =>
+        //            {
+        //                RowClicked(rowData.Tag);
+        //            };
+
+        //            cellPanel.Controls.Add(cellLabel);
+        //            rowData.Controls.Add(cellPanel);
+        //        }
+
+        //        tablePanel.Controls.Add(rowData);
+        //    }
+
+
+        //    void RowClicked(object idValue)
+        //    {
+        //        if (idValue != null)
+        //        {
+        //            MessageBox.Show($"Employee ID: {idValue}");
+
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("No ID found for this row.");
+        //        }
+        //    }
+        //}
+
+        //  int? idValue = null;
+        //public void fillTableV2<T>(List<T> data, string[] headers)
+        //{
+        //    int columnCount = headers.Length;
+        //    int cellWidth = this.width / columnCount;
+        //    int cellHeight = 50;
+
+        //    tablePanel.Controls.Clear();
+        //    tablePanel.AutoScroll = true;
+
+        //    Panel rowHeader = new Panel
+        //    {
+        //        Size = new Size(this.width, cellHeight),
+        //        Location = new Point(0, 0),
+        //        BackColor = Color.White
+        //    };
+
+        //    for (int col = 0; col < columnCount; col++)
+        //    {
+        //        Panel headerPanel = new Panel
+        //        {
+        //            Size = new Size(cellWidth, cellHeight),
+        //            Location = new Point(col * cellWidth, 0),
+        //            BorderStyle = BorderStyle.None
+        //        };
+
+        //        Label headerLabel = new Label
+        //        {
+        //            Text = headers[col],
+        //            Size = new Size(cellWidth, cellHeight),
+        //            TextAlign = ContentAlignment.MiddleCenter,
+        //            Font = new Font("Segoe UI", 10, FontStyle.Bold),
+        //            ForeColor = ColorTranslator.FromHtml("#B5B7C0"),
+        //            Dock = DockStyle.Fill
+        //        };
+
+        //        headerPanel.Controls.Add(headerLabel);
+        //        rowHeader.Controls.Add(headerPanel);
+        //    }
+
+        //    tablePanel.Controls.Add(rowHeader);
+
+        //    for (int row = 0; row < data.Count; row++)
+        //    {
+        //        var item = data[row];
+        //        var properties = typeof(T).GetProperties().ToDictionary(p => p.Name, p => p);
+
+
+        //        if (properties.ContainsKey("EmployeeId"))
+        //        {
+        //            idValue = (int)properties["EmployeeId"].GetValue(item);
+        //        }
+
+        //        Panel rowData = new Panel
+        //        {
+        //            Size = new Size(this.width, cellHeight),
+        //            Location = new Point(0, (row + 1) * cellHeight),
+        //            BackColor = (row % 2 == 0) ? ColorTranslator.FromHtml("#E7EEFA") : Color.White,
+        //            Cursor = Cursors.Hand,
+        //            Tag = idValue
+        //        };
+
+        //        rowData.Click += (sender, e) =>
+        //        {
+        //            RowClicked(rowData.Tag);
+        //        };
+
+        //        for (int col = 0; col < columnCount; col++)
+        //        {
+        //            Panel cellPanel = new Panel
+        //            {
+        //                Size = new Size(cellWidth, cellHeight),
+        //                Location = new Point(col * cellWidth, 0),
+        //                BorderStyle = BorderStyle.None
+        //            };
+
+        //            Label cellLabel = new Label
+        //            {
+        //                Size = new Size(cellWidth, cellHeight),
+        //                TextAlign = ContentAlignment.MiddleCenter,
+        //                Dock = DockStyle.Fill,
+        //                ForeColor = Color.FromArgb(10, 22, 41),
+        //                Cursor = Cursors.Hand
+        //            };
+
+        //            if (properties.ContainsKey(headers[col]))
+        //            {
+        //                var cellValue = properties[headers[col]].GetValue(item);
+        //                if (cellValue is DateTime dateValue)
+        //                {
+        //                    cellLabel.Text = dateValue.ToShortDateString();
+        //                }
+        //                else
+        //                {
+        //                    cellLabel.Text = cellValue?.ToString() ?? "-";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                cellLabel.Text = "-";
+        //            }
+
+        //            cellLabel.Click += (sender, e) =>
+        //            {
+        //                RowClicked(rowData.Tag);
+        //            };
+
+        //            cellPanel.Controls.Add(cellLabel);
+        //            rowData.Controls.Add(cellPanel);
+        //        }
+
+        //        tablePanel.Controls.Add(rowData);
+        //    }
+
+        //}
+
+        //public int RowClicked()
+        // {
+        //     return (int)idValue;
+        // }
+     
+        public void fillTableV2<T>(List<T> data, string[] headers, Action<int> onRowClick)
+        {
+            int columnCount = headers.Length;
+            int cellWidth = this.width / columnCount;
+            int cellHeight = 50;
+
+            tablePanel.Controls.Clear();
+            tablePanel.AutoScroll = true;
+
+            Panel rowHeader = new Panel
+            {
+                Size = new Size(this.width, cellHeight),
+                Location = new Point(0, 0),
+                BackColor = Color.White
+            };
+
+            for (int col = 0; col < columnCount; col++)
+            {
+                Panel headerPanel = new Panel
+                {
+                    Size = new Size(cellWidth, cellHeight),
+                    Location = new Point(col * cellWidth, 0),
+                    BorderStyle = BorderStyle.None
+                };
+
+                Label headerLabel = new Label
+                {
+                    Text = headers[col],
+                    Size = new Size(cellWidth, cellHeight),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    ForeColor = ColorTranslator.FromHtml("#B5B7C0"),
+                    Dock = DockStyle.Fill
+                };
+
+                headerPanel.Controls.Add(headerLabel);
+                rowHeader.Controls.Add(headerPanel);
+            }
+
+            tablePanel.Controls.Add(rowHeader);
+
+            for (int row = 0; row < data.Count; row++)
+            {
+                var item = data[row];
+                var properties = typeof(T).GetProperties().ToDictionary(p => p.Name, p => p);
+
+                int idValue = -1;
+                if (properties.ContainsKey("EmployeeId"))
+                {
+                    idValue = (int)properties["EmployeeId"].GetValue(item);
+                }
+
+                Panel rowData = new Panel
+                {
+                    Size = new Size(this.width, cellHeight),
+                    Location = new Point(0, (row + 1) * cellHeight),
+                    BackColor = (row % 2 == 0) ? ColorTranslator.FromHtml("#E7EEFA") : Color.White,
+                    Cursor = Cursors.Hand,
+                    Tag = idValue
+                };
+
+                rowData.Click += (sender, e) =>
+                {
+                    onRowClick?.Invoke(idValue);
+                };
+
+                for (int col = 0; col < columnCount; col++)
+                {
+                    Panel cellPanel = new Panel
+                    {
+                        Size = new Size(cellWidth, cellHeight),
+                        Location = new Point(col * cellWidth, 0),
+                        BorderStyle = BorderStyle.None
+                    };
+
+                    Label cellLabel = new Label
+                    {
+                        Size = new Size(cellWidth, cellHeight),
+                        TextAlign = ContentAlignment.MiddleCenter,
+                        Dock = DockStyle.Fill,
+                        ForeColor = Color.FromArgb(10, 22, 41),
+                        Cursor = Cursors.Hand
+                    };
+
+                    if (properties.ContainsKey(headers[col]))
+                    {
+                        var cellValue = properties[headers[col]].GetValue(item);
+                        if (cellValue is DateTime dateValue)
+                        {
+                            cellLabel.Text = dateValue.ToShortDateString();
+                        }
+                        else
+                        {
+                            cellLabel.Text = cellValue?.ToString() ?? "-";
+                        }
+                    }
+                    else
+                    {
+                        cellLabel.Text = "-";
+                    }
+
+                    cellLabel.Click += (sender, e) =>
+                    {
+                        onRowClick?.Invoke(idValue);
+                    };
+
+                    cellPanel.Controls.Add(cellLabel);
+                    rowData.Controls.Add(cellPanel);
+                }
+
+                tablePanel.Controls.Add(rowData);
+            }
+        }
+
+      
     }
 }

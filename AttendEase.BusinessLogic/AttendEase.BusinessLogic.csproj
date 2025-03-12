@@ -9,6 +9,12 @@
   <ItemGroup>
     <PackageReference Include="itext.bouncy-castle-adapter" Version="9.1.0" />
     <PackageReference Include="itext7" Version="9.1.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.5" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="EmployeeDisplayService.cs" />
   </ItemGroup>
 
   <ItemGroup>

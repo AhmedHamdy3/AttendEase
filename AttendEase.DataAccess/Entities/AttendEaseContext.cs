@@ -200,7 +200,7 @@ namespace AttendEase.DataAccess.Entities
                    .HasDefaultValueSql("GETDATE()"); // Default to current timestamp
             #endregion
 
-            #region Notification
+            #region EmployeeActionLog
             // Primary key
             modelBuilder.Entity<EmployeeActionLog>().HasKey(al => al.EmployeeActionLogId);
 

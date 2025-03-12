@@ -13,6 +13,7 @@ using System.IO;
 using static AttendEase.BusinessLogic.AttendanceService;
 using iText.IO.Font.Constants;
 using iText.Kernel.Font;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace AttendEase.BusinessLogic
 {
@@ -478,5 +479,69 @@ namespace AttendEase.BusinessLogic
         }
         #endregion
 
+
+        #region  CheckIn/Out
+
+        public void HrCheckIn(int id)
+        {
+            using( var context=new AttendEaseContext(this.connectionString))
+            {
+                var checkIn = context.Attendances.SingleOrDefault(a => a.EmployeeId == id);
+                checkIn.CheckInTime = DateTime.Now.TimeOfDay;
+
+                context.SaveChanges();
+
+            }
+        }
+
+
+        public void HrCheckOut(int id)
+        {
+            using (var context = new AttendEaseContext(this.connectionString))
+            {
+                var Hr = context.Attendances.SingleOrDefault(a => a.EmployeeId == id);
+                Hr.CheckOutTime = DateTime.Now.TimeOfDay;
+
+                context.SaveChanges();
+
+            }
+        }
+
+
+        public bool HasCheckedIn(int id)
+        {
+            using(var context = new AttendEaseContext(this.connectionString))
+            {
+                var Hr = context.Attendances.SingleOrDefault(a=>a.EmployeeId==id);
+                if (Hr == null)
+                {
+                    return false;
+                }
+                if (Hr.CheckInTime != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+
+        public bool HasCheckedOut(int id)
+        {
+            using (var context = new AttendEaseContext())
+            {
+                var Hr = context.Attendances.SingleOrDefault(a => a.EmployeeId == id);
+                if (Hr == null)
+                {
+                    return false;
+                }
+                if (Hr.CheckOutTime != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AttendEase.BusinessLogic;
+using AttendEase.DataAccess.Entities;
 using AttendEase.Presentation.Attendance;
 using AttendEase.Presentation.CustomControls;
 using AttendEase.Presentation.Properties;
@@ -20,10 +21,18 @@ namespace AttendEase.Presentation
     {
         private Button currentButton;
         AttendanceService attendanceService;
+        EmployeeDisplay employeeDisplay;
         ProfileImage profileImage;
         public HRDashboard()
         {
             InitializeComponent();
+
+
+            this.pnl_formLoader.Controls.Clear();
+            DashboardPanelForm DashboardPanelForm = new DashboardPanelForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            DashboardPanelForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(DashboardPanelForm);
+            DashboardPanelForm.Show();
         }
 
         private void HRDashboard_Load(object sender, EventArgs e)
@@ -47,17 +56,33 @@ namespace AttendEase.Presentation
 
             btn_dashboard.PerformClick();
 
+            this.pnl_formLoader.Controls.Clear();
+            DashboardPanelForm DashboardPanelForm = new DashboardPanelForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            DashboardPanelForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(DashboardPanelForm);
+            DashboardPanelForm.Show();
         }
 
 
         private void btn_dashboard_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, (Image)Properties.Resources.Home_Active);
-        }
+            ActivateButton(sender, (Image)Properties.Resources.Management_Active);
 
+            this.pnl_formLoader.Controls.Clear();
+            DashboardPanelForm dashboardPanelForm = new DashboardPanelForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            dashboardPanelForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(dashboardPanelForm);
+            dashboardPanelForm.Show();
+        }
         private void btn_employees_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, (Image)Properties.Resources.Management_Active);
+
+            this.pnl_formLoader.Controls.Clear();
+            EmployeeDisplay EmployeesDisplayForm = new EmployeeDisplay() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            EmployeesDisplayForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(EmployeesDisplayForm);
+            EmployeesDisplayForm.Show();
         }
 
         private void btn_schedules_Click(object sender, EventArgs e)
@@ -72,7 +97,7 @@ namespace AttendEase.Presentation
 
         private void btn_attendance_Click(object sender, EventArgs e)
         {
-            using(WaitForm frm = new WaitForm(loadAttendance))
+            using (WaitForm frm = new WaitForm(loadAttendance))
             {
                 //this.SendToBack();
                 frm.ShowDialog(this);
@@ -92,7 +117,7 @@ namespace AttendEase.Presentation
             {
                 // We're on the UI thread, so it's safe to update the control
                 this.pnl_formLoader.Controls.Clear();
-                AttendanceSummary attendanceSummaryForm = new AttendanceSummary(){Dock = DockStyle.Fill, TopLevel = false, TopMost = true};
+                AttendanceSummary attendanceSummaryForm = new AttendanceSummary() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
                 attendanceSummaryForm.FormBorderStyle = FormBorderStyle.None;
                 this.pnl_formLoader.Controls.Add(attendanceSummaryForm);
                 attendanceSummaryForm.Show();
@@ -123,6 +148,12 @@ namespace AttendEase.Presentation
         private void btn_leaveRequest_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, (Image)Properties.Resources.Inquiry_Active);
+
+            this.pnl_formLoader.Controls.Clear();
+            LeaveRequestsForm leaveRequestsForm = new LeaveRequestsForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            leaveRequestsForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(leaveRequestsForm);
+            leaveRequestsForm.Show();
         }
 
         private void ActivateButton(object btnSender, Image img)
@@ -181,6 +212,15 @@ namespace AttendEase.Presentation
             GlobalData.RegisterEmployee = null;
             GlobalData.startForm.Show();
             this.Close();
+        }
+
+        private void lbl_employeeName_Click(object sender, EventArgs e)
+        {
+            this.pnl_formLoader.Controls.Clear();
+            HrAccountForm hrAccountForm = new HrAccountForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            hrAccountForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(hrAccountForm);
+            hrAccountForm.Show();
         }
     }
 }
