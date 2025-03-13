@@ -75,5 +75,43 @@ namespace AttendEase.BusinessLogic
             }
         }
 
+        public class EmployeeDTO
+        {
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public string? Phone { get; set; }
+            public DateTime DateOfBirth { get; set; }
+            public string Gender { get; set; }
+            public string Address { get; set; }
+            public DateTime HireDate { get; set; }
+            public decimal Salary { get; set; }
+
+        }
+
+
+
+        public List<EmployeeDTO> GetHRs()
+        {
+            using (var context = new AttendEaseContext(this.connectionString))
+            {
+                var employees = context.Employees
+                    .Where(e => e.JobTitle == "HR")
+                    .Select(e => new EmployeeDTO
+                    {
+                        Name = e.Name,
+                        Email = e.Email,
+                        Phone = e.Phone,
+                        DateOfBirth = e.DateOfBirth ?? default,
+                        Gender = e.Gender,
+                        Address = e.Address,
+                        HireDate = e.HireDate ?? default,
+                        Salary = e.Salary ?? 0
+                    })
+                    .ToList(); 
+
+                return employees;
+            }
+        }
+
     }
 }

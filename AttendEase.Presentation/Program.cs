@@ -1,3 +1,5 @@
+using AttendEase.Presentation.Admin;
+
 namespace AttendEase.Presentation
 {
     internal static class Program

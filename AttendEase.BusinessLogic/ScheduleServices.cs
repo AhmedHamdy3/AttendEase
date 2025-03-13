@@ -30,7 +30,7 @@ namespace AttendEase.BusinessLogic
             public TimeSpan EndTime { get; set; }
         }
 
-        public List<ScheduleDTO> GetSchedule()
+        public List<ScheduleDTO> GetSchedule(string dayofweek)
         {
 
             using (var context = new AttendEaseContext(this.connectionString))
@@ -38,6 +38,7 @@ namespace AttendEase.BusinessLogic
                 return (from s in context.Schedules
                         join swd in context.ScheduleWorkDays on s.ScheduleId equals swd.ScheduleId
                         join w in context.WorkDays on swd.WorkDayId equals w.WorkDayId
+                        where w.DayOfWeek == dayofweek
                         select new ScheduleDTO
                         {
                             Name = s.Name,

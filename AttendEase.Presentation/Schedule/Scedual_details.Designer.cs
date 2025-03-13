@@ -36,6 +36,7 @@
             pictureBox9 = new PictureBox();
             dgv_Schedule = new DataGridView();
             btn_AddSchedule = new CustomControls.CustomButton();
+            ccb_DayOfWeek = new CustomControls.CustomComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_Schedule).BeginInit();
             SuspendLayout();
@@ -86,10 +87,10 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgv_Schedule.DefaultCellStyle = dataGridViewCellStyle3;
-            dgv_Schedule.Location = new Point(24, 157);
+            dgv_Schedule.Location = new Point(24, 181);
             dgv_Schedule.Name = "dgv_Schedule";
             dgv_Schedule.ReadOnly = true;
-            dgv_Schedule.Size = new Size(814, 422);
+            dgv_Schedule.Size = new Size(814, 398);
             dgv_Schedule.TabIndex = 19;
             // 
             // btn_AddSchedule
@@ -110,12 +111,33 @@
             btn_AddSchedule.UseVisualStyleBackColor = false;
             btn_AddSchedule.Click += btn_AddSchedule_Click;
             // 
+            // ccb_DayOfWeek
+            // 
+            ccb_DayOfWeek.BackColor = Color.White;
+            ccb_DayOfWeek.BorderColor = Color.White;
+            ccb_DayOfWeek.BorderSize = 0;
+            ccb_DayOfWeek.DropDownStyle = ComboBoxStyle.DropDown;
+            ccb_DayOfWeek.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ccb_DayOfWeek.ForeColor = Color.Black;
+            ccb_DayOfWeek.IconColor = Color.FromArgb(10, 22, 41);
+            ccb_DayOfWeek.Items.AddRange(new object[] { "Daily", "Weekly", "Monthly" });
+            ccb_DayOfWeek.ListBackColor = Color.White;
+            ccb_DayOfWeek.ListTextColor = Color.FromArgb(10, 22, 41);
+            ccb_DayOfWeek.Location = new Point(24, 123);
+            ccb_DayOfWeek.Margin = new Padding(3, 2, 3, 2);
+            ccb_DayOfWeek.MinimumSize = new Size(175, 22);
+            ccb_DayOfWeek.Name = "ccb_DayOfWeek";
+            ccb_DayOfWeek.Size = new Size(175, 34);
+            ccb_DayOfWeek.TabIndex = 26;
+            ccb_DayOfWeek.OnSelectedIndexChanged += ccb_DayOfWeek_OnSelectedIndexChanged;
+            // 
             // Scedual_details
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(850, 591);
+            Controls.Add(ccb_DayOfWeek);
             Controls.Add(btn_AddSchedule);
             Controls.Add(dgv_Schedule);
             Controls.Add(pictureBox9);
@@ -137,5 +159,6 @@
         private ComboBox cb_summaryType;
         private DataGridView dgv_Schedule;
         private CustomControls.CustomButton btn_AddSchedule;
+        private CustomControls.CustomComboBox ccb_DayOfWeek;
     }
 }

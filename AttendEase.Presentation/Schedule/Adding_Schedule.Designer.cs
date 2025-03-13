@@ -545,7 +545,7 @@
             // 
             dtp_departure_saturday.CustomFormat = "hh:mm:ss";
             dtp_departure_saturday.Format = DateTimePickerFormat.Custom;
-            dtp_departure_saturday.Location = new Point(441, 110);
+            dtp_departure_saturday.Location = new Point(442, 110);
             dtp_departure_saturday.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
             dtp_departure_saturday.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
             dtp_departure_saturday.Name = "dtp_departure_saturday";
