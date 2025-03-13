@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace AttendEase.Presentation
         LeaveRequestsService leaveRequestsService;
         int Id;
         BusinessLogic.LeaveRequestsService.Request request;
+        Action updateUnreadedRequests;
+        Action loadRequests;
         public RequestDetailsForm()
         {
             InitializeComponent();
@@ -32,6 +35,8 @@ namespace AttendEase.Presentation
 
             leaveRequestsService = new LeaveRequestsService(connectionString);
 
+
+
         }
 
 
@@ -42,7 +47,6 @@ namespace AttendEase.Presentation
 
             leaveRequestsService.UpdateRequest(Id);
 
-
             lbl_name.Text = request.Name;
             lbl_start.Text = (request.StartDate).ToString();
             lbl_end.Text = (request.EndDate).ToString();
@@ -51,11 +55,12 @@ namespace AttendEase.Presentation
             lbl_desc.Text = request.Description;
             lbl_jobTitle.Text = request.JobTitle;
 
-
-
-
-
-
+        }
+        public RequestDetailsForm(int id, Action updateUnreadedRequests, Action loadRequests) : this(id)
+        {
+            this.updateUnreadedRequests = updateUnreadedRequests;
+            this.loadRequests = loadRequests;
+            this.updateUnreadedRequests();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -72,17 +77,18 @@ namespace AttendEase.Presentation
         {
             leaveRequestsService.UpdateRequest(Id, "Accepted");
             MessageBox.Show("Request Accepted");
-            leaveRequestsService.DeleteRequest(Id);
+            loadRequests();
+            this.Close();
+            //leaveRequestsService.DeleteRequest(Id);
         }
 
         private void btn_reject_Click(object sender, EventArgs e)
         {
             leaveRequestsService.UpdateRequest(Id, "Rejected");
             MessageBox.Show("Request Rejected");
-            leaveRequestsService.DeleteRequest(Id);
-
-
-
+            loadRequests();
+            this.Close();
+            //leaveRequestsService.DeleteRequest(Id);
         }
     }
 }

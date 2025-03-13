@@ -32,19 +32,19 @@
             panel2 = new Panel();
             pic_next = new PictureBox();
             pic_prev = new PictureBox();
-            panel4 = new Panel();
+            pnl_user3 = new Panel();
             lbl_title3 = new Label();
             Btn_view3 = new Button();
             lbl_userName3 = new Label();
             pic_user3 = new PictureBox();
             panel7 = new Panel();
-            panel3 = new Panel();
+            pnl_user1 = new Panel();
             lbl_title1 = new Label();
             btn_view1 = new Button();
             lbl_userName1 = new Label();
             pic_user1 = new PictureBox();
             panel5 = new Panel();
-            panel1 = new Panel();
+            pnl_user2 = new Panel();
             lbl_title2 = new Label();
             btn_view2 = new Button();
             lbl_userName2 = new Label();
@@ -55,11 +55,11 @@
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pic_next).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pic_prev).BeginInit();
-            panel4.SuspendLayout();
+            pnl_user3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pic_user3).BeginInit();
-            panel3.SuspendLayout();
+            pnl_user1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pic_user1).BeginInit();
-            panel1.SuspendLayout();
+            pnl_user2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pic_user2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             SuspendLayout();
@@ -68,9 +68,9 @@
             // 
             panel2.Controls.Add(pic_next);
             panel2.Controls.Add(pic_prev);
-            panel2.Controls.Add(panel4);
-            panel2.Controls.Add(panel3);
-            panel2.Controls.Add(panel1);
+            panel2.Controls.Add(pnl_user3);
+            panel2.Controls.Add(pnl_user1);
+            panel2.Controls.Add(pnl_user2);
             panel2.Controls.Add(pictureBox9);
             panel2.Controls.Add(lbl_title);
             panel2.Location = new Point(12, 3);
@@ -101,17 +101,17 @@
             pic_prev.TabStop = false;
             pic_prev.Click += pic_prev_Click;
             // 
-            // panel4
+            // pnl_user3
             // 
-            panel4.Controls.Add(lbl_title3);
-            panel4.Controls.Add(Btn_view3);
-            panel4.Controls.Add(lbl_userName3);
-            panel4.Controls.Add(pic_user3);
-            panel4.Controls.Add(panel7);
-            panel4.Location = new Point(620, 238);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(273, 432);
-            panel4.TabIndex = 23;
+            pnl_user3.Controls.Add(lbl_title3);
+            pnl_user3.Controls.Add(Btn_view3);
+            pnl_user3.Controls.Add(lbl_userName3);
+            pnl_user3.Controls.Add(pic_user3);
+            pnl_user3.Controls.Add(panel7);
+            pnl_user3.Location = new Point(620, 238);
+            pnl_user3.Name = "pnl_user3";
+            pnl_user3.Size = new Size(273, 432);
+            pnl_user3.TabIndex = 23;
             // 
             // lbl_title3
             // 
@@ -153,7 +153,7 @@
             pic_user3.Location = new Point(81, 75);
             pic_user3.Name = "pic_user3";
             pic_user3.Size = new Size(125, 125);
-            pic_user3.SizeMode = PictureBoxSizeMode.Zoom;
+            pic_user3.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_user3.TabIndex = 6;
             pic_user3.TabStop = false;
             // 
@@ -166,18 +166,18 @@
             panel7.Size = new Size(273, 125);
             panel7.TabIndex = 7;
             // 
-            // panel3
+            // pnl_user1
             // 
-            panel3.Controls.Add(lbl_title1);
-            panel3.Controls.Add(btn_view1);
-            panel3.Controls.Add(lbl_userName1);
-            panel3.Controls.Add(pic_user1);
-            panel3.Controls.Add(panel5);
-            panel3.Location = new Point(35, 238);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(273, 432);
-            panel3.TabIndex = 23;
-            panel3.Paint += panel3_Paint;
+            pnl_user1.Controls.Add(lbl_title1);
+            pnl_user1.Controls.Add(btn_view1);
+            pnl_user1.Controls.Add(lbl_userName1);
+            pnl_user1.Controls.Add(pic_user1);
+            pnl_user1.Controls.Add(panel5);
+            pnl_user1.Location = new Point(35, 238);
+            pnl_user1.Name = "pnl_user1";
+            pnl_user1.Size = new Size(273, 432);
+            pnl_user1.TabIndex = 23;
+            pnl_user1.Paint += panel3_Paint;
             // 
             // lbl_title1
             // 
@@ -216,10 +216,10 @@
             // 
             pic_user1.BackColor = Color.White;
             pic_user1.Image = (Image)resources.GetObject("pic_user1.Image");
-            pic_user1.Location = new Point(82, 75);
+            pic_user1.Location = new Point(73, 75);
             pic_user1.Name = "pic_user1";
             pic_user1.Size = new Size(125, 125);
-            pic_user1.SizeMode = PictureBoxSizeMode.Zoom;
+            pic_user1.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_user1.TabIndex = 0;
             pic_user1.TabStop = false;
             // 
@@ -232,17 +232,17 @@
             panel5.Size = new Size(273, 125);
             panel5.TabIndex = 1;
             // 
-            // panel1
+            // pnl_user2
             // 
-            panel1.Controls.Add(lbl_title2);
-            panel1.Controls.Add(btn_view2);
-            panel1.Controls.Add(lbl_userName2);
-            panel1.Controls.Add(pic_user2);
-            panel1.Controls.Add(panel6);
-            panel1.Location = new Point(328, 238);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(273, 432);
-            panel1.TabIndex = 22;
+            pnl_user2.Controls.Add(lbl_title2);
+            pnl_user2.Controls.Add(btn_view2);
+            pnl_user2.Controls.Add(lbl_userName2);
+            pnl_user2.Controls.Add(pic_user2);
+            pnl_user2.Controls.Add(panel6);
+            pnl_user2.Location = new Point(328, 238);
+            pnl_user2.Name = "pnl_user2";
+            pnl_user2.Size = new Size(273, 432);
+            pnl_user2.TabIndex = 22;
             // 
             // lbl_title2
             // 
@@ -284,7 +284,7 @@
             pic_user2.Location = new Point(78, 75);
             pic_user2.Name = "pic_user2";
             pic_user2.Size = new Size(125, 125);
-            pic_user2.SizeMode = PictureBoxSizeMode.Zoom;
+            pic_user2.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_user2.TabIndex = 3;
             pic_user2.TabStop = false;
             // 
@@ -333,14 +333,14 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pic_next).EndInit();
             ((System.ComponentModel.ISupportInitialize)pic_prev).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            pnl_user3.ResumeLayout(false);
+            pnl_user3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pic_user3).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            pnl_user1.ResumeLayout(false);
+            pnl_user1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pic_user1).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            pnl_user2.ResumeLayout(false);
+            pnl_user2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pic_user2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ResumeLayout(false);
@@ -351,9 +351,9 @@
         private PictureBox pictureBox9;
         private Label lbl_title;
         private PictureBox pic_prev;
-        private Panel panel4;
-        private Panel panel3;
-        private Panel panel1;
+        private Panel pnl_user3;
+        private Panel pnl_user1;
+        private Panel pnl_user2;
         private PictureBox pic_next;
         private Panel panel5;
         private PictureBox pic_user1;

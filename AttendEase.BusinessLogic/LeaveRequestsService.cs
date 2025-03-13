@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static AttendEase.BusinessLogic.AttendanceService;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace AttendEase.BusinessLogic
 {
@@ -53,6 +54,36 @@ namespace AttendEase.BusinessLogic
             {
                 var requests = (from lr in context.LeaveRequests
                                 join emp in context.Employees on lr.EmployeeId equals emp.EmployeeId
+                                orderby lr.CreationTime descending
+                                select new Request
+
+                                {
+                                    Id = lr.LeaveRequestId,
+                                    Title = lr.Title,
+                                    Description = lr.Description,
+                                    Status = lr.Status,
+                                    StartDate = lr.StartDate,
+                                    EndDate = lr.EndDate,
+                                    LeaveType = lr.LeaveType,
+                                    IsRead = lr.IsRead,
+                                    CreationTime = lr.CreationTime,
+                                    Name = emp.Name,
+                                    ProfileImage = emp.ProfileImage,
+                                    JobTitle = emp.JobTitle,
+                                }).ToList();
+                return requests;
+            }
+        }
+
+        public List<Request> GetUnreadedLeaveRequests()
+        {
+
+            using (var context = new AttendEaseContext())
+            {
+                var requests = (from lr in context.LeaveRequests
+                                join emp in context.Employees on lr.EmployeeId equals emp.EmployeeId
+                                where lr.IsRead == false
+                                orderby lr.CreationTime descending
                                 select new Request
 
                                 {
@@ -118,21 +149,20 @@ namespace AttendEase.BusinessLogic
                 LeaveRequest leaveRequest = context.LeaveRequests.Where(lr => lr.LeaveRequestId == id).SingleOrDefault();
 
                 leaveRequest.IsRead = true;
-
-                if (status == "Accepted")
-                {
-                    leaveRequest.Status = status;
-                }
-                else if (status == "Rejected")
-                {
-                    leaveRequest.Status = status;
-                }
-                else
-                {
-                    leaveRequest.Status = "Pending";
-                }
+                leaveRequest.Status = status;
+                //if (status == "Accepted")
+                //{
+                //    leaveRequest.Status = status;
+                //}
+                //else if (status == "Rejected")
+                //{
+                //    leaveRequest.Status = status;
+                //}
+                //else
+                //{
+                //    leaveRequest.Status = "Pending";
+                //}
                 context.SaveChanges();
-
             }
 
         }
@@ -148,6 +178,14 @@ namespace AttendEase.BusinessLogic
             }
         }
 
+        public int CountOfUnreadedRequests()
+        {
+            using (var context = new AttendEaseContext())
+            {
+                int unreadedRequests = context.LeaveRequests.Where(lr => lr.IsRead == false).Count();
+                return unreadedRequests;
+            }
+        }
 
 
         #region Data Transfer Objects

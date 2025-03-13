@@ -1,5 +1,6 @@
 ﻿using AttendEase.BusinessLogic;
 using AttendEase.DataAccess.Entities;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,14 @@ namespace AttendEase.Presentation
 {
     public partial class CreateLeaveRequest : Form
     {
+        private HubConnection _connection;
         LeaveRequestsService leaveRequestsService;
         public Action<LeaveRequest> AddLeaveRequest;
         //public Action removeOverlay;
         public CreateLeaveRequest()
         {
             InitializeComponent();
+            InitializeSignalR();
 
             var configBuilder = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -28,6 +31,17 @@ namespace AttendEase.Presentation
             var configSection = configBuilder.GetSection("ConnectionStrings");
             var connectionString = configSection["SQLServerConnection"] ?? null;
             leaveRequestsService = new LeaveRequestsService(connectionString);
+        }
+
+        async private void InitializeSignalR()
+        {
+            // Create a connection to the SignalR hub
+            _connection = new HubConnectionBuilder()
+                .WithUrl("https://localhost:7066/leaveRequestHub") // Replace with your SignalR server URL
+                .Build();
+
+            await _connection.StartAsync();
+            await _connection.InvokeAsync("RegisterUserRole", "Employee"); // For Employee
         }
         private void CreateLeaveRequest_Load(object sender, EventArgs e)
         {
@@ -63,13 +77,27 @@ namespace AttendEase.Presentation
             };
 
             AddLeaveRequest(leaveRequest);
-            //removeOverlay();
+
+            SendLeaveRequest();
+
             this.Close();
         }
 
         private void cb_requestType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private async void SendLeaveRequest()
+        {
+            if (_connection != null && _connection.State == HubConnectionState.Connected)
+            {
+                await _connection.InvokeAsync("SendLeaveRequest");
+            }
+            else
+            {
+                MessageBox.Show("SignalR connection is not active.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HRDashboard));
             panel1 = new Panel();
             pnl_sideBar = new Panel();
+            cbtn_unreadedRequests = new CustomControls.CustomButton();
             btn_logout = new CustomControls.CustomButton();
             flowLayoutPanel8 = new FlowLayoutPanel();
             btn_employees = new Button();
@@ -61,6 +62,7 @@
             // pnl_sideBar
             // 
             pnl_sideBar.BackColor = Color.White;
+            pnl_sideBar.Controls.Add(cbtn_unreadedRequests);
             pnl_sideBar.Controls.Add(btn_logout);
             pnl_sideBar.Controls.Add(flowLayoutPanel8);
             pnl_sideBar.Controls.Add(btn_employees);
@@ -76,6 +78,24 @@
             pnl_sideBar.Name = "pnl_sideBar";
             pnl_sideBar.Size = new Size(300, 853);
             pnl_sideBar.TabIndex = 1;
+            // 
+            // cbtn_unreadedRequests
+            // 
+            cbtn_unreadedRequests.BackColor = Color.FromArgb(233, 245, 254);
+            cbtn_unreadedRequests.BorderColor = Color.Black;
+            cbtn_unreadedRequests.BorderRadius = 6;
+            cbtn_unreadedRequests.BorderSize = 0;
+            cbtn_unreadedRequests.FlatAppearance.BorderSize = 0;
+            cbtn_unreadedRequests.FlatAppearance.MouseDownBackColor = Color.FromArgb(233, 245, 254);
+            cbtn_unreadedRequests.FlatAppearance.MouseOverBackColor = Color.FromArgb(233, 245, 254);
+            cbtn_unreadedRequests.FlatStyle = FlatStyle.Flat;
+            cbtn_unreadedRequests.ForeColor = Color.FromArgb(30, 37, 43);
+            cbtn_unreadedRequests.Location = new Point(238, 573);
+            cbtn_unreadedRequests.Name = "cbtn_unreadedRequests";
+            cbtn_unreadedRequests.Size = new Size(40, 40);
+            cbtn_unreadedRequests.TabIndex = 0;
+            cbtn_unreadedRequests.UseVisualStyleBackColor = false;
+            cbtn_unreadedRequests.Visible = false;
             // 
             // btn_logout
             // 
@@ -338,5 +358,6 @@
         private Button btn_attendance;
         private Button btn_leaveRequest;
         private CustomControls.CustomButton btn_logout;
+        private CustomControls.CustomButton cbtn_unreadedRequests;
     }
 }

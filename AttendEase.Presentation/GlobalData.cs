@@ -14,8 +14,13 @@ namespace AttendEase.Presentation
         public static int EmployeeId = 1;
         public static int X = 600;
         public static int Y= 200;
-        public static Image ByteArrayToImage(byte[] byteArray)
+        public static Image ByteArrayToImage(byte[]? byteArray)
         {
+            if(byteArray == null)
+            {
+
+                return null;
+            }
             using (MemoryStream ms = new MemoryStream(byteArray))
             {
                 return Image.FromStream(ms);

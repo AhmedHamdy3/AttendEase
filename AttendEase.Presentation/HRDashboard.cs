@@ -23,16 +23,16 @@ namespace AttendEase.Presentation
         AttendanceService attendanceService;
         EmployeeDisplay employeeDisplay;
         ProfileImage profileImage;
+        LeaveRequestsService leaveRequestsService;
         public HRDashboard()
         {
             InitializeComponent();
-
-
-            this.pnl_formLoader.Controls.Clear();
-            DashboardPanelForm DashboardPanelForm = new DashboardPanelForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            DashboardPanelForm.FormBorderStyle = FormBorderStyle.None;
-            this.pnl_formLoader.Controls.Add(DashboardPanelForm);
-            DashboardPanelForm.Show();
+            var configBuilder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            var configSection = configBuilder.GetSection("ConnectionStrings");
+            var connectionString = configSection["SQLServerConnection"] ?? null;
+            leaveRequestsService = new LeaveRequestsService(connectionString);
         }
 
         private void HRDashboard_Load(object sender, EventArgs e)
@@ -65,12 +65,7 @@ namespace AttendEase.Presentation
             lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
 
             btn_dashboard.PerformClick();
-
-            this.pnl_formLoader.Controls.Clear();
-            DashboardPanelForm DashboardPanelForm = new DashboardPanelForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            DashboardPanelForm.FormBorderStyle = FormBorderStyle.None;
-            this.pnl_formLoader.Controls.Add(DashboardPanelForm);
-            DashboardPanelForm.Show();
+            updateUnreadedRequests();
         }
 
 
@@ -133,6 +128,7 @@ namespace AttendEase.Presentation
                 attendanceSummaryForm.Show();
             }
         }
+
         private void btn_arrivals_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, (Image)Properties.Resources.Clock_Active);
@@ -160,7 +156,7 @@ namespace AttendEase.Presentation
             ActivateButton(sender, (Image)Properties.Resources.Inquiry_Active);
 
             this.pnl_formLoader.Controls.Clear();
-            LeaveRequestsForm leaveRequestsForm = new LeaveRequestsForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            LeaveRequestsForm leaveRequestsForm = new LeaveRequestsForm(new Action(updateUnreadedRequests)) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             leaveRequestsForm.FormBorderStyle = FormBorderStyle.None;
             this.pnl_formLoader.Controls.Add(leaveRequestsForm);
             leaveRequestsForm.Show();
@@ -172,7 +168,6 @@ namespace AttendEase.Presentation
             {
                 if (currentButton != (Button)btnSender)
                 {
-                    //MessageBox.Show(";adlfjk");
                     DisableButton();
                     currentButton = (Button)btnSender;
                     currentButton.BackColor = Color.FromArgb(210, 219, 253);
@@ -258,6 +253,16 @@ namespace AttendEase.Presentation
             }
             lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
             lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
+        }
+        
+        private void updateUnreadedRequests()
+        {
+            int unreadedRequests = leaveRequestsService.CountOfUnreadedRequests();
+            if(unreadedRequests > 0)
+            {
+                cbtn_unreadedRequests.Visible = true;
+                cbtn_unreadedRequests.Text = unreadedRequests.ToString();
+            }
         }
     }
 }

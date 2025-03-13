@@ -169,6 +169,7 @@ namespace AttendEase.Presentation
         private void showEmployeeProfileForm()
         {
             DisableButton();
+            currentButton = null;
             this.pnl_formLoader.Controls.Clear();
             EmployeeProfileForm employeeProfileForm = new EmployeeProfileForm(new Action(updateUserInfo)) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             employeeProfileForm.FormBorderStyle = FormBorderStyle.None;
