@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace AttendEase.BusinessLogic
 {
@@ -58,6 +59,16 @@ namespace AttendEase.BusinessLogic
             {
                 var employee = context.Employees.Where(employee => employee.EmployeeId == id).FirstOrDefault();
                 employee.ProfileImage = img;
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdatePassword(int id, string password)
+        {
+            using (var context = new AttendEaseContext(this.connectionString))
+            {
+                var employee = context.Employees.Where(employee => employee.EmployeeId == id).FirstOrDefault();
+                employee.Password = password;
                 context.SaveChanges();
             }
         }

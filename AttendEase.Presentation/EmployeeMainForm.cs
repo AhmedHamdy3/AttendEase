@@ -63,8 +63,9 @@ namespace AttendEase.Presentation
             profileImage.Location = new Point(100, 30); // Center it on the form
             profileImage.BorderStyle = BorderStyle.None; // Remove border
             profileImage.SizeMode = PictureBoxSizeMode.StretchImage; // Stretch image to fit
-            
-            if(GlobalData.RegisterEmployee.ProfileImage == null)
+            profileImage.Cursor = Cursors.Hand;
+            profileImage.Click += profileImage_Click;
+            if (GlobalData.RegisterEmployee.ProfileImage == null)
             {
                 profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
             }
@@ -159,8 +160,17 @@ namespace AttendEase.Presentation
 
         private void lbl_employeeName_Click(object sender, EventArgs e)
         {
+            showEmployeeProfileForm();
+        }
+        private void profileImage_Click(object sender, EventArgs e)
+        {
+            showEmployeeProfileForm();
+        }
+        private void showEmployeeProfileForm()
+        {
+            DisableButton();
             this.pnl_formLoader.Controls.Clear();
-            EmployeeProfileForm employeeProfileForm = new EmployeeProfileForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            EmployeeProfileForm employeeProfileForm = new EmployeeProfileForm(new Action(updateUserInfo)) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             employeeProfileForm.FormBorderStyle = FormBorderStyle.None;
             this.pnl_formLoader.Controls.Add(employeeProfileForm);
             employeeProfileForm.Show();

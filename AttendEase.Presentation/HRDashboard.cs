@@ -43,15 +43,25 @@ namespace AttendEase.Presentation
             profileImage.Location = new Point(100, 30); // Center it on the form
             profileImage.BorderStyle = BorderStyle.None; // Remove border
             profileImage.SizeMode = PictureBoxSizeMode.StretchImage; // Stretch image to fit
-            profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
-
+            profileImage.Cursor = Cursors.Hand;
+            profileImage.Click += profileImage_Click;
+            if (GlobalData.RegisterEmployee.ProfileImage == null)
+            {
+                profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
+            }
+            else
+            {
+                Image img = GlobalData.ByteArrayToImage(GlobalData.RegisterEmployee.ProfileImage);
+                profileImage.Image = img;
+            }
+            
             // Add the CircularPictureBox to the form
             this.Controls.Add(profileImage);
             profileImage.BringToFront();
             #endregion
 
             // Add the name of the employee
-            //lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
+            lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
             lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
 
             btn_dashboard.PerformClick();
@@ -162,6 +172,7 @@ namespace AttendEase.Presentation
             {
                 if (currentButton != (Button)btnSender)
                 {
+                    //MessageBox.Show(";adlfjk");
                     DisableButton();
                     currentButton = (Button)btnSender;
                     currentButton.BackColor = Color.FromArgb(210, 219, 253);
@@ -216,11 +227,37 @@ namespace AttendEase.Presentation
 
         private void lbl_employeeName_Click(object sender, EventArgs e)
         {
+            showProfileForm();
+        }
+        private void profileImage_Click(object sender, EventArgs e)
+        {
+            showProfileForm();
+        }
+
+        private void showProfileForm()
+        {
+            DisableButton();
+            currentButton = null;
             this.pnl_formLoader.Controls.Clear();
-            HrAccountForm hrAccountForm = new HrAccountForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            hrAccountForm.FormBorderStyle = FormBorderStyle.None;
-            this.pnl_formLoader.Controls.Add(hrAccountForm);
-            hrAccountForm.Show();
+            EmployeeProfileForm employeeProfileForm = new EmployeeProfileForm(new Action(updateUserInfo)) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            employeeProfileForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(employeeProfileForm);
+            employeeProfileForm.Show();
+        }
+
+        private void updateUserInfo()
+        {
+            if (GlobalData.RegisterEmployee.ProfileImage == null)
+            {
+                profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
+            }
+            else
+            {
+                Image img = GlobalData.ByteArrayToImage(GlobalData.RegisterEmployee.ProfileImage);
+                profileImage.Image = img;
+            }
+            lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
+            lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
         }
     }
 }

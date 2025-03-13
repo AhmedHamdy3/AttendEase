@@ -59,7 +59,7 @@ namespace AttendEase.Presentation
                 StartDate = startDate,
                 EndDate = endDate,
                 Description = comment,
-                EmployeeId = GlobalData.EmployeeId
+                EmployeeId = GlobalData.RegisterEmployee.EmployeeId
             };
 
             AddLeaveRequest(leaveRequest);

@@ -32,7 +32,7 @@ namespace AttendEase.Presentation.CustomControls
 
         //Properties
         [Category("Advance")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int BorderSize
         {
             get { return borderSize; }
@@ -56,7 +56,7 @@ namespace AttendEase.Presentation.CustomControls
         }
 
         [Category("Advance")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color BorderColor
         {
             get { return borderColor; }

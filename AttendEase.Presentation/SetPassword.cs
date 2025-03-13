@@ -109,16 +109,6 @@ namespace AttendEase.Presentation
             isVisibleConf = !isVisibleConf;
         }
 
-        private void txt_password_TextChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void txt_confirm_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void ctxt_password__TextChanged(object sender, EventArgs e)
         {

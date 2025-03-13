@@ -41,7 +41,7 @@ namespace AttendEase.Presentation
         }
         private void ShowRequests()
         {
-            var leaveRequests = leaveRequestsService.GetLeaveRequests(GlobalData.EmployeeId);
+            var leaveRequests = leaveRequestsService.GetLeaveRequests(GlobalData.RegisterEmployee.EmployeeId);
             table.fillTable(leaveRequests, new[] { "Request Type", "Duraton", "Start Day", "End Day", "Status" }, "", null, null);
 
         }

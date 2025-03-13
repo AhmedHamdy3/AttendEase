@@ -160,6 +160,7 @@
             // lbl_employeeName
             // 
             lbl_employeeName.AutoSize = true;
+            lbl_employeeName.Cursor = Cursors.Hand;
             lbl_employeeName.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_employeeName.ForeColor = Color.FromArgb(93, 114, 133);
             lbl_employeeName.Location = new Point(94, 133);
