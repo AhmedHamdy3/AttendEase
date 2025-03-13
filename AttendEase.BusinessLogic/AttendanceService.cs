@@ -14,6 +14,8 @@ using static AttendEase.BusinessLogic.AttendanceService;
 using iText.IO.Font.Constants;
 using iText.Kernel.Font;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using OfficeOpenXml;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AttendEase.BusinessLogic
 {
@@ -21,11 +23,13 @@ namespace AttendEase.BusinessLogic
     {
 
         private readonly string connectionString;
+        EmployeesService employeesService;
 
         public AttendanceService(string connectionString)
         {
 
             this.connectionString= connectionString;
+            employeesService = new EmployeesService(connectionString);
         }
 
         #region Attendance Summary Reports
@@ -157,7 +161,6 @@ namespace AttendEase.BusinessLogic
                 var data = GetAttendanceInSpecificDay(date);
                 ExportToPdf<EmployeeAttendanceInSpecificDay>(data, path, $"Attendance Report For {date.ToShortDateString()}");
         }
-
         public void ExportPdf(DateTime startDate, DateTime endDate, string type, string path)
         {
             var data = GetAttendanceInSpecificPeriod(startDate, endDate);
@@ -168,6 +171,97 @@ namespace AttendEase.BusinessLogic
             else if(type == "AttendanceMonth")
             {
                 ExportToPdf<EmployeeAttendanceInSpecificPeriod>(data, path, $"Attendance Report For The Month: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}");
+            }
+        }
+        public void ExportExcel(int page, string type, string path)
+        {
+            if (type == "DailyAttendance")
+            {
+                var data = GetPageOfDailyAttendanceSummary(page);
+                ExportToExcel<AttendanceSummary>(data, path, "Daily Attendance Summary");
+            }
+            else if (type == "WeeklyAttendance")
+            {
+                var data = GetPageOfWeeklyAttendanceSummary(page);
+                ExportToExcel<AttendanceSummary>(data, path, "Weekly Attendance Summary");
+            }
+            else if (type == "MonthlyAttendance")
+            {
+                var data = GetPageOfMonthlyAttendanceSummary(page);
+                ExportToExcel<AttendanceSummary>(data, path, "Monthly Attendance Summary");
+            }
+        }
+        public void ExportExcel(DateTime date, string type, string path)
+        {
+            var data = GetAttendanceInSpecificDay(date);
+            ExportToExcel<EmployeeAttendanceInSpecificDay>(data, path, $"Attendance Report For {date.ToShortDateString()}");
+        }
+        public void ExportExcel(DateTime startDate, DateTime endDate, string type, string path)
+        {
+            var data = GetAttendanceInSpecificPeriod(startDate, endDate);
+            if (type == "AttendanceWeek")
+            {
+                ExportToExcel<EmployeeAttendanceInSpecificPeriod>(data, path, $"Attendance Report For The Week: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}");
+            }
+            else if (type == "AttendanceMonth")
+            {
+                ExportToExcel<EmployeeAttendanceInSpecificPeriod>(data, path, $"Attendance Report For The Month: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}");
+            }
+        }
+        public void arrivalsExportPdf(DateTime startDate, DateTime endDate, string path, int id = -1)
+        {
+            if(id == -1)
+            {
+                var data = GetLateArrivalsAndEarlyDepartureInSpecificPeriod(startDate, endDate);
+                ExportToPdf(data, path, $"Late Arrivals Report For The Period: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}", 1);
+            }
+            else
+            {
+                Employee? employee = employeesService.GetEmployee(id);
+                var data = GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(startDate, endDate, id);
+                ExportToPdf(data, path, $"Late Arrivals Report For {employee?.Name}: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}", 0);
+            }
+        }
+        public void arrivalsExportExcel(DateTime startDate, DateTime endDate, string path, int id = -1)
+        {
+            if (id == -1)
+            {
+                var data = GetLateArrivalsAndEarlyDepartureInSpecificPeriod(startDate, endDate);
+                ExportToExcel(data, path, $"Late Arrivals Report For The Period: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}", 1);
+            }
+            else
+            {
+                Employee? employee = employeesService.GetEmployee(id);
+                var data = GetLateArrivalsAndEarlyDepartureInSpecificPeriodForSpecificEmployee(startDate, endDate, id);
+                ExportToExcel(data, path, $"Late Arrivals Report For {employee?.Name}: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}", 0);
+            }
+        }
+        public void absenceExportPdf(DateTime startDate, DateTime endDate, string path, int id = -1)
+        {
+            if (id == -1)
+            {
+                var data = GetFrequentAbsenceInSpecificPeriod(startDate, endDate);
+                ExportToPdf(data, path, $"Frequent Absence Report For The Period: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}", 1);
+            }
+            else
+            {
+                Employee? employee = employeesService.GetEmployee(id);
+                var data = GetAbsencesSpecificPeriodForSpecificEmployee(startDate, endDate, id);
+                ExportToPdf(data, path, $"Frequent Absence Report For {employee?.Name}: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}", 0);
+            }
+        }
+        public void absenceExportExcel(DateTime startDate, DateTime endDate, string path, int id = -1)
+        {
+            if (id == -1)
+            {
+                var data = GetFrequentAbsenceInSpecificPeriod(startDate, endDate);
+                ExportToExcel(data, path, $"Frequent Absence Report For The Period: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}", 1);
+            }
+            else
+            {
+                Employee? employee = employeesService.GetEmployee(id);
+                var data = GetAbsencesSpecificPeriodForSpecificEmployee(startDate, endDate, id);
+                ExportToExcel(data, path, $"Frequent Absence Report For {employee?.Name}: \nFrom {startDate.ToShortDateString()} To {endDate.ToShortDateString()}", 0);
             }
         }
         #endregion
@@ -229,10 +323,10 @@ namespace AttendEase.BusinessLogic
                     {
                         Name = attendance.Employee.Name,
                         Date = attendance.AttendanceDate,
-                        CheckInTime = attendance.CheckInTime,
-                        CheckOutTime = attendance.CheckOutTime,
-                        TotalsHourOfWorking = attendance.CheckOutTime - attendance.CheckInTime,
-                        LateOrEarly = (
+                        CheckIn = attendance.CheckInTime,
+                        CheckOut = attendance.CheckOutTime,
+                        WorkingHours = attendance.CheckOutTime - attendance.CheckInTime,
+                        Status = (
                             !attendance.AttendanceAttendanceStatuses.Any(aas => aas.AttendanceStatus.Status == "Late")
                             ? "Early"
                             : !attendance.AttendanceAttendanceStatuses.Any(aas => aas.AttendanceStatus.Status == "Early")
@@ -278,8 +372,8 @@ namespace AttendEase.BusinessLogic
                     {
                         Name = ab.Name,
                         Department = ab.Department,
-                        TotalDaysAbsent = ab.TotalDaysAbsent,
-                        TotalDaysPresent = ab.TotalDaysPresent,
+                        Present = ab.TotalDaysPresent,
+                        Absent = ab.TotalDaysAbsent,
                         AbsencePrecentage = Math.Round((double)ab.TotalDaysAbsent / (ab.TotalDaysPresent + ab.TotalDaysAbsent) * 100),
                         Id = ab.Id
                     })
@@ -347,7 +441,7 @@ namespace AttendEase.BusinessLogic
             return new DateRange { StartDate = StartDate, EndDate = EndDate };
         }
 
-        public void ExportToPdf<T>(List<T> data, string filePath, string Header="")
+        public void ExportToPdf<T>(List<T> data, string filePath, string Header = "", int substractedColumns = 0)
         {
             using (PdfWriter writer = new PdfWriter(filePath))
             {
@@ -366,12 +460,18 @@ namespace AttendEase.BusinessLogic
                     document.Add(new Paragraph("\n")); // Add a blank line or use SetMarginBottom to add space
 
                     // Create a table with the number of columns equal to the properties of T
-                    iText.Layout.Element.Table table = new iText.Layout.Element.Table(UnitValue.CreatePercentArray(typeof(T).GetProperties().Length)).UseAllAvailableWidth();
+                    iText.Layout.Element.Table table = new iText.Layout.Element.Table(UnitValue.CreatePercentArray(typeof(T).GetProperties().Length - substractedColumns)).UseAllAvailableWidth();
 
                     // Add headers
                     foreach (var prop in typeof(T).GetProperties())
                     {
-                        table.AddHeaderCell(prop.Name);
+                        // Skip the ID Column
+                        if (prop.Name == "Id") continue;
+                        Paragraph p = new Paragraph($"{prop.Name}")
+                            .SetTextAlignment(TextAlignment.CENTER)
+                            .SetFontSize(12);
+                        p.SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD));
+                        table.AddHeaderCell(p);
                     }
 
                     // Add data rows
@@ -379,6 +479,9 @@ namespace AttendEase.BusinessLogic
                     {
                         foreach (var prop in typeof(T).GetProperties())
                         {
+                            // Skip the ID Column
+                            if (prop.Name == "Id") continue;
+
                             var value = prop.GetValue(item);
                             string cellValue;
 
@@ -391,9 +494,9 @@ namespace AttendEase.BusinessLogic
                             else
                             {
                                 // For non-DateTime values, use the default ToString() or an empty string if null
-                                cellValue = value?.ToString() ?? string.Empty;
+                                cellValue = value?.ToString() ?? "-";
                             }
-
+                            if (prop.Name == "AbsencePrecentage") cellValue += "%";
                             table.AddCell(cellValue);
                         }
                     }
@@ -402,6 +505,79 @@ namespace AttendEase.BusinessLogic
                 }
             }
         }
+
+        public void ExportToExcel<T>(List<T> data, string filePath, string Header="", int substractedColumns = 0)
+        {
+            // Set the EPPlus license context (required for EPPlus 5+)
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            // Create a new Excel package
+            using (var package = new ExcelPackage())
+            {
+                // Get the properties of the class (columns)
+                var properties = typeof(T).GetProperties();
+                // Add a worksheet to the Excel package
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                // Add a header string in the first row
+                worksheet.Cells[1, 1].Value = Header;
+
+                // Merge the first row for the header (optional)
+                worksheet.Cells[1, 1, 1, typeof(T).GetProperties().Length - substractedColumns].Merge = true;
+
+                // Format the header row
+                using (var headerRange = worksheet.Cells[1, 1, 1, typeof(T).GetProperties().Length - substractedColumns])
+                {
+                    headerRange.Style.Font.Bold = true; // Make the header bold
+                    headerRange.Style.Font.Size = 14; // Set the font size
+                    headerRange.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center; // Center-align the header
+                }
+
+                // Add headers (column names)
+                for (int i = 0; i < properties.Length; i++)
+                {
+                    if (properties[i].Name == "Id") continue;
+                    worksheet.Cells[2, i + 1].Value = properties[i].Name;
+                    // Format the column header (bold and larger font)
+                    worksheet.Cells[2, i + 1].Style.Font.Bold = true;
+                    worksheet.Cells[2, i + 1].Style.Font.Size = 12;
+                }
+
+                // Add data rows
+                for (int i = 0; i < data.Count; i++)
+                {
+                    var item = data[i];
+                    for (int j = 0; j < properties.Length; j++)
+                    {
+                        if(properties[j].Name == "Id") continue;
+
+                        var value = properties[j].GetValue(item);
+                        string cellValue;
+                        // Check if the property type is DateTime
+                        if (value is DateTime dateTimeValue)
+                        {
+                            // Format the DateTime to show only the date part
+                            cellValue = dateTimeValue.ToShortDateString(); // or use .ToString("yyyy-MM-dd") for a specific format
+                        }
+                        else
+                        {
+                            // For non-DateTime values, use the default ToString() or an empty string if null
+                            cellValue = value?.ToString() ?? "-";
+                        }
+                        if (properties[j].Name == "AbsencePrecentage") cellValue += "%";
+
+                        worksheet.Cells[i + 3, j + 1].Value = cellValue;
+                    }
+                }
+
+                // Auto-fit columns
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+                // Save the Excel file
+                var fileInfo = new FileInfo(filePath);
+                package.SaveAs(fileInfo);
+            }
+        }
+
         #endregion
 
         #region Data Transfer Objects
@@ -452,21 +628,20 @@ namespace AttendEase.BusinessLogic
         }
         public class LateArrivalsAndEarlyDepartureForSpecificEmployee
         {
-            public string Name{ get; set; }
-
+            public string Name { get; set; }
             public DateTime Date { get; set; }
-            public TimeSpan? CheckInTime { get; set; }
-            public TimeSpan? CheckOutTime { get; set; }
-            public TimeSpan? TotalsHourOfWorking { get; set; }
-            public string LateOrEarly { get; set; }
+            public TimeSpan? CheckIn { get; set; }
+            public TimeSpan? CheckOut { get; set; }
+            public TimeSpan? WorkingHours { get; set; }
+            public string Status { get; set; }
         }
 
         public class FrequentAbsence
         {
             public string Name { get; set; }
             public string Department { get; set; }
-            public int TotalDaysPresent { get; set; }
-            public int TotalDaysAbsent { get; set; }
+            public int Present { get; set; }
+            public int Absent { get; set; }
             public double AbsencePrecentage { get; set; }
             public int Id { get; set; }
         }
@@ -486,7 +661,7 @@ namespace AttendEase.BusinessLogic
         {
             using( var context=new AttendEaseContext(this.connectionString))
             {
-                var checkIn = context.Attendances.SingleOrDefault(a => a.EmployeeId == id);
+                var checkIn = context.Attendances.FirstOrDefault(a => a.EmployeeId == id);
                 checkIn.CheckInTime = DateTime.Now.TimeOfDay;
 
                 context.SaveChanges();
@@ -499,7 +674,7 @@ namespace AttendEase.BusinessLogic
         {
             using (var context = new AttendEaseContext(this.connectionString))
             {
-                var Hr = context.Attendances.SingleOrDefault(a => a.EmployeeId == id);
+                var Hr = context.Attendances.FirstOrDefault(a => a.EmployeeId == id);
                 Hr.CheckOutTime = DateTime.Now.TimeOfDay;
 
                 context.SaveChanges();
@@ -512,7 +687,7 @@ namespace AttendEase.BusinessLogic
         {
             using(var context = new AttendEaseContext(this.connectionString))
             {
-                var Hr = context.Attendances.SingleOrDefault(a=>a.EmployeeId==id);
+                var Hr = context.Attendances.FirstOrDefault(a=>a.EmployeeId==id);
                 if (Hr == null)
                 {
                     return false;
@@ -530,7 +705,7 @@ namespace AttendEase.BusinessLogic
         {
             using (var context = new AttendEaseContext())
             {
-                var Hr = context.Attendances.SingleOrDefault(a => a.EmployeeId == id);
+                var Hr = context.Attendances.FirstOrDefault(a => a.EmployeeId == id);
                 if (Hr == null)
                 {
                     return false;

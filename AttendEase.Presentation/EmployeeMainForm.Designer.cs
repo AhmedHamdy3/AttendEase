@@ -167,6 +167,7 @@
             lbl_employeeName.Size = new Size(114, 46);
             lbl_employeeName.TabIndex = 0;
             lbl_employeeName.Text = "Name";
+            lbl_employeeName.Click += lbl_employeeName_Click;
             // 
             // panel3
             // 

@@ -87,6 +87,7 @@ namespace AttendEase.Presentation
         private void btn_back_Click_1(object sender, EventArgs e)
         {
             isDetails = 0;
+            id = -1;
             table.tablePanel.Location = new Point(30, 240);
             table.tablePanel.Size = new Size(888, 570);
             btn_back.Visible = false;
@@ -114,5 +115,55 @@ namespace AttendEase.Presentation
                 ShowFrequentAbsenceDetail();
             }
         }
+
+        private void cbtn_exportPdf_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                // Set the file filter to show only PDF files
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1; // Default to PDF files
+                saveFileDialog.RestoreDirectory = true; // Restore the previous directory
+                saveFileDialog.Title = "Save PDF File"; // Dialog title
+                saveFileDialog.DefaultExt = "pdf"; // Default file extension
+
+                // Show the dialog and check if the user clicked OK
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName; // Get the selected file path
+                    attendanceService.absenceExportPdf(cdtp_startDate.Value, cdtp_endDate.Value, filePath, id);
+                }
+            }
+        }
+
+        private void cbtn_exportExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                // Set the file filter to show only Excel files
+                saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.Title = "Save Excel File";
+                saveFileDialog.DefaultExt = "xlsx";
+
+                // Show the dialog and check if the user clicked OK
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName; // Get the selected file path
+                    attendanceService.absenceExportExcel(cdtp_startDate.Value, cdtp_endDate.Value, filePath, id);
+                }
+            }
+        }
+
+        private void FrequentAbsence_MouseClick(object sender, MouseEventArgs e)
+        {
+            pnl_exportMenu.Visible = cbtn_exportExcel.Visible = cbtn_exportPdf.Visible = false;
+        }
+        private void cbtn_export_Click(object sender, EventArgs e)
+        {
+            pnl_exportMenu.Visible = cbtn_exportExcel.Visible = cbtn_exportPdf.Visible = true;
+        }
+
     }
 }

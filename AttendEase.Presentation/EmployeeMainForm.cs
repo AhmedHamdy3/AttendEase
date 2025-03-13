@@ -1,4 +1,5 @@
-﻿using AttendEase.Presentation.CustomControls;
+﻿using AttendEase.BusinessLogic;
+using AttendEase.Presentation.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,19 +57,29 @@ namespace AttendEase.Presentation
         private void EmployeeMainForm_Load(object sender, EventArgs e)
         {
             #region Set The Profile Image
+
             profileImage = new ProfileImage();
             profileImage.Size = new Size(100, 100); // Must be square for a perfect circle
             profileImage.Location = new Point(100, 30); // Center it on the form
             profileImage.BorderStyle = BorderStyle.None; // Remove border
             profileImage.SizeMode = PictureBoxSizeMode.StretchImage; // Stretch image to fit
-            profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
+            
+            if(GlobalData.RegisterEmployee.ProfileImage == null)
+            {
+                profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
+            }
+            else
+            {
+                Image img = GlobalData.ByteArrayToImage(GlobalData.RegisterEmployee.ProfileImage);
+                profileImage.Image = img;
+            }
 
             // Add the CircularPictureBox to the form
             this.Controls.Add(profileImage);
             profileImage.BringToFront();
             #endregion
 
-            //lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
+            lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
             lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
 
             // Add the name of the employee
@@ -145,5 +156,30 @@ namespace AttendEase.Presentation
             GlobalData.startForm.Show();
             this.Close();
         }
+
+        private void lbl_employeeName_Click(object sender, EventArgs e)
+        {
+            this.pnl_formLoader.Controls.Clear();
+            EmployeeProfileForm employeeProfileForm = new EmployeeProfileForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            employeeProfileForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(employeeProfileForm);
+            employeeProfileForm.Show();
+        }
+
+        private void updateUserInfo()
+        {
+            if (GlobalData.RegisterEmployee.ProfileImage == null)
+            {
+                profileImage.Image = Image.FromFile("../../../../Images/profileImage.png"); // Load an image
+            }
+            else
+            {
+                Image img = GlobalData.ByteArrayToImage(GlobalData.RegisterEmployee.ProfileImage);
+                profileImage.Image = img;
+            }
+            lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
+            lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
+        }
+
     }
 }

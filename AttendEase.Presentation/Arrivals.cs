@@ -1,4 +1,5 @@
 ﻿using AttendEase.BusinessLogic;
+using AttendEase.Presentation.Attendance;
 using AttendEase.Presentation.CustomControls;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -13,6 +14,11 @@ using System.Windows.Forms;
 
 namespace AttendEase.Presentation
 {
+    public enum Flag
+    {
+        Arrivals,
+        EmployeeArrivals
+    }
     public partial class Arrivals : Form
     {
         AttendanceService attendanceService;
@@ -38,7 +44,6 @@ namespace AttendEase.Presentation
 
             cdtp_startDate.Value = month.StartDate;
             cdtp_endDate.Value = month.EndDate;
-
             ShowArrivals();
             this.Controls.Add(table.tablePanel);
         }
@@ -66,6 +71,7 @@ namespace AttendEase.Presentation
         private void btn_back_Click(object sender, EventArgs e)
         {
             isDetails = 0;
+            id = -1;
             table.tablePanel.Location = new Point(30, 240);
             table.tablePanel.Size = new Size(888, 570);
             btn_back.Visible = false;
@@ -95,5 +101,55 @@ namespace AttendEase.Presentation
                 ShowArrivalsDetail();
             }
         }
+
+        private void cbtn_exportPdf_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                // Set the file filter to show only PDF files
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1; // Default to PDF files
+                saveFileDialog.RestoreDirectory = true; // Restore the previous directory
+                saveFileDialog.Title = "Save PDF File"; // Dialog title
+                saveFileDialog.DefaultExt = "pdf"; // Default file extension
+
+                // Show the dialog and check if the user clicked OK
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName; // Get the selected file path
+                    attendanceService.arrivalsExportPdf(cdtp_startDate.Value, cdtp_endDate.Value, filePath, id);
+                }
+            }
+        }
+
+        private void cbtn_exportExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                // Set the file filter to show only Excel files
+                saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.Title = "Save Excel File";
+                saveFileDialog.DefaultExt = "xlsx";
+
+                // Show the dialog and check if the user clicked OK
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName; // Get the selected file path
+                    attendanceService.arrivalsExportExcel(cdtp_startDate.Value, cdtp_endDate.Value, filePath, id);
+                }
+            }
+        }
+        private void Arrivals_MouseClick(object sender, MouseEventArgs e)
+        {
+            pnl_exportMenu.Visible = cbtn_exportExcel.Visible = cbtn_exportPdf.Visible = false;
+        }
+
+        private void cbtn_export_Click(object sender, EventArgs e)
+        {
+            pnl_exportMenu.Visible = cbtn_exportExcel.Visible = cbtn_exportPdf.Visible = true;
+        }
+
     }
 }

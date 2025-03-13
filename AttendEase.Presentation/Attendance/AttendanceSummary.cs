@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AttendEase.BusinessLogic.AttendanceService;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace AttendEase.Presentation.Attendance
@@ -57,9 +58,6 @@ namespace AttendEase.Presentation.Attendance
             this.Controls.Add(table.tablePanel);
         }
 
-        private void AttendanceSummary_Load(object sender, EventArgs e)
-        {
-        }
         private void DailySelected()
         {
             flag = Flag.DailyAttendance;
@@ -163,7 +161,7 @@ namespace AttendEase.Presentation.Attendance
                 saveFileDialog.RestoreDirectory = true; // Restore the previous directory
                 saveFileDialog.Title = "Save PDF File"; // Dialog title
                 saveFileDialog.DefaultExt = "pdf"; // Default file extension
-                
+
                 // Show the dialog and check if the user clicked OK
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -180,11 +178,50 @@ namespace AttendEase.Presentation.Attendance
                     {
                         attendanceService.ExportPdf(startDate, endDate, flag.ToString(), filePath);
                     }
-
                 }
-
-
             }
+        }
+
+        private void cbtn_exportExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.Title = "Save Excel File";
+                saveFileDialog.DefaultExt = "xlsx";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    if (flag == Flag.DailyAttendance || flag == Flag.WeeklyAttendance || flag == Flag.MonthlyAttendance)
+                    {
+                        attendanceService.ExportExcel(page, flag.ToString(), filePath);
+                    }
+                    else if (flag == Flag.AttendanceDay)
+                    {
+                        attendanceService.ExportExcel(startDate, flag.ToString(), filePath);
+                    }
+                    else if (flag == Flag.AttendanceWeek || flag == Flag.AttendanceMonth)
+                    {
+                        attendanceService.ExportExcel(startDate, endDate, flag.ToString(), filePath);
+                    }
+                }
+            }
+        }
+
+        private void AttendanceSummary_MouseClick(object sender, MouseEventArgs e)
+        {
+            pnl_exportMenu.Visible = cbtn_exportExcel.Visible = cbtn_exportPdf.Visible = false;
+
+        }
+
+        private void cbtn_export_Click(object sender, EventArgs e)
+        {
+            pnl_exportMenu.Visible = cbtn_exportExcel.Visible = cbtn_exportPdf.Visible = true;
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
