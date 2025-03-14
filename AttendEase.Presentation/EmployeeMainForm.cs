@@ -81,7 +81,9 @@ namespace AttendEase.Presentation
             #endregion
 
             lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
-            lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
+            lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, lbl_employeeName.Location.Y);
+            lbl_subTitle.Text = GlobalData.RegisterEmployee.SubTitle ?? "";
+            lbl_subTitle.Location = new Point(pnl_sideBar.Width / 2 - lbl_subTitle.Width / 2, lbl_subTitle.Location.Y);
 
             // Add the name of the employee
             btn_dashboard.PerformClick();
@@ -91,10 +93,10 @@ namespace AttendEase.Presentation
             ActivateButton(sender, (Image)Properties.Resources.Home_Active);
 
             this.pnl_formLoader.Controls.Clear();
-            EmployeeDashboard employeeDashboard = new EmployeeDashboard() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            employeeDashboard.FormBorderStyle = FormBorderStyle.None;
-            this.pnl_formLoader.Controls.Add(employeeDashboard);
-            employeeDashboard.Show();
+            DashboardPanelForm dashboardPanelForm = new DashboardPanelForm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            dashboardPanelForm.FormBorderStyle = FormBorderStyle.None;
+            this.pnl_formLoader.Controls.Add(dashboardPanelForm);
+            dashboardPanelForm.Show();
         }
 
         private void btn_leaveRequest_Click(object sender, EventArgs e)

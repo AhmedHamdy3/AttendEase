@@ -38,7 +38,7 @@
             lbl_title.AutoSize = true;
             lbl_title.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_title.ForeColor = Color.FromArgb(10, 22, 41);
-            lbl_title.Location = new Point(12, 24);
+            lbl_title.Location = new Point(14, 93);
             lbl_title.Name = "lbl_title";
             lbl_title.Size = new Size(307, 62);
             lbl_title.TabIndex = 25;
@@ -47,7 +47,9 @@
             // csb_addRequest
             // 
             csb_addRequest.BackColor = Color.FromArgb(70, 95, 241);
+            csb_addRequest.BorderColor = Color.Black;
             csb_addRequest.BorderRadius = 10;
+            csb_addRequest.BorderSize = 0;
             csb_addRequest.Cursor = Cursors.Hand;
             csb_addRequest.FlatAppearance.BorderSize = 0;
             csb_addRequest.FlatStyle = FlatStyle.Flat;
@@ -55,7 +57,7 @@
             csb_addRequest.ForeColor = Color.White;
             csb_addRequest.Image = (Image)resources.GetObject("csb_addRequest.Image");
             csb_addRequest.ImageAlign = ContentAlignment.MiddleLeft;
-            csb_addRequest.Location = new Point(727, 42);
+            csb_addRequest.Location = new Point(720, 155);
             csb_addRequest.Name = "csb_addRequest";
             csb_addRequest.Padding = new Padding(25, 0, 0, 0);
             csb_addRequest.Size = new Size(209, 50);

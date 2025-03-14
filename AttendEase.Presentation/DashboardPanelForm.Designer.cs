@@ -69,7 +69,7 @@
             pnl_dashboard.Controls.Add(panel8);
             pnl_dashboard.Location = new Point(0, 12);
             pnl_dashboard.Name = "pnl_dashboard";
-            pnl_dashboard.Size = new Size(987, 829);
+            pnl_dashboard.Size = new Size(970, 829);
             pnl_dashboard.TabIndex = 1;
             // 
             // pictureBox9
@@ -263,7 +263,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
-            ClientSize = new Size(1282, 853);
+            ClientSize = new Size(972, 853);
             Controls.Add(pnl_dashboard);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DashboardPanelForm";

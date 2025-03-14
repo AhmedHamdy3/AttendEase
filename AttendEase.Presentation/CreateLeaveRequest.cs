@@ -56,7 +56,6 @@ namespace AttendEase.Presentation
 
         private void csb_close_Click(object sender, EventArgs e)
         {
-            //removeOverlay();
             this.Close();
         }
 
@@ -83,10 +82,6 @@ namespace AttendEase.Presentation
             this.Close();
         }
 
-        private void cb_requestType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private async void SendLeaveRequest()
         {

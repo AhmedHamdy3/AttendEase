@@ -22,7 +22,7 @@ namespace AttendEase.Presentation
         int pageSize = 3;
         AttendEaseContext context;
         LeaveRequestsService leaveRequestsService;
-        List<Request> allUnreadedRequests;
+        List<Request> allPendingRequests;
         Action updateUnreadedRequests;
 
         public LeaveRequestsForm(Action updateUnreadedRequests)
@@ -77,21 +77,12 @@ namespace AttendEase.Presentation
                 MessageBox.Show($"Error connecting to SignalR: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
 
         #region helper methods
         private void loadRequests()
         {
-            allUnreadedRequests = leaveRequestsService.GetUnreadedLeaveRequests();
+            allPendingRequests = leaveRequestsService.GetPendingLeaveRequests();
             ShowPage(currentPage);
         }
 
@@ -101,39 +92,69 @@ namespace AttendEase.Presentation
 
         private void ShowPage(int page)
         {
-            var pageRequests = allUnreadedRequests.Skip(page * pageSize).Take(pageSize).ToList();
-
-            if (pageRequests.Count > 0)
-            {
-                lbl_userName1.Text = pageRequests[0].Name;
-                //lbl_userName1.Location = new Point(pnl_user1.Location.X + pnl_user1.Width / 2 - lbl_userName1.Width / 2, lbl_userName1.Location.Y);
-                pic_user1.Image = GlobalData.ByteArrayToImage(pageRequests[0]?.ProfileImage);
-                lbl_title1.Text = pageRequests[0].LeaveType;
-                firstId = pageRequests[0].Id;
-            }
-
-            if (pageRequests.Count > 1)
-            {
-                lbl_userName2.Text = pageRequests[1].Name;
-                //lbl_userName2.Location = new Point(pnl_user2.Location.X + pnl_user2.Width / 2 - lbl_userName2.Width / 2, lbl_userName2.Location.Y);
-                pic_user2.Image = GlobalData.ByteArrayToImage(pageRequests[1]?.ProfileImage);
-                lbl_title2.Text = pageRequests[1].LeaveType;
-                secondId = pageRequests[1].Id;
-            }
+            var pageRequests = allPendingRequests.Skip(page * pageSize).Take(pageSize).ToList();
 
             if (pageRequests.Count > 2)
             {
-                lbl_userName3.Text = pageRequests[2].Name;
-                //lbl_userName3.Location = new Point(pnl_user3.Location.X + pnl_user3.Width / 2 - lbl_userName3.Width / 2, lbl_userName3.Location.Y);
-                pic_user3.Image = GlobalData.ByteArrayToImage(pageRequests[2]?.ProfileImage);
-                lbl_title3.Text = pageRequests[2].LeaveType;
-                thirdId = pageRequests[2].Id;
+                pnl_user1.Visible = pnl_user2.Visible = pnl_user3.Visible = pic_next.Visible = pic_prev.Visible = true;
+                showUser(pageRequests,1);
+                showUser(pageRequests, 2);
+                showUser(pageRequests,3);
+
+            }
+            else if (pageRequests.Count > 1)
+            {
+
+                pnl_user1.Visible = pnl_user2.Visible = pic_next.Visible = pic_prev.Visible = true;
+                pnl_user3.Visible = false;
+                showUser(pageRequests, 1);
+                showUser(pageRequests, 2);
+            }
+            else if (pageRequests.Count > 0)
+            {
+  
+                pnl_user1.Visible = pic_next.Visible = pic_prev.Visible = true;
+                pnl_user2.Visible = pnl_user3.Visible = false;
+                showUser(pageRequests, 1);
+            }
+            else
+            {
+                pnl_user1.Visible = pnl_user2.Visible = pnl_user3.Visible = pic_next.Visible = pic_prev.Visible = false;
             }
 
-
             pic_prev.Enabled = currentPage > 0;
-            pic_next.Enabled = (currentPage + 1) * pageSize < allUnreadedRequests.Count;
+            pic_next.Enabled = (currentPage + 1) * pageSize < allPendingRequests.Count;
 
+        }
+
+        private void showUser(List<Request> pageRequests, int userNum)
+        {
+            if (userNum == 1)
+            {
+                lbl_userName1.Text = pageRequests[0].Name;
+                lbl_userName1.Location = new Point(pnl_user1.ClientSize.Width / 2 - lbl_userName1.Width / 2, lbl_userName1.Location.Y);
+                pic_user1.Image = GlobalData.ByteArrayToImage(pageRequests[0]?.ProfileImage);
+                lbl_requestType1.Text = pageRequests[0].LeaveType;
+                lbl_requestType1.Location = new Point(pnl_user1.ClientSize.Width / 2 - lbl_requestType1.Width / 2, lbl_requestType1.Location.Y);
+                firstId = pageRequests[0].Id;
+            }
+            else if (userNum == 2)
+            {
+                lbl_userName2.Text = pageRequests[1].Name;
+                lbl_userName2.Location = new Point(pnl_user2.ClientSize.Width / 2 - lbl_userName2.Width / 2, lbl_userName2.Location.Y);
+                pic_user2.Image = GlobalData.ByteArrayToImage(pageRequests[1]?.ProfileImage);
+                lbl_requestType2.Text = pageRequests[1].LeaveType;
+                lbl_requestType2.Location = new Point(pnl_user2.ClientSize.Width / 2 - lbl_requestType2.Width / 2, lbl_requestType2.Location.Y);
+                secondId = pageRequests[1].Id;
+            }
+            else if (userNum == 3) {
+                lbl_userName3.Text = pageRequests[2].Name;
+                lbl_userName3.Location = new Point(pnl_user3.ClientSize.Width / 2 - lbl_userName3.Width / 2, lbl_userName3.Location.Y);
+                pic_user3.Image = GlobalData.ByteArrayToImage(pageRequests[2]?.ProfileImage);
+                lbl_requestType3.Text = pageRequests[2].LeaveType;
+                lbl_requestType3.Location = new Point(pnl_user3.ClientSize.Width / 2 - lbl_requestType3.Width / 2, lbl_requestType3.Location.Y);
+                thirdId = pageRequests[2].Id;
+            }
         }
 
 
@@ -150,7 +171,7 @@ namespace AttendEase.Presentation
 
         private void pic_next_Click(object sender, EventArgs e)
         {
-            if ((currentPage + 1) * pageSize < allUnreadedRequests.Count)
+            if ((currentPage + 1) * pageSize < allPendingRequests.Count)
             {
                 currentPage++;
                 ShowPage(currentPage);
@@ -161,11 +182,11 @@ namespace AttendEase.Presentation
         private void btn_view1_Click(object sender, EventArgs e)
         {
             int Id = firstId;
-            var request = allUnreadedRequests.FirstOrDefault(x => x.Id == Id);
+            var request = allPendingRequests.FirstOrDefault(x => x.Id == Id);
 
             if (request != null)
             {
-                RequestDetailsForm frm = new RequestDetailsForm(Id, new Action(updateUnreadedRequests), new Action(loadRequests));
+                RequestDetailsForm frm = new RequestDetailsForm(Id, updateUnreadedRequests, new Action(loadRequests));
                 frm.Show();
 
             }
@@ -173,31 +194,33 @@ namespace AttendEase.Presentation
 
         private void btn_view2_Click(object sender, EventArgs e)
         {
-
             int Id = secondId;
-            var request = allUnreadedRequests.FirstOrDefault(x => x.Id == Id);
+            var request = allPendingRequests.FirstOrDefault(x => x.Id == Id);
 
             if (request != null)
             {
-                RequestDetailsForm frm = new RequestDetailsForm(Id, new Action(updateUnreadedRequests), new Action(loadRequests));
-                frm.Show();
+                RequestDetailsForm frm = new RequestDetailsForm(Id, updateUnreadedRequests, new Action(loadRequests));
+            frm.Show();
 
             }
         }
+
 
         private void Btn_view3_Click(object sender, EventArgs e)
         {
 
             int Id = thirdId;
-            var request = allUnreadedRequests.FirstOrDefault(x => x.Id == Id);
+            var request = allPendingRequests.FirstOrDefault(x => x.Id == Id);
 
             if (request != null)
             {
-                RequestDetailsForm frm = new RequestDetailsForm(Id, new Action(updateUnreadedRequests), new Action(loadRequests));
+                RequestDetailsForm frm = new RequestDetailsForm(Id, updateUnreadedRequests, new Action(loadRequests));
                 frm.Show();
 
             }
 
         }
+
+
     }
 }

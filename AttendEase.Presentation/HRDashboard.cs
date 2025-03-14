@@ -62,7 +62,9 @@ namespace AttendEase.Presentation
 
             // Add the name of the employee
             lbl_employeeName.Text = GlobalData.RegisterEmployee.Name;
-            lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, 133);
+            lbl_employeeName.Location = new Point(pnl_sideBar.Width / 2 - lbl_employeeName.Width / 2, lbl_employeeName.Location.Y);
+            lbl_subTitle.Text = GlobalData.RegisterEmployee.SubTitle ?? "";
+            lbl_subTitle.Location = new Point(pnl_sideBar.Width / 2 - lbl_subTitle.Width / 2, lbl_subTitle.Location.Y);
 
             btn_dashboard.PerformClick();
             updateUnreadedRequests();
@@ -262,6 +264,10 @@ namespace AttendEase.Presentation
             {
                 cbtn_unreadedRequests.Visible = true;
                 cbtn_unreadedRequests.Text = unreadedRequests.ToString();
+            }
+            else
+            {
+                cbtn_unreadedRequests.Visible = false;
             }
         }
     }

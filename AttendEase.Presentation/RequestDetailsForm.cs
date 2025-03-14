@@ -48,12 +48,17 @@ namespace AttendEase.Presentation
             leaveRequestsService.UpdateRequest(Id);
 
             lbl_name.Text = request.Name;
-            lbl_start.Text = (request.StartDate).ToString();
-            lbl_end.Text = (request.EndDate).ToString();
-            lbl_title.Text = request.Title;
-            lbl_creationDate.Text = (request.CreationTime).ToString();
-            lbl_desc.Text = request.Description;
             lbl_jobTitle.Text = request.JobTitle;
+
+            lbl_start.Text = request.StartDate.ToShortDateString();
+            lbl_end.Text = request.EndDate.ToShortDateString();
+            lbl_requestType.Text = request.LeaveType;
+            lbl_creationDate.Text = request.CreationTime.ToShortDateString();
+            lbl_desc.Text = request.Description;
+            pb_EmployeeImage.Image = GlobalData.ByteArrayToImage(request.ProfileImage);
+            lbl_name.Location = new Point(this.Width / 2 - lbl_name.Width / 2, lbl_name.Location.Y);
+            lbl_jobTitle.Location = new Point(this.Width / 2 - lbl_jobTitle.Width / 2, lbl_jobTitle.Location.Y);
+
 
         }
         public RequestDetailsForm(int id, Action updateUnreadedRequests, Action loadRequests) : this(id)
@@ -62,12 +67,6 @@ namespace AttendEase.Presentation
             this.loadRequests = loadRequests;
             this.updateUnreadedRequests();
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void RequestDetailsForm_Load(object sender, EventArgs e)
         {
 

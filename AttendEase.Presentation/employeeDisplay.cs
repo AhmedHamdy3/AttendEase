@@ -40,8 +40,8 @@ namespace AttendEase.Presentation
             pnlCrudEmp.Hide();
 
             table = new CustomTable(914, 539, 27, 222);
-           
-           
+
+
         }
 
         private void EmployeeDisplay_Load(object sender, EventArgs e)
@@ -51,145 +51,123 @@ namespace AttendEase.Presentation
 
         }
 
-        private void btn_manageEmps_Click(object sender, EventArgs e)
-        {
-            toggleBtn();
-        }
-
-        private void btn_show1_Click_1(object sender, EventArgs e)
-        {
-            image1 = Image.FromFile(@"E:\\newShimaa\\EF-project\\AttendEase\\AttendEase.Presentation\\Resources\\Eye.png");
-            image2 = Image.FromFile(@"E:\newShimaa\EF-project\AttendEase\AttendEase.Presentation\Resources\icons8-blind-30.png");
-
-
-
-            if (isFirstImage)
-            {
-                picEye1.Image = image2;
-                txt_pass.PasswordChar = true;
-              
-            }
-            else
-            {
-                picEye1.Image = image1;
-                txt_pass.PasswordChar = false;
-
-            }
-            isFirstImage = !isFirstImage;
-        }
-
-        private void btn_show2_Click_1(object sender, EventArgs e)
-        {
-            image1 = Image.FromFile(@"E:\\newShimaa\\EF-project\\AttendEase\\AttendEase.Presentation\\Resources\\Eye.png");
-            image2 = Image.FromFile(@"E:\newShimaa\EF-project\AttendEase\AttendEase.Presentation\Resources\icons8-blind-30.png");
-
-
-
-
-            if (isFirstImage)
-            {
-                picEye2.Image = image2;
-                txt_confirm.PasswordChar = true;
-
-            }
-            else
-            {
-                picEye2.Image = image1;
-                txt_confirm.PasswordChar = false;
-
-            }
-            isFirstImage = !isFirstImage;
-        }
-
-        private void btn_add_Click(object sender, EventArgs e)
-        {
-            employeeDisplay.AddEmployee(txt_name.Text, txt_jobTitle.Text, txt_email.Text, txt_pass.Text, txt_phone.Text, (int)cb_deptt.SelectedValue, (string)cb_empTypee.SelectedValue, (int)cb_schedulee.SelectedValue);
-            txt_name.Text = txt_jobTitle.Text = txt_email.Text = txt_pass.Text = txt_phone.Text = "";
-            MessageBox.Show("Added");
-            LoadEmployeesData();
-        }
-
-     
-        private void btn_update_Click(object sender, EventArgs e)
-        {
-           employeeDisplay.UpdateEmplyee(id, txt_name.Text, txt_jobTitle.Text, txt_email.Text, txt_pass.Text, txt_phone.Text, (int)cb_deptt.SelectedValue, (string)cb_empTypee.SelectedValue, (int)cb_schedulee.SelectedValue);
-            txt_name.Text = txt_jobTitle.Text = txt_email.Text = txt_pass.Text = txt_phone.Text = "";
-            MessageBox.Show("Updated");
-            LoadEmployeesData();
-        }
-
-
-        private void btn_delete_Click(object sender, EventArgs e)
-        {
-            employeeDisplay.DeleteEmplyee(id);
-            txt_name.Text = txt_jobTitle.Text = txt_email.Text = txt_pass.Text = txt_phone.Text = "";
-            MessageBox.Show("Deleted");
-            LoadEmployeesData();
-        }
-
-
-
 
 
         #region helper methods
 
         private void LoadEmployeesData()
         {
-            var EmployeesData = employeeDisplay.displayEmployees();
-            table.fillTableV2(EmployeesData, new[] { "EmployeeId", "Name", "JobTitle", "Email", "Password", "Phone", "EmploymentType" }, GetRowData);
-
-
-        }
-        private void toggleBtn()
-        {
-
-            if (btn_manageEmp.Text == "          Manage Employees")
-            {
-                btn_manageEmp.Text = "Step Back";
-
-                pnlCrudEmp.Show();
-
-
-               cb_empTypee.DataSource = context.Employees.Select(x => x.EmploymentType).Distinct().ToList();
-
-
-                var schedules = context.Schedules.ToList();
-                cb_schedulee.DataSource = schedules;
-                cb_schedulee.ValueMember = "ScheduleId";
-                cb_schedulee.DisplayMember = "Name";
-                var departments = context.Departments.ToList();
-                cb_deptt.DataSource = departments;
-                cb_deptt.ValueMember = "DepartmentId";
-                cb_deptt.DisplayMember = "Name";
-
-            }
-            else
-            {
-                pnlCrudEmp.Hide();
-                LoadEmployeesData();
-                btn_manageEmp.Text = "          Manage Employees";
-
-
-            }
+            var EmployeesData = employeeDisplay.displayOnlyEmployees();
+            table.fillTableV3(EmployeesData, new[] { "Id", "Name", "Job Title", "Email", "Phone", "Type" }, "Employees", GetRowData);
         }
         private void GetRowData(int id)
         {
 
             this.id = id;
             pnlCrudEmp.Show();
-            toggleBtn();
             var employee = employeeDisplay.getEmployeeById(id);
-            txt_name.Text = employee.Name;
-            txt_pass.Text = employee.Password;
-            txt_email.Text = employee.Email;
-            txt_jobTitle.Text = employee.JobTitle;
-            txt_phone.Text = employee.Phone;
-            cb_deptt.SelectedValue = employee.DepartmentId;
-            cb_empTypee.SelectedItem = employee.EmploymentType;
-            cb_schedulee.SelectedValue = employee.ScheduleId;
+            var departments = context.Departments.Select(department => new { department.DepartmentId,department.Name}).ToList();
+            var schedules = context.Schedules.Select(schedule => new { schedule.ScheduleId,schedule.Name }).ToList();
+            ccb_schedule.DataSource = schedules;
+            ccb_schedule.DisplayMember = "Name";
+            ccb_schedule.ValueMember = "ScheduleId";
+            ccb_dept.DataSource = departments;
+            ccb_dept.DisplayMember = "Name";
+            ccb_dept.ValueMember = "DepartmentId";
 
+            ctxt_name.Text = employee.Name;
+            if (employee.JobTitle != null)
+                ccb_jobTitle.SelectedItem = employee.JobTitle ?? "";
+            else ccb_jobTitle.SelectedIndex = -1;
+            ctxt_email.Text = employee.Email;
+            if(employee.Gender != null)
+                ccb_gender.SelectedItem = employee.Gender ?? "";
+            else ccb_gender.SelectedIndex = -1;
+
+            ctxt_address.Text = employee.Address ?? "";
+            ctxt_phone.Text = employee.Phone ?? "";
+            ccb_dept.SelectedItem = employee.Department.Name;
+            if(employee.EmploymentType != null)
+                ccb_emplyeeType.SelectedItem = employee.EmploymentType ?? "";
+            else ccb_emplyeeType.SelectedIndex = -1;
+
+            ccb_schedule.SelectedItem = employee.Schedule.Name;
+
+            btn_back.Visible = true;
+            csb_addEmployee.Visible = false;
+
+            cbtn_add.Visible = false;
+            cbtn_update.Visible = true;
+            cbtn_delete.Visible = true;
         }
 
         #endregion
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            btn_back.Visible = false;
+            csb_addEmployee.Visible = true;
+            pnlCrudEmp.Hide();
+            LoadEmployeesData();
+            clearInputs();
+        }
+
+        private void csb_addEmployee_Click(object sender, EventArgs e)
+        {
+            pnlCrudEmp.Show();
+
+            var departments = context.Departments.Select(department => new { department.DepartmentId, department.Name }).ToList();
+            var schedules = context.Schedules.Select(schedule => new { schedule.ScheduleId, schedule.Name }).ToList();
+            ccb_schedule.DataSource = schedules;
+            ccb_schedule.DisplayMember = "Name";
+            ccb_schedule.ValueMember = "ScheduleId";
+            ccb_dept.DataSource = departments;
+            ccb_dept.DisplayMember = "Name";
+            ccb_dept.ValueMember = "DepartmentId";
+
+            ccb_dept.SelectedIndex = -1;
+            ccb_schedule.SelectedIndex = -1;
+
+            btn_back.Visible = true;
+            csb_addEmployee.Visible = false;
+
+            cbtn_add.Visible = true;
+            cbtn_delete.Visible = false;
+            cbtn_update.Visible = false;
+        }
+
+        private void cbtn_delete_Click(object sender, EventArgs e)
+        {
+            employeeDisplay.DeleteEmplyee(id);
+            MessageBox.Show("Deleted");
+            LoadEmployeesData();
+            btn_back.PerformClick();
+            clearInputs();
+        }
+
+        private void cbtn_add_Click(object sender, EventArgs e)
+        {
+            employeeDisplay.AddEmployee(ctxt_name.Text, ccb_jobTitle.SelectedItem?.ToString(), ctxt_email.Text, ccb_gender.SelectedItem?.ToString(), ctxt_address.Text, ctxt_phone.Text, (int)ccb_dept.SelectedValue, ccb_emplyeeType.SelectedItem?.ToString(), (int)ccb_schedule.SelectedValue);
+            MessageBox.Show("Added");
+            LoadEmployeesData();
+            btn_back.PerformClick();
+            clearInputs();
+        }
+
+        private void cbtn_update_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show($"{ccb_emplyeeType.SelectedItem.ToString()}");
+
+            employeeDisplay.UpdateEmplyee(id, ctxt_name.Text, ccb_jobTitle.SelectedItem?.ToString(), ctxt_email.Text, ccb_gender.SelectedItem?.ToString(), ctxt_address.Text, ctxt_phone.Text, (int)ccb_dept.SelectedValue, ccb_emplyeeType.SelectedItem?.ToString(), (int)ccb_schedule.SelectedValue);
+            MessageBox.Show("Updated");
+            LoadEmployeesData();
+            btn_back.PerformClick();
+            clearInputs();
+        }
+        private void clearInputs()
+        {
+            ctxt_address.Text = ctxt_email.Text = ctxt_name.Text = ctxt_phone.Text = "";
+            ccb_emplyeeType.SelectedIndex = ccb_dept.SelectedIndex = ccb_gender.SelectedIndex = ccb_jobTitle.SelectedIndex = ccb_schedule.SelectedIndex = -1;
+        }
     }
 }

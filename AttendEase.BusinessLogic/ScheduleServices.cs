@@ -25,32 +25,69 @@ namespace AttendEase.BusinessLogic
         {
             public string Name { get; set; }
             public string Description { get; set; }
+            public int Id {  get; set; }
+
+            //public string DayOfWeek { get; set; }
+            //public TimeSpan StartTime { get; set; }
+            //public TimeSpan EndTime { get; set; }
+        }
+        public class WorkDayDTO
+        {
             public string DayOfWeek { get; set; }
-            public TimeSpan StartTime { get; set; }
+            public TimeSpan startTime { get; set; }
             public TimeSpan EndTime { get; set; }
         }
 
-        public List<ScheduleDTO> GetSchedule(string dayofweek)
-        {
+        //public List<ScheduleDTO> GetSchedule(string dayofweek)
+        //{
 
-            using (var context = new AttendEaseContext(this.connectionString))
+        //    using (var context = new AttendEaseContext(this.connectionString))
+        //    {
+        //        return (from s in context.Schedules
+        //                join swd in context.ScheduleWorkDays on s.ScheduleId equals swd.ScheduleId
+        //                join w in context.WorkDays on swd.WorkDayId equals w.WorkDayId
+        //                where w.DayOfWeek == dayofweek
+        //                select new ScheduleDTO
+        //                {
+        //                    Name = s.Name,
+        //                    Description = s.Description,
+        //                    DayOfWeek = w.DayOfWeek,
+        //                    StartTime = w.StartTime,
+        //                    EndTime = w.EndTime
+        //                }).ToList();
+        //    }
+        //}
+
+
+        public List<ScheduleDTO> GetSchedules()
+        {
+            using (var context = new AttendEaseContext())
             {
-                return (from s in context.Schedules
-                        join swd in context.ScheduleWorkDays on s.ScheduleId equals swd.ScheduleId
-                        join w in context.WorkDays on swd.WorkDayId equals w.WorkDayId
-                        where w.DayOfWeek == dayofweek
-                        select new ScheduleDTO
-                        {
-                            Name = s.Name,
-                            Description = s.Description,
-                            DayOfWeek = w.DayOfWeek,
-                            StartTime = w.StartTime,
-                            EndTime = w.EndTime
-                        }).ToList();
+                return context.Schedules.Select(s => new ScheduleDTO
+                {
+                    Id = s.ScheduleId,
+                    Name = s.Name,
+                    Description = s.Description,
+                })
+                .ToList();
             }
         }
 
-
+        public List<WorkDayDTO> GetScheduleWorkDays(int id)
+        {
+            using (var context = new AttendEaseContext())
+            {
+                return context.Schedules.Where(schedule => schedule.ScheduleId == id)
+                    .SelectMany(s => s.ScheduleWorkDays)
+                    .Select(swd => new WorkDayDTO
+                    {
+                        DayOfWeek = swd.WorkDay.DayOfWeek,
+                        startTime = swd.WorkDay.StartTime,
+                        EndTime = swd.WorkDay.EndTime
+                    })
+                    .ToList();
+            }
+        }
 
         public void AddSchedule(string name, string description, List<DateTime> start, List<DateTime> end, List<string> days)
         {
@@ -76,7 +113,8 @@ namespace AttendEase.BusinessLogic
                             TimeSpan endTime = end[i].TimeOfDay;
 
                             var workDay = context.WorkDays
-                                .FirstOrDefault(w => w.DayOfWeek == day && w.StartTime == startTime && w.EndTime == endTime);
+                                .FirstOrDefault(w => w.DayOfWeek == day && w.StartTime.Hours == startTime.Hours && w.StartTime.Minutes == startTime.Minutes
+                                && w.EndTime.Hours == endTime.Hours &&  w.EndTime.Minutes == endTime.Minutes);
 
                             if (workDay == null)
                             {

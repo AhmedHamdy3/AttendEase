@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using AttendEase.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace AttendEase.BusinessLogic
 {
@@ -18,32 +19,30 @@ namespace AttendEase.BusinessLogic
             this.connectionString = connectionString;
         }
 
-        public List<Employee>  displayEmployees()
+        public List<EmployeeToDisplay> displayOnlyEmployees()
         {
             using (var context = new AttendEaseContext()) { 
-            var employees = context.Employees.Select(e => new Employee {
-                EmployeeId=e.EmployeeId,
-                Name=e.Name,
-                JobTitle=e.JobTitle,
-                Email = e.Email,
-                Password = e.Password,
-                Phone = e.Phone,
-                EmploymentType = e.EmploymentType,
-            }).ToList();
-                return employees;
+                var employees = context.Employees.Where(e => e.JobTitle == "Employee").Select(e => new EmployeeToDisplay
+                {
+                    EmployeeId=e.EmployeeId,
+                    Name=e.Name,
+                    JobTitle=e.JobTitle,
+                    Email = e.Email,
+                    Phone = e.Phone,
+                    EmploymentType = e.EmploymentType,
+                }).ToList();
+                    return employees;
             }
-
-           
         }
 
 
         public Employee getEmployeeById(int id)
         {
             using (var context = new AttendEaseContext()) {
-                return context.Employees.FirstOrDefault(e => e.EmployeeId == id);
-                    }
+                return context.Employees.Include(e => e.Department).Include(e => e.Schedule).FirstOrDefault(e => e.EmployeeId == id);
+            }
         }
-        public void AddEmployee(string name,string jobTitle,string email,string password, string phone,int deptId,string employmentType, int scheduleId)
+        public void AddEmployee(string name, string? jobTitle, string email, string? gender, string? address, string? phone, int deptId, string? employmentType, int scheduleId)
         {
 
             using (var context = new AttendEaseContext())
@@ -53,21 +52,20 @@ namespace AttendEase.BusinessLogic
                     Name = name,
                     JobTitle = jobTitle,
                     Email = email,
-                    Password = password,
+                    Gender = gender,
+                    Address = address,
                     Phone = phone,
                     DepartmentId = deptId,
                     EmploymentType = employmentType,
                     ScheduleId = scheduleId
                 };
-
                context.Employees.Add(employee);
                 context.SaveChanges();
-
             }
         }
 
 
-        public void UpdateEmplyee(int employeeId, string name, string jobTitle, string email, string password, string phone, int deptId, string employmentType, int scheduleId)
+        public void UpdateEmplyee(int employeeId, string name, string? jobTitle, string email, string? gender, string? address, string? phone, int deptId, string? employmentType, int scheduleId)
         {
             using (var context = new AttendEaseContext())
             {
@@ -76,14 +74,13 @@ namespace AttendEase.BusinessLogic
                 employee.Name = name;
                 employee.JobTitle = jobTitle;
                 employee.Email = email;
-                employee.Password = password;
+                employee.Gender= gender;
+                employee.Address = address;
                 employee.Phone = phone;
                 employee.DepartmentId = deptId;
                 employee.EmploymentType = employmentType;
                 employee.ScheduleId = scheduleId;
-                
 
-               
                 context.SaveChanges();
 
             }
@@ -106,6 +103,7 @@ namespace AttendEase.BusinessLogic
             }
 
         }
+        
         public void DeleteEmplyee(int employeeId) {
 
             using (var context = new AttendEaseContext())
@@ -126,11 +124,17 @@ namespace AttendEase.BusinessLogic
                 employee.ProfileImage = picture;
 
                 context.SaveChanges();
-
             }
+        }
 
-
-
+        public class EmployeeToDisplay{
+            public int EmployeeId{get; set;}
+            public string? Name{get; set;}
+            public string? JobTitle{get; set;}
+            public string? Email {get; set;}
+            public string? Phone {get; set;}
+            public string? EmploymentType { get; set; }
+        
         }
 
     }

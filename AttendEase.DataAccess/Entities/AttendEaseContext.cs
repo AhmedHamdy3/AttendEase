@@ -37,6 +37,7 @@ namespace AttendEase.DataAccess.Entities
 
             // Properties
             modelBuilder.Entity<Employee>().Property(e => e.Name).HasMaxLength(100);
+            modelBuilder.Entity<Employee>().Property(e => e.SubTitle).HasMaxLength(100);
             modelBuilder.Entity<Employee>().Property(e => e.QRCodeData).HasMaxLength(20);
             modelBuilder.Entity<Employee>().Property(e => e.JobTitle).HasMaxLength(100);
             modelBuilder.Entity<Employee>().Property(e => e.Email).HasMaxLength(100);

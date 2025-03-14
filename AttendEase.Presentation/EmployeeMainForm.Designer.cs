@@ -36,7 +36,7 @@
             flowLayoutPanel8 = new FlowLayoutPanel();
             btn_leaveRequest = new Button();
             btn_dashboard = new Button();
-            label2 = new Label();
+            lbl_subTitle = new Label();
             lbl_employeeName = new Label();
             panel3 = new Panel();
             panel1.SuspendLayout();
@@ -67,7 +67,7 @@
             pnl_sideBar.Controls.Add(flowLayoutPanel8);
             pnl_sideBar.Controls.Add(btn_leaveRequest);
             pnl_sideBar.Controls.Add(btn_dashboard);
-            pnl_sideBar.Controls.Add(label2);
+            pnl_sideBar.Controls.Add(lbl_subTitle);
             pnl_sideBar.Controls.Add(lbl_employeeName);
             pnl_sideBar.Location = new Point(0, 0);
             pnl_sideBar.Name = "pnl_sideBar";
@@ -77,7 +77,9 @@
             // btn_logout
             // 
             btn_logout.BackColor = Color.FromArgb(102, 122, 138);
+            btn_logout.BorderColor = Color.Black;
             btn_logout.BorderRadius = 0;
+            btn_logout.BorderSize = 0;
             btn_logout.Cursor = Cursors.Hand;
             btn_logout.FlatAppearance.BorderSize = 0;
             btn_logout.FlatStyle = FlatStyle.Flat;
@@ -147,15 +149,15 @@
             btn_dashboard.UseVisualStyleBackColor = true;
             btn_dashboard.Click += btn_dashboard_Click;
             // 
-            // label2
+            // lbl_subTitle
             // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.FromArgb(93, 114, 133);
-            label2.Location = new Point(81, 174);
-            label2.Name = "label2";
-            label2.Size = new Size(140, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Some user text here";
+            lbl_subTitle.AutoSize = true;
+            lbl_subTitle.ForeColor = Color.FromArgb(93, 114, 133);
+            lbl_subTitle.Location = new Point(81, 174);
+            lbl_subTitle.Name = "lbl_subTitle";
+            lbl_subTitle.Size = new Size(166, 20);
+            lbl_subTitle.TabIndex = 1;
+            lbl_subTitle.Text = "Employee Subtitle Here";
             // 
             // lbl_employeeName
             // 
@@ -206,7 +208,7 @@
         private FlowLayoutPanel flowLayoutPanel8;
         private Button btn_leaveRequest;
         private Button btn_dashboard;
-        private Label label2;
+        private Label lbl_subTitle;
         private Label lbl_employeeName;
         private Panel panel3;
     }

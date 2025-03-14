@@ -119,7 +119,7 @@ namespace AttendEase.Presentation.CustomControls
                 //Draw border 
                 if (borderSize >= 1) graphics.DrawRectangle(penBorder, clientArea.X, clientArea.Y, clientArea.Width, clientArea.Height);
                 //Draw icon
-                graphics.DrawImage(calendarIcon, this.Width - calendarIcon.Width - 9, (this.Height - calendarIcon.Height) / 2);
+                graphics.DrawImage(calendarIcon, this.Width - calendarIcon.Width - 7, (this.Height - calendarIcon.Height) / 2);
 
             }
         }

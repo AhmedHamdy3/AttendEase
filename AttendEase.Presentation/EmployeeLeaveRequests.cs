@@ -17,6 +17,7 @@ namespace AttendEase.Presentation
     public partial class EmployeeLeaveRequests : Form
     {
         LeaveRequestsService leaveRequestsService;
+        EmployeeActionLogService employeeActionLogService;
         CustomTable table;
         //public Action removeOverlayAction;
         //public Action showOverlayAction;
@@ -31,6 +32,7 @@ namespace AttendEase.Presentation
             var configSection = configBuilder.GetSection("ConnectionStrings");
             var connectionString = configSection["SQLServerConnection"] ?? null;
             leaveRequestsService = new LeaveRequestsService(connectionString);
+            employeeActionLogService = new EmployeeActionLogService(connectionString);
         }
 
         async private void EmployeeLeaveRequests_Load(object sender, EventArgs e)
@@ -54,10 +56,6 @@ namespace AttendEase.Presentation
         {
             CreateLeaveRequest createLeaveRequest = new CreateLeaveRequest();
             createLeaveRequest.AddLeaveRequest = AddLeaveRequest;
-            //createLeaveRequest.removeOverlay = removeOverlay;
-            createLeaveRequest.StartPosition = FormStartPosition.Manual;
-            createLeaveRequest.Location = new Point(GlobalData.X, GlobalData.Y);
-            //showOverlayAction();
             createLeaveRequest.ShowDialog();
             createLeaveRequest.BringToFront();
             this.SendToBack();
@@ -66,6 +64,9 @@ namespace AttendEase.Presentation
         private void AddLeaveRequest(LeaveRequest leaveRequest)
         {
             leaveRequestsService.AddRequest(leaveRequest);
+            employeeActionLogService.AddAction("Leave Request"
+                , $"The Employee '{GlobalData.RegisterEmployee.Name}' whose Id is '{GlobalData.RegisterEmployee.EmployeeId}' submitted a request for {leaveRequest.LeaveType} in {DateTime.Now.ToString()}"
+                , GlobalData.RegisterEmployee.EmployeeId);
             ShowRequests();
         }
     }

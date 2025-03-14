@@ -41,7 +41,7 @@
             btn_frequentAbsent = new Button();
             btn_leaveRequest = new Button();
             btn_dashboard = new Button();
-            label2 = new Label();
+            lbl_subTitle = new Label();
             lbl_employeeName = new Label();
             panel3 = new Panel();
             pnl_formLoader = new Panel();
@@ -72,7 +72,7 @@
             pnl_sideBar.Controls.Add(btn_frequentAbsent);
             pnl_sideBar.Controls.Add(btn_leaveRequest);
             pnl_sideBar.Controls.Add(btn_dashboard);
-            pnl_sideBar.Controls.Add(label2);
+            pnl_sideBar.Controls.Add(lbl_subTitle);
             pnl_sideBar.Controls.Add(lbl_employeeName);
             pnl_sideBar.Location = new Point(0, 0);
             pnl_sideBar.Name = "pnl_sideBar";
@@ -90,7 +90,7 @@
             cbtn_unreadedRequests.FlatAppearance.MouseOverBackColor = Color.FromArgb(233, 245, 254);
             cbtn_unreadedRequests.FlatStyle = FlatStyle.Flat;
             cbtn_unreadedRequests.ForeColor = Color.FromArgb(30, 37, 43);
-            cbtn_unreadedRequests.Location = new Point(238, 573);
+            cbtn_unreadedRequests.Location = new Point(233, 573);
             cbtn_unreadedRequests.Name = "cbtn_unreadedRequests";
             cbtn_unreadedRequests.Size = new Size(40, 40);
             cbtn_unreadedRequests.TabIndex = 0;
@@ -282,15 +282,15 @@
             btn_dashboard.UseVisualStyleBackColor = true;
             btn_dashboard.Click += btn_dashboard_Click;
             // 
-            // label2
+            // lbl_subTitle
             // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.FromArgb(93, 114, 133);
-            label2.Location = new Point(81, 174);
-            label2.Name = "label2";
-            label2.Size = new Size(140, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Some user text here";
+            lbl_subTitle.AutoSize = true;
+            lbl_subTitle.ForeColor = Color.FromArgb(93, 114, 133);
+            lbl_subTitle.Location = new Point(81, 174);
+            lbl_subTitle.Name = "lbl_subTitle";
+            lbl_subTitle.Size = new Size(166, 20);
+            lbl_subTitle.TabIndex = 1;
+            lbl_subTitle.Text = "Employee Subtitle Here";
             // 
             // lbl_employeeName
             // 
@@ -346,7 +346,7 @@
         private Panel pnl_sideBar;
         private Panel panel3;
         private Label lbl_employeeName;
-        private Label label2;
+        private Label lbl_subTitle;
         private PictureBox pictureBox1;
         private FlowLayoutPanel flowLayoutPanel8;
         private Panel pnl_formLoader;

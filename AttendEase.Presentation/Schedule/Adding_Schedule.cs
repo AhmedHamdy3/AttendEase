@@ -73,7 +73,7 @@ namespace AttendEase.Presentation.Scedual
         }
         #endregion
 
-         
+
 
         private void btn_CreateSchedule_Click(object sender, EventArgs e)
         {
@@ -83,30 +83,30 @@ namespace AttendEase.Presentation.Scedual
                 return;
             }
 
-            var start = new  List<DateTime>();
-            var end   = new  List<DateTime>();
+            var start = new List<DateTime>();
+            var end = new List<DateTime>();
             var selectedDays = new List<string>();
 
-            if (checkBox_satarday.Checked) 
-            { 
+            if (checkBox_satarday.Checked)
+            {
                 selectedDays.Add("Saturday");
                 start.Add(dtp_attend_saturday.Value);
-                end.Add(dtp_departure_saturday.Value); 
+                end.Add(dtp_departure_saturday.Value);
             }
-            if (checkBox_sunday.Checked) 
-            { 
+            if (checkBox_sunday.Checked)
+            {
                 selectedDays.Add("Sunday");
-                start.Add(dtp_attend_sunday.Value); 
-                end.Add(dtp_departure_sunday.Value); 
+                start.Add(dtp_attend_sunday.Value);
+                end.Add(dtp_departure_sunday.Value);
             }
-            if (checkBox_monday.Checked) 
-            { 
+            if (checkBox_monday.Checked)
+            {
                 selectedDays.Add("Monday");
                 start.Add(dtp_attend_monday.Value);
                 end.Add(dtp_departure_monday.Value);
             }
-            if (checkBox_tuesday.Checked) 
-            { 
+            if (checkBox_tuesday.Checked)
+            {
                 selectedDays.Add("Tuesday");
                 start.Add(dtp_attend_tuesday.Value);
                 end.Add(dtp_departure_tuesday.Value);
@@ -118,16 +118,16 @@ namespace AttendEase.Presentation.Scedual
                 end.Add(dtp_departure_wednesday.Value);
             }
             if (checkBox_thrusday.Checked)
-            { 
+            {
                 selectedDays.Add("Thursday");
-                start.Add(dtp_attend_thrusday.Value); 
+                start.Add(dtp_attend_thrusday.Value);
                 end.Add(dtp_departure_thrusday.Value);
             }
             if (checkBox_friday.Checked)
             {
                 selectedDays.Add("Friday");
-                start.Add(dtp_attend_friday.Value); 
-                end.Add(dtp_departure_friday.Value); 
+                start.Add(dtp_attend_friday.Value);
+                end.Add(dtp_departure_friday.Value);
             }
 
             if (!selectedDays.Any())
@@ -144,17 +144,22 @@ namespace AttendEase.Presentation.Scedual
             scheduleServices.AddSchedule(name, description, start, end, selectedDays);
             //if (returned == 1)
             //{
-                MessageBox.Show("Schedule Added Successfully!");
-                txt_name.Clear();
-                txt_description.Clear();
-                checkBox_satarday.Checked = checkBox_sunday.Checked = checkBox_monday.Checked =
-                checkBox_tuesday.Checked = checkBox_wednesday.Checked = checkBox_thrusday.Checked =
-                checkBox_friday.Checked = false;
+            MessageBox.Show("Schedule Added Successfully!");
+            txt_name.Clear();
+            txt_description.Clear();
+            checkBox_satarday.Checked = checkBox_sunday.Checked = checkBox_monday.Checked =
+            checkBox_tuesday.Checked = checkBox_wednesday.Checked = checkBox_thrusday.Checked =
+            checkBox_friday.Checked = false;
             //}
             //else if (returned == -1) 
             //{
             //    MessageBox.Show("This Schedule Already Exists");
             //}
+        }
+
+        private void dtp_departure_wednesday_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

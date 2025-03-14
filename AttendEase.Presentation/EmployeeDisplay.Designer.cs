@@ -31,41 +31,32 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeDisplay));
             pictureBox9 = new PictureBox();
             lbl_title = new Label();
-            btn_manageEmp = new Button();
             pnlCrudEmp = new Panel();
-            panel1 = new Panel();
-            cb_deptt = new ComboBox();
-            cb_empTypee = new ComboBox();
-            cb_schedulee = new ComboBox();
-            txt_pass = new CustomControls.CustomTextBox();
-            txt_phone = new CustomControls.CustomTextBox();
-            txt_confirm = new CustomControls.CustomTextBox();
-            txt_email = new CustomControls.CustomTextBox();
-            txt_jobTitle = new CustomControls.CustomTextBox();
-            txt_name = new CustomControls.CustomTextBox();
+            ccb_jobTitle = new CustomControls.CustomComboBox();
+            label4 = new Label();
+            ccb_schedule = new CustomControls.CustomComboBox();
+            label6 = new Label();
+            ccb_emplyeeType = new CustomControls.CustomComboBox();
+            ccb_gender = new CustomControls.CustomComboBox();
+            ctxt_address = new CustomControls.CustomTextBox();
+            ccb_dept = new CustomControls.CustomComboBox();
+            cbtn_update = new CustomControls.CustomButton();
+            cbtn_add = new CustomControls.CustomButton();
+            cbtn_delete = new CustomControls.CustomButton();
+            ctxt_phone = new CustomControls.CustomTextBox();
+            ctxt_email = new CustomControls.CustomTextBox();
+            ctxt_name = new CustomControls.CustomTextBox();
             label5 = new Label();
             label8 = new Label();
             label11 = new Label();
             label9 = new Label();
-            label7 = new Label();
             label1 = new Label();
-            picEye2 = new PictureBox();
-            btn_show2 = new Label();
-            picEye1 = new PictureBox();
-            btn_show1 = new Label();
-            label4 = new Label();
             label2 = new Label();
             label3 = new Label();
-            btn_update = new Button();
-            btn_delete = new Button();
-            btn_add = new Button();
-            pictureBox1 = new PictureBox();
+            btn_back = new Button();
+            csb_addEmployee = new CustomControls.CustomButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             pnlCrudEmp.SuspendLayout();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picEye2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picEye1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox9
@@ -89,414 +80,417 @@
             lbl_title.TabIndex = 16;
             lbl_title.Text = "Employees";
             // 
-            // btn_manageEmp
-            // 
-            btn_manageEmp.Cursor = Cursors.Hand;
-            btn_manageEmp.FlatAppearance.BorderSize = 0;
-            btn_manageEmp.FlatStyle = FlatStyle.Flat;
-            btn_manageEmp.Font = new Font("Segoe UI", 11F);
-            btn_manageEmp.ForeColor = SystemColors.MenuHighlight;
-            btn_manageEmp.Location = new Point(27, 167);
-            btn_manageEmp.Name = "btn_manageEmp";
-            btn_manageEmp.Size = new Size(296, 50);
-            btn_manageEmp.TabIndex = 18;
-            btn_manageEmp.Text = "          Manage Employees";
-            btn_manageEmp.UseVisualStyleBackColor = true;
-            btn_manageEmp.Click += btn_manageEmps_Click;
-            // 
             // pnlCrudEmp
             // 
-            pnlCrudEmp.Controls.Add(panel1);
-            pnlCrudEmp.Controls.Add(btn_update);
-            pnlCrudEmp.Controls.Add(btn_delete);
-            pnlCrudEmp.Controls.Add(btn_add);
+            pnlCrudEmp.Controls.Add(ccb_jobTitle);
+            pnlCrudEmp.Controls.Add(label4);
+            pnlCrudEmp.Controls.Add(ccb_schedule);
+            pnlCrudEmp.Controls.Add(label6);
+            pnlCrudEmp.Controls.Add(ccb_emplyeeType);
+            pnlCrudEmp.Controls.Add(ccb_gender);
+            pnlCrudEmp.Controls.Add(ctxt_address);
+            pnlCrudEmp.Controls.Add(ccb_dept);
+            pnlCrudEmp.Controls.Add(cbtn_update);
+            pnlCrudEmp.Controls.Add(cbtn_add);
+            pnlCrudEmp.Controls.Add(cbtn_delete);
+            pnlCrudEmp.Controls.Add(ctxt_phone);
+            pnlCrudEmp.Controls.Add(ctxt_email);
+            pnlCrudEmp.Controls.Add(ctxt_name);
+            pnlCrudEmp.Controls.Add(label5);
+            pnlCrudEmp.Controls.Add(label8);
+            pnlCrudEmp.Controls.Add(label11);
+            pnlCrudEmp.Controls.Add(label9);
+            pnlCrudEmp.Controls.Add(label1);
+            pnlCrudEmp.Controls.Add(label2);
+            pnlCrudEmp.Controls.Add(label3);
             pnlCrudEmp.Font = new Font("Segoe UI", 11F);
+            pnlCrudEmp.ForeColor = Color.DimGray;
             pnlCrudEmp.Location = new Point(27, 222);
             pnlCrudEmp.Margin = new Padding(2);
             pnlCrudEmp.Name = "pnlCrudEmp";
-            pnlCrudEmp.Size = new Size(914, 653);
+            pnlCrudEmp.Size = new Size(914, 614);
             pnlCrudEmp.TabIndex = 19;
             // 
-            // panel1
+            // ccb_jobTitle
             // 
-            panel1.BackColor = Color.FromArgb(223, 229, 235);
-            panel1.Controls.Add(cb_deptt);
-            panel1.Controls.Add(cb_empTypee);
-            panel1.Controls.Add(cb_schedulee);
-            panel1.Controls.Add(txt_pass);
-            panel1.Controls.Add(txt_phone);
-            panel1.Controls.Add(txt_confirm);
-            panel1.Controls.Add(txt_email);
-            panel1.Controls.Add(txt_jobTitle);
-            panel1.Controls.Add(txt_name);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(label8);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(label9);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(picEye2);
-            panel1.Controls.Add(btn_show2);
-            panel1.Controls.Add(picEye1);
-            panel1.Controls.Add(btn_show1);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label3);
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(908, 512);
-            panel1.TabIndex = 50;
+            ccb_jobTitle.BackColor = Color.White;
+            ccb_jobTitle.BorderColor = Color.FromArgb(230, 230, 230);
+            ccb_jobTitle.BorderSize = 1;
+            ccb_jobTitle.DropDownStyle = ComboBoxStyle.DropDown;
+            ccb_jobTitle.Font = new Font("Segoe UI", 9F);
+            ccb_jobTitle.ForeColor = Color.DimGray;
+            ccb_jobTitle.IconColor = Color.FromArgb(10, 22, 41);
+            ccb_jobTitle.Items.AddRange(new object[] { "Employee", "Hr" });
+            ccb_jobTitle.ListBackColor = Color.White;
+            ccb_jobTitle.ListTextColor = Color.FromArgb(10, 22, 41);
+            ccb_jobTitle.Location = new Point(62, 147);
+            ccb_jobTitle.MinimumSize = new Size(200, 30);
+            ccb_jobTitle.Name = "ccb_jobTitle";
+            ccb_jobTitle.Padding = new Padding(1);
+            ccb_jobTitle.Size = new Size(354, 47);
+            ccb_jobTitle.TabIndex = 111;
             // 
-            // cb_deptt
+            // label4
             // 
-            cb_deptt.Font = new Font("Segoe UI", 13F);
-            cb_deptt.FormattingEnabled = true;
-            cb_deptt.Location = new Point(538, 152);
-            cb_deptt.Name = "cb_deptt";
-            cb_deptt.Size = new Size(355, 38);
-            cb_deptt.TabIndex = 83;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label4.ForeColor = SystemColors.ControlText;
+            label4.Location = new Point(62, 393);
+            label4.Name = "label4";
+            label4.Size = new Size(70, 23);
+            label4.TabIndex = 86;
+            label4.Text = "Address";
             // 
-            // cb_empTypee
+            // ccb_schedule
             // 
-            cb_empTypee.Font = new Font("Segoe UI", 13F);
-            cb_empTypee.FormattingEnabled = true;
-            cb_empTypee.Location = new Point(538, 231);
-            cb_empTypee.Name = "cb_empTypee";
-            cb_empTypee.Size = new Size(355, 38);
-            cb_empTypee.TabIndex = 82;
+            ccb_schedule.BackColor = Color.White;
+            ccb_schedule.BorderColor = Color.FromArgb(230, 230, 230);
+            ccb_schedule.BorderSize = 1;
+            ccb_schedule.DropDownStyle = ComboBoxStyle.DropDown;
+            ccb_schedule.Font = new Font("Segoe UI", 9F);
+            ccb_schedule.ForeColor = Color.DimGray;
+            ccb_schedule.IconColor = Color.FromArgb(10, 22, 41);
+            ccb_schedule.ListBackColor = Color.White;
+            ccb_schedule.ListTextColor = Color.FromArgb(10, 22, 41);
+            ccb_schedule.Location = new Point(499, 323);
+            ccb_schedule.MinimumSize = new Size(200, 30);
+            ccb_schedule.Name = "ccb_schedule";
+            ccb_schedule.Padding = new Padding(1);
+            ccb_schedule.Size = new Size(354, 47);
+            ccb_schedule.TabIndex = 110;
             // 
-            // cb_schedulee
+            // label6
             // 
-            cb_schedulee.Font = new Font("Segoe UI", 13F);
-            cb_schedulee.FormattingEnabled = true;
-            cb_schedulee.Location = new Point(538, 311);
-            cb_schedulee.Name = "cb_schedulee";
-            cb_schedulee.Size = new Size(355, 38);
-            cb_schedulee.TabIndex = 81;
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label6.ForeColor = SystemColors.ControlText;
+            label6.Location = new Point(61, 299);
+            label6.Name = "label6";
+            label6.Size = new Size(66, 23);
+            label6.TabIndex = 87;
+            label6.Text = "Gender";
             // 
-            // txt_pass
+            // ccb_emplyeeType
             // 
-            txt_pass.BackColor = Color.White;
-            txt_pass.BorderColor = Color.FromArgb(181, 191, 249);
-            txt_pass.BorderFocusColor = Color.FromArgb(181, 191, 249);
-            txt_pass.BorderSize = 1;
-            txt_pass.Font = new Font("Segoe UI", 11F);
-            txt_pass.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_pass.Location = new Point(54, 327);
-            txt_pass.Multiline = false;
-            txt_pass.Name = "txt_pass";
-            txt_pass.Padding = new Padding(13);
-            txt_pass.PasswordChar = false;
-            txt_pass.Size = new Size(355, 52);
-            txt_pass.TabIndex = 79;
-            txt_pass.UnderlinedStyle = false;
+            ccb_emplyeeType.BackColor = Color.White;
+            ccb_emplyeeType.BorderColor = Color.FromArgb(230, 230, 230);
+            ccb_emplyeeType.BorderSize = 1;
+            ccb_emplyeeType.DropDownStyle = ComboBoxStyle.DropDown;
+            ccb_emplyeeType.Font = new Font("Segoe UI", 9F);
+            ccb_emplyeeType.ForeColor = Color.DimGray;
+            ccb_emplyeeType.IconColor = Color.FromArgb(10, 22, 41);
+            ccb_emplyeeType.Items.AddRange(new object[] { "Full Time", "Part Time", "Remote" });
+            ccb_emplyeeType.ListBackColor = Color.White;
+            ccb_emplyeeType.ListTextColor = Color.FromArgb(10, 22, 41);
+            ccb_emplyeeType.Location = new Point(499, 235);
+            ccb_emplyeeType.MinimumSize = new Size(200, 30);
+            ccb_emplyeeType.Name = "ccb_emplyeeType";
+            ccb_emplyeeType.Padding = new Padding(1);
+            ccb_emplyeeType.Size = new Size(354, 47);
+            ccb_emplyeeType.TabIndex = 109;
             // 
-            // txt_phone
+            // ccb_gender
             // 
-            txt_phone.BackColor = Color.White;
-            txt_phone.BorderColor = Color.FromArgb(181, 191, 249);
-            txt_phone.BorderFocusColor = Color.FromArgb(181, 191, 249);
-            txt_phone.BorderSize = 1;
-            txt_phone.Font = new Font("Segoe UI", 11F);
-            txt_phone.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_phone.Location = new Point(538, 63);
-            txt_phone.Multiline = false;
-            txt_phone.Name = "txt_phone";
-            txt_phone.Padding = new Padding(13);
-            txt_phone.PasswordChar = false;
-            txt_phone.Size = new Size(355, 52);
-            txt_phone.TabIndex = 78;
-            txt_phone.UnderlinedStyle = false;
+            ccb_gender.BackColor = Color.White;
+            ccb_gender.BorderColor = Color.FromArgb(230, 230, 230);
+            ccb_gender.BorderSize = 1;
+            ccb_gender.DropDownStyle = ComboBoxStyle.DropDown;
+            ccb_gender.Font = new Font("Segoe UI", 9F);
+            ccb_gender.ForeColor = Color.DimGray;
+            ccb_gender.IconColor = Color.FromArgb(10, 22, 41);
+            ccb_gender.Items.AddRange(new object[] { "Male", "Female" });
+            ccb_gender.ListBackColor = Color.White;
+            ccb_gender.ListTextColor = Color.FromArgb(10, 22, 41);
+            ccb_gender.Location = new Point(62, 323);
+            ccb_gender.MinimumSize = new Size(200, 30);
+            ccb_gender.Name = "ccb_gender";
+            ccb_gender.Padding = new Padding(1);
+            ccb_gender.Size = new Size(354, 47);
+            ccb_gender.TabIndex = 89;
             // 
-            // txt_confirm
+            // ctxt_address
             // 
-            txt_confirm.BackColor = Color.White;
-            txt_confirm.BorderColor = Color.FromArgb(181, 191, 249);
-            txt_confirm.BorderFocusColor = Color.FromArgb(181, 191, 249);
-            txt_confirm.BorderSize = 1;
-            txt_confirm.Font = new Font("Segoe UI", 11F);
-            txt_confirm.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_confirm.Location = new Point(54, 415);
-            txt_confirm.Multiline = false;
-            txt_confirm.Name = "txt_confirm";
-            txt_confirm.Padding = new Padding(13);
-            txt_confirm.PasswordChar = false;
-            txt_confirm.Size = new Size(355, 52);
-            txt_confirm.TabIndex = 77;
-            txt_confirm.UnderlinedStyle = false;
+            ctxt_address.BackColor = Color.White;
+            ctxt_address.BorderColor = Color.FromArgb(230, 230, 230);
+            ctxt_address.BorderFocusColor = Color.FromArgb(252, 252, 252);
+            ctxt_address.BorderSize = 1;
+            ctxt_address.Font = new Font("Segoe UI", 9F);
+            ctxt_address.ForeColor = Color.DimGray;
+            ctxt_address.Location = new Point(61, 419);
+            ctxt_address.Multiline = false;
+            ctxt_address.Name = "ctxt_address";
+            ctxt_address.Padding = new Padding(13);
+            ctxt_address.PasswordChar = false;
+            ctxt_address.Size = new Size(351, 47);
+            ctxt_address.TabIndex = 88;
+            ctxt_address.UnderlinedStyle = false;
             // 
-            // txt_email
+            // ccb_dept
             // 
-            txt_email.BackColor = Color.White;
-            txt_email.BorderColor = Color.FromArgb(181, 191, 249);
-            txt_email.BorderFocusColor = Color.FromArgb(181, 191, 249);
-            txt_email.BorderSize = 1;
-            txt_email.Font = new Font("Segoe UI", 11F);
-            txt_email.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_email.Location = new Point(54, 239);
-            txt_email.Multiline = false;
-            txt_email.Name = "txt_email";
-            txt_email.Padding = new Padding(13);
-            txt_email.PasswordChar = false;
-            txt_email.Size = new Size(355, 52);
-            txt_email.TabIndex = 76;
-            txt_email.UnderlinedStyle = false;
+            ccb_dept.BackColor = Color.White;
+            ccb_dept.BorderColor = Color.FromArgb(230, 230, 230);
+            ccb_dept.BorderSize = 1;
+            ccb_dept.DropDownStyle = ComboBoxStyle.DropDown;
+            ccb_dept.Font = new Font("Segoe UI", 9F);
+            ccb_dept.ForeColor = Color.DimGray;
+            ccb_dept.IconColor = Color.FromArgb(10, 22, 41);
+            ccb_dept.ListBackColor = Color.White;
+            ccb_dept.ListTextColor = Color.FromArgb(10, 22, 41);
+            ccb_dept.Location = new Point(499, 147);
+            ccb_dept.MinimumSize = new Size(200, 30);
+            ccb_dept.Name = "ccb_dept";
+            ccb_dept.Padding = new Padding(1);
+            ccb_dept.Size = new Size(354, 47);
+            ccb_dept.TabIndex = 108;
             // 
-            // txt_jobTitle
+            // cbtn_update
             // 
-            txt_jobTitle.BackColor = Color.White;
-            txt_jobTitle.BorderColor = Color.FromArgb(181, 191, 249);
-            txt_jobTitle.BorderFocusColor = Color.FromArgb(181, 191, 249);
-            txt_jobTitle.BorderSize = 1;
-            txt_jobTitle.Font = new Font("Segoe UI", 11F);
-            txt_jobTitle.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_jobTitle.Location = new Point(54, 151);
-            txt_jobTitle.Multiline = false;
-            txt_jobTitle.Name = "txt_jobTitle";
-            txt_jobTitle.Padding = new Padding(13);
-            txt_jobTitle.PasswordChar = false;
-            txt_jobTitle.Size = new Size(355, 52);
-            txt_jobTitle.TabIndex = 75;
-            txt_jobTitle.UnderlinedStyle = false;
+            cbtn_update.BackColor = Color.FromArgb(70, 95, 241);
+            cbtn_update.BorderColor = Color.Black;
+            cbtn_update.BorderRadius = 10;
+            cbtn_update.BorderSize = 0;
+            cbtn_update.Cursor = Cursors.Hand;
+            cbtn_update.FlatAppearance.BorderSize = 0;
+            cbtn_update.FlatStyle = FlatStyle.Flat;
+            cbtn_update.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cbtn_update.ForeColor = Color.White;
+            cbtn_update.ImageAlign = ContentAlignment.MiddleLeft;
+            cbtn_update.Location = new Point(482, 525);
+            cbtn_update.Name = "cbtn_update";
+            cbtn_update.Size = new Size(213, 50);
+            cbtn_update.TabIndex = 107;
+            cbtn_update.Text = "Update";
+            cbtn_update.UseVisualStyleBackColor = false;
+            cbtn_update.Click += cbtn_update_Click;
             // 
-            // txt_name
+            // cbtn_add
             // 
-            txt_name.BackColor = Color.White;
-            txt_name.BorderColor = Color.FromArgb(181, 191, 249);
-            txt_name.BorderFocusColor = Color.FromArgb(181, 191, 249);
-            txt_name.BorderSize = 1;
-            txt_name.Font = new Font("Segoe UI", 11F);
-            txt_name.ForeColor = Color.FromArgb(38, 32, 59);
-            txt_name.Location = new Point(54, 63);
-            txt_name.Multiline = false;
-            txt_name.Name = "txt_name";
-            txt_name.Padding = new Padding(13);
-            txt_name.PasswordChar = false;
-            txt_name.Size = new Size(354, 52);
-            txt_name.TabIndex = 21;
-            txt_name.UnderlinedStyle = false;
+            cbtn_add.BackColor = Color.FromArgb(70, 95, 241);
+            cbtn_add.BorderColor = Color.Black;
+            cbtn_add.BorderRadius = 10;
+            cbtn_add.BorderSize = 0;
+            cbtn_add.Cursor = Cursors.Hand;
+            cbtn_add.FlatAppearance.BorderSize = 0;
+            cbtn_add.FlatStyle = FlatStyle.Flat;
+            cbtn_add.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cbtn_add.ForeColor = Color.White;
+            cbtn_add.ImageAlign = ContentAlignment.MiddleLeft;
+            cbtn_add.Location = new Point(346, 525);
+            cbtn_add.Name = "cbtn_add";
+            cbtn_add.Size = new Size(213, 50);
+            cbtn_add.TabIndex = 106;
+            cbtn_add.Text = "Add";
+            cbtn_add.UseVisualStyleBackColor = false;
+            cbtn_add.Click += cbtn_add_Click;
+            // 
+            // cbtn_delete
+            // 
+            cbtn_delete.BackColor = Color.FromArgb(192, 0, 0);
+            cbtn_delete.BorderColor = Color.Black;
+            cbtn_delete.BorderRadius = 10;
+            cbtn_delete.BorderSize = 0;
+            cbtn_delete.Cursor = Cursors.Hand;
+            cbtn_delete.FlatAppearance.BorderSize = 0;
+            cbtn_delete.FlatStyle = FlatStyle.Flat;
+            cbtn_delete.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cbtn_delete.ForeColor = Color.White;
+            cbtn_delete.ImageAlign = ContentAlignment.MiddleLeft;
+            cbtn_delete.Location = new Point(199, 525);
+            cbtn_delete.Name = "cbtn_delete";
+            cbtn_delete.Size = new Size(213, 50);
+            cbtn_delete.TabIndex = 86;
+            cbtn_delete.Text = "Delete";
+            cbtn_delete.UseVisualStyleBackColor = false;
+            cbtn_delete.Click += cbtn_delete_Click;
+            // 
+            // ctxt_phone
+            // 
+            ctxt_phone.BackColor = Color.White;
+            ctxt_phone.BorderColor = Color.FromArgb(230, 230, 230);
+            ctxt_phone.BorderFocusColor = Color.FromArgb(230, 230, 230);
+            ctxt_phone.BorderSize = 1;
+            ctxt_phone.Font = new Font("Segoe UI", 9F);
+            ctxt_phone.ForeColor = Color.DimGray;
+            ctxt_phone.Location = new Point(499, 59);
+            ctxt_phone.Multiline = false;
+            ctxt_phone.Name = "ctxt_phone";
+            ctxt_phone.Padding = new Padding(13);
+            ctxt_phone.PasswordChar = false;
+            ctxt_phone.Size = new Size(355, 47);
+            ctxt_phone.TabIndex = 101;
+            ctxt_phone.UnderlinedStyle = false;
+            // 
+            // ctxt_email
+            // 
+            ctxt_email.BackColor = Color.White;
+            ctxt_email.BorderColor = Color.FromArgb(230, 230, 230);
+            ctxt_email.BorderFocusColor = Color.FromArgb(230, 230, 230);
+            ctxt_email.BorderSize = 1;
+            ctxt_email.Font = new Font("Segoe UI", 9F);
+            ctxt_email.ForeColor = Color.DimGray;
+            ctxt_email.Location = new Point(62, 235);
+            ctxt_email.Multiline = false;
+            ctxt_email.Name = "ctxt_email";
+            ctxt_email.Padding = new Padding(13);
+            ctxt_email.PasswordChar = false;
+            ctxt_email.Size = new Size(355, 47);
+            ctxt_email.TabIndex = 99;
+            ctxt_email.UnderlinedStyle = false;
+            // 
+            // ctxt_name
+            // 
+            ctxt_name.BackColor = Color.White;
+            ctxt_name.BorderColor = Color.FromArgb(230, 230, 230);
+            ctxt_name.BorderFocusColor = Color.FromArgb(230, 230, 230);
+            ctxt_name.BorderSize = 1;
+            ctxt_name.Font = new Font("Segoe UI", 9F);
+            ctxt_name.ForeColor = Color.DimGray;
+            ctxt_name.Location = new Point(62, 59);
+            ctxt_name.Multiline = false;
+            ctxt_name.Name = "ctxt_name";
+            ctxt_name.Padding = new Padding(13);
+            ctxt_name.PasswordChar = false;
+            ctxt_name.Size = new Size(354, 47);
+            ctxt_name.TabIndex = 84;
+            ctxt_name.UnderlinedStyle = false;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 14F);
-            label5.ForeColor = Color.FromArgb(38, 32, 59);
-            label5.Location = new Point(538, 117);
+            label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label5.ForeColor = SystemColors.ControlText;
+            label5.Location = new Point(499, 120);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(142, 32);
-            label5.TabIndex = 74;
+            label5.Size = new Size(102, 23);
+            label5.TabIndex = 97;
             label5.Text = "Department";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 14F);
-            label8.ForeColor = Color.FromArgb(38, 32, 59);
-            label8.Location = new Point(538, 276);
+            label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label8.ForeColor = SystemColors.ControlText;
+            label8.Location = new Point(499, 296);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(112, 32);
-            label8.TabIndex = 65;
+            label8.Size = new Size(79, 23);
+            label8.TabIndex = 96;
             label8.Text = "Schedule";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 14F);
-            label11.ForeColor = Color.FromArgb(38, 32, 59);
-            label11.Location = new Point(538, 196);
+            label11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label11.ForeColor = SystemColors.ControlText;
+            label11.Location = new Point(499, 208);
             label11.Margin = new Padding(2, 0, 2, 0);
             label11.Name = "label11";
-            label11.Size = new Size(207, 32);
-            label11.TabIndex = 64;
+            label11.Size = new Size(148, 23);
+            label11.TabIndex = 95;
             label11.Text = "Employment Type";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 14F);
-            label9.ForeColor = Color.FromArgb(38, 32, 59);
-            label9.Location = new Point(538, 29);
+            label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label9.ForeColor = SystemColors.ControlText;
+            label9.Location = new Point(499, 32);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(82, 32);
-            label9.TabIndex = 57;
+            label9.Size = new Size(59, 23);
+            label9.TabIndex = 90;
             label9.Text = "Phone";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 14F);
-            label7.ForeColor = Color.FromArgb(38, 32, 59);
-            label7.Location = new Point(54, 293);
-            label7.Margin = new Padding(2, 0, 2, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(111, 32);
-            label7.TabIndex = 63;
-            label7.Text = "Password";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14F);
-            label1.ForeColor = Color.FromArgb(38, 32, 59);
-            label1.Location = new Point(54, 117);
+            label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label1.ForeColor = SystemColors.ControlText;
+            label1.Location = new Point(62, 120);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(104, 32);
-            label1.TabIndex = 62;
+            label1.Size = new Size(74, 23);
+            label1.TabIndex = 93;
             label1.Text = "Job Title";
-            // 
-            // picEye2
-            // 
-            picEye2.Cursor = Cursors.Hand;
-            picEye2.Image = Properties.Resources.Eye;
-            picEye2.Location = new Point(346, 396);
-            picEye2.Margin = new Padding(2);
-            picEye2.Name = "picEye2";
-            picEye2.Size = new Size(14, 12);
-            picEye2.SizeMode = PictureBoxSizeMode.StretchImage;
-            picEye2.TabIndex = 61;
-            picEye2.TabStop = false;
-            // 
-            // btn_show2
-            // 
-            btn_show2.AutoSize = true;
-            btn_show2.Cursor = Cursors.Hand;
-            btn_show2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_show2.ForeColor = Color.FromArgb(38, 32, 59);
-            btn_show2.Location = new Point(361, 393);
-            btn_show2.Margin = new Padding(2, 0, 2, 0);
-            btn_show2.Name = "btn_show2";
-            btn_show2.Size = new Size(47, 20);
-            btn_show2.TabIndex = 59;
-            btn_show2.Text = "Show";
-            btn_show2.Click += btn_show2_Click_1;
-            // 
-            // picEye1
-            // 
-            picEye1.Cursor = Cursors.Hand;
-            picEye1.Image = Properties.Resources.Eye;
-            picEye1.Location = new Point(347, 306);
-            picEye1.Margin = new Padding(2);
-            picEye1.Name = "picEye1";
-            picEye1.Size = new Size(14, 12);
-            picEye1.SizeMode = PictureBoxSizeMode.StretchImage;
-            picEye1.TabIndex = 53;
-            picEye1.TabStop = false;
-            // 
-            // btn_show1
-            // 
-            btn_show1.AutoSize = true;
-            btn_show1.Cursor = Cursors.Hand;
-            btn_show1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_show1.ForeColor = Color.FromArgb(38, 32, 59);
-            btn_show1.Location = new Point(362, 303);
-            btn_show1.Margin = new Padding(2, 0, 2, 0);
-            btn_show1.Name = "btn_show1";
-            btn_show1.Size = new Size(47, 20);
-            btn_show1.TabIndex = 47;
-            btn_show1.Text = "Show";
-            btn_show1.Click += btn_show1_Click_1;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 14F);
-            label4.ForeColor = Color.FromArgb(38, 32, 59);
-            label4.Location = new Point(54, 381);
-            label4.Margin = new Padding(2, 0, 2, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(204, 32);
-            label4.TabIndex = 50;
-            label4.Text = "Confirm Password";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14F);
-            label2.ForeColor = Color.FromArgb(38, 32, 59);
-            label2.Location = new Point(54, 29);
+            label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label2.ForeColor = SystemColors.ControlText;
+            label2.Location = new Point(62, 32);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(78, 32);
-            label2.TabIndex = 48;
+            label2.Size = new Size(56, 23);
+            label2.TabIndex = 86;
             label2.Text = "Name";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14F);
-            label3.ForeColor = Color.FromArgb(38, 32, 59);
-            label3.Location = new Point(54, 205);
+            label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label3.ForeColor = SystemColors.ControlText;
+            label3.Location = new Point(62, 208);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(71, 32);
-            label3.TabIndex = 49;
+            label3.Size = new Size(51, 23);
+            label3.TabIndex = 87;
             label3.Text = "Email";
             // 
-            // btn_update
+            // btn_back
             // 
-            btn_update.BackColor = SystemColors.HotTrack;
-            btn_update.FlatAppearance.BorderSize = 0;
-            btn_update.FlatStyle = FlatStyle.Flat;
-            btn_update.ForeColor = Color.White;
-            btn_update.Location = new Point(81, 540);
-            btn_update.Name = "btn_update";
-            btn_update.Size = new Size(213, 43);
-            btn_update.TabIndex = 49;
-            btn_update.Text = "Update";
-            btn_update.UseVisualStyleBackColor = false;
-            btn_update.Click += btn_update_Click;
+            btn_back.BackColor = Color.Transparent;
+            btn_back.Cursor = Cursors.Hand;
+            btn_back.FlatAppearance.BorderSize = 0;
+            btn_back.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn_back.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btn_back.FlatStyle = FlatStyle.Flat;
+            btn_back.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_back.ForeColor = Color.FromArgb(63, 140, 255);
+            btn_back.Image = (Image)resources.GetObject("btn_back.Image");
+            btn_back.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_back.Location = new Point(27, 194);
+            btn_back.Name = "btn_back";
+            btn_back.Size = new Size(190, 29);
+            btn_back.TabIndex = 84;
+            btn_back.Text = "      Back to Employees";
+            btn_back.TextAlign = ContentAlignment.MiddleLeft;
+            btn_back.UseVisualStyleBackColor = false;
+            btn_back.Visible = false;
+            btn_back.Click += btn_back_Click;
             // 
-            // btn_delete
+            // csb_addEmployee
             // 
-            btn_delete.BackColor = SystemColors.HotTrack;
-            btn_delete.FlatAppearance.BorderSize = 0;
-            btn_delete.FlatStyle = FlatStyle.Flat;
-            btn_delete.ForeColor = Color.White;
-            btn_delete.Location = new Point(593, 540);
-            btn_delete.Name = "btn_delete";
-            btn_delete.Size = new Size(213, 43);
-            btn_delete.TabIndex = 48;
-            btn_delete.Text = "Delete";
-            btn_delete.UseVisualStyleBackColor = false;
-            btn_delete.Click += btn_delete_Click;
-            // 
-            // btn_add
-            // 
-            btn_add.BackColor = SystemColors.HotTrack;
-            btn_add.FlatAppearance.BorderSize = 0;
-            btn_add.FlatStyle = FlatStyle.Flat;
-            btn_add.ForeColor = Color.White;
-            btn_add.Location = new Point(337, 540);
-            btn_add.Name = "btn_add";
-            btn_add.Size = new Size(213, 43);
-            btn_add.TabIndex = 47;
-            btn_add.Text = "Add";
-            btn_add.UseVisualStyleBackColor = false;
-            btn_add.Click += btn_add_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(53, 176);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(48, 32);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 20;
-            pictureBox1.TabStop = false;
+            csb_addEmployee.BackColor = Color.FromArgb(70, 95, 241);
+            csb_addEmployee.BorderColor = Color.Black;
+            csb_addEmployee.BorderRadius = 10;
+            csb_addEmployee.BorderSize = 0;
+            csb_addEmployee.Cursor = Cursors.Hand;
+            csb_addEmployee.FlatAppearance.BorderSize = 0;
+            csb_addEmployee.FlatStyle = FlatStyle.Flat;
+            csb_addEmployee.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            csb_addEmployee.ForeColor = Color.White;
+            csb_addEmployee.Image = (Image)resources.GetObject("csb_addEmployee.Image");
+            csb_addEmployee.ImageAlign = ContentAlignment.MiddleLeft;
+            csb_addEmployee.Location = new Point(720, 155);
+            csb_addEmployee.Name = "csb_addEmployee";
+            csb_addEmployee.Padding = new Padding(25, 0, 0, 0);
+            csb_addEmployee.Size = new Size(218, 50);
+            csb_addEmployee.TabIndex = 85;
+            csb_addEmployee.Text = "  Add Employee";
+            csb_addEmployee.UseVisualStyleBackColor = false;
+            csb_addEmployee.Click += csb_addEmployee_Click;
             // 
             // EmployeeDisplay
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
-            ClientSize = new Size(1300, 900);
-            Controls.Add(pictureBox1);
+            ClientSize = new Size(972, 853);
+            Controls.Add(csb_addEmployee);
+            Controls.Add(btn_back);
             Controls.Add(pnlCrudEmp);
-            Controls.Add(btn_manageEmp);
             Controls.Add(pictureBox9);
             Controls.Add(lbl_title);
             Font = new Font("Segoe UI", 9F);
@@ -507,11 +501,7 @@
             Load += EmployeeDisplay_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             pnlCrudEmp.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picEye2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picEye1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnlCrudEmp.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -520,39 +510,33 @@
 
         private PictureBox pictureBox9;
         private Label lbl_title;
-        private Button btn_manageEmp;
         private Panel pnlCrudEmp;
-        private Button btn_add;
-        private Button btn_update;
-        private Button btn_delete;
-        private PictureBox pictureBox1;
-        private Panel panel1;
         private ComboBox cb_empType;
         private ComboBox cb_schedule;
+        private ComboBox cb_dept;
+        private Button btn_back;
+        private CustomControls.CustomButton csb_addEmployee;
+        private CustomControls.CustomButton cbtn_update;
+        private CustomControls.CustomButton cbtn_add;
+        private CustomControls.CustomButton cbtn_delete;
+        private CustomControls.CustomTextBox ctxt_phone;
+        private CustomControls.CustomTextBox ctxt_email;
+        private CustomControls.CustomTextBox ctxt_name;
+        private Label label5;
         private Label label8;
         private Label label11;
         private Label label9;
-        private Label label7;
         private Label label1;
-        private PictureBox picEye2;
-        private Label btn_show2;
-        private PictureBox picEye1;
-        private Label btn_show1;
-        private Label label4;
         private Label label2;
         private Label label3;
-        private Label label5;
-        private ComboBox cb_dept;
-        private CustomControls.CustomTextBox txt_pass;
-        private CustomControls.CustomTextBox txt_phone;
-        private CustomControls.CustomTextBox txt_confirm;
-        private CustomControls.CustomTextBox txt_email;
-        private CustomControls.CustomTextBox txt_jobTitle;
-        private CustomControls.CustomTextBox txt_name;
-      //  private ComboBox cb_empType;
-        private ComboBox cb_schedulee;
-        private ComboBox cb_deptt;
-        private ComboBox cb_empTypee;
+        private CustomControls.CustomComboBox ccb_schedule;
+        private CustomControls.CustomComboBox ccb_emplyeeType;
+        private CustomControls.CustomComboBox ccb_dept;
+        private Label label4;
+        private Label label6;
+        private CustomControls.CustomComboBox ccb_gender;
+        private CustomControls.CustomTextBox ctxt_address;
+        private CustomControls.CustomComboBox ccb_jobTitle;
         //private ComboBox cb_dept;
         //private CustomControls.CustomComboBox cb_dept;
         //private CustomControls.CustomComboBox cb_schedule;

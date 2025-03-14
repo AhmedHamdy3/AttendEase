@@ -11,6 +11,7 @@ namespace AttendEase.DataAccess.Entities
         public int EmployeeId { get; set; }
         public string? QRCodeData { get; set; } // Stores the EmployeeId as QR code data
         public string Name { get; set; }
+        public string? SubTitle { get; set; }
 
         public byte[]? ProfileImage { get; set; }
         public string? JobTitle { get; set; }

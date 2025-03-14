@@ -1,4 +1,6 @@
-﻿using AttendEase.DataAccess.Entities;
+﻿using AttendEase.BusinessLogic;
+using AttendEase.DataAccess.Entities;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,22 @@ namespace AttendEase.Presentation
 {
     public static class GlobalData
     {
+
+        static AttendEaseContext context = new AttendEaseContext();
+        private static IConfigurationRoot configBuilder = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        private static IConfigurationSection configSection = configBuilder.GetSection("ConnectionStrings");
+        private static string connectionString = configSection["SQLServerConnection"] ?? null;
+        static EmployeesService employeesService = new EmployeesService(connectionString);
+        
         public static StartForm startForm;
-        public static Employee RegisterEmployee;
+        public static Employee RegisterEmployee = employeesService.GetEmployee(9);
         public static int EmployeeId = 1;
         public static int X = 600;
         public static int Y= 200;
+
         public static Image ByteArrayToImage(byte[]? byteArray)
         {
             if(byteArray == null)
@@ -34,23 +47,5 @@ namespace AttendEase.Presentation
                 return ms.ToArray();
             }
         }
-
-        //// Save the image to the database using Entity Framework
-        //public static void SaveImageToDatabase(string userName, byte[] imageBytes)
-        //{
-        //    using (var context = new WFContext())
-        //    {
-        //        var employee = new Employee
-        //        {
-        //            Name = userName,
-        //            ProfileImage = imageBytes
-        //        };
-
-        //        context.Employees.Add(employee);
-        //        context.SaveChanges();
-
-        //        MessageBox.Show("Image saved to database successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //    }
-        //}
     }
 }

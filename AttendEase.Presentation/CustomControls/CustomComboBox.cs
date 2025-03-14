@@ -323,6 +323,16 @@ namespace AttendEase.Presentation.CustomControls
         }
 
         [Category("Data")]
+        [Bindable(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public object SelectedValue
+        {
+            get { return cmbList.SelectedValue; }
+            set { cmbList.SelectedValue = value; }
+        }
+
+        [Category("Data")]
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SelectedIndex
@@ -331,14 +341,6 @@ namespace AttendEase.Presentation.CustomControls
             set { cmbList.SelectedIndex = value; }
         }
 
-        //[Category("Data")]
-        //[Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        //public int SelectedValue
-        //{
-        //    get { return cmbList.SelectedValue; }
-        //    set { cmbList.SelectedValue = value; }
-        //}
 
         [Category("Data")]
         [DefaultValue("")]

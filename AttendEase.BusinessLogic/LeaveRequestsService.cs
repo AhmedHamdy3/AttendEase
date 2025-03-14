@@ -75,14 +75,14 @@ namespace AttendEase.BusinessLogic
             }
         }
 
-        public List<Request> GetUnreadedLeaveRequests()
+        public List<Request> GetPendingLeaveRequests()
         {
 
             using (var context = new AttendEaseContext())
             {
                 var requests = (from lr in context.LeaveRequests
                                 join emp in context.Employees on lr.EmployeeId equals emp.EmployeeId
-                                where lr.IsRead == false
+                                where lr.Status == "Pending"
                                 orderby lr.CreationTime descending
                                 select new Request
 
