@@ -70,10 +70,11 @@ namespace AttendEase.Presentation
 
         private void csb_singIn_Click(object sender, EventArgs e)
         {
-            SignInForm signInForm = new SignInForm();
-            signInForm.StartPosition = FormStartPosition.Manual;
-            signInForm.Location = this.Location;
-            signInForm.Show();
+            //SignInForm signInForm = new SignInForm();
+            //signInForm.StartPosition = FormStartPosition.Manual;
+            //signInForm.Location = this.Location;
+            //signInForm.Show();
+            GlobalData.signInForm.Show();
             this.Close();
         }
 

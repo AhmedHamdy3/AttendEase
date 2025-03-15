@@ -20,6 +20,7 @@ namespace AttendEase.Presentation
         public SignInForm()
         {
             InitializeComponent();
+            GlobalData.signInForm = this;
 
             var configBuilder = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -35,7 +36,7 @@ namespace AttendEase.Presentation
             setPassword.StartPosition = FormStartPosition.Manual;
             setPassword.Location = this.Location;
             setPassword.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btn_showPassword_Click(object sender, EventArgs e)
@@ -76,7 +77,8 @@ namespace AttendEase.Presentation
                     employeeMainForm.Location = this.Location;
                     employeeMainForm.Show();
                 }
-                this.Close();
+                ctxt_email.Text = ctxt_password.Text = "";
+                this.Hide();
             }
             else
             {

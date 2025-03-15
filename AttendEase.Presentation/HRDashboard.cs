@@ -218,7 +218,7 @@ namespace AttendEase.Presentation
         private void btn_logout_Click(object sender, EventArgs e)
         {
             GlobalData.RegisterEmployee = null;
-            GlobalData.startForm.Show();
+            GlobalData.signInForm.Show();
             this.Close();
         }
 

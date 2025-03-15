@@ -6,7 +6,7 @@
 
 # appsettings files
 **/appsettings.json
-
+!/AttendEaseServer/appsettings.json
 # dotenv files
 .env
 

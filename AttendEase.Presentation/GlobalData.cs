@@ -21,7 +21,7 @@ namespace AttendEase.Presentation
         private static string connectionString = configSection["SQLServerConnection"] ?? null;
         static EmployeesService employeesService = new EmployeesService(connectionString);
         
-        public static StartForm startForm;
+        public static SignInForm signInForm;
         public static Employee RegisterEmployee = employeesService.GetEmployee(9);
         public static int EmployeeId = 1;
         public static int X = 600;

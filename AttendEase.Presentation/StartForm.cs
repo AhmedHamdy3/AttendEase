@@ -15,7 +15,7 @@ namespace AttendEase.Presentation
         public StartForm()
         {
             InitializeComponent();
-            GlobalData.startForm = this;
+            //GlobalData.startForm = this;
         }
 
         private void StartForm_Load(object sender, EventArgs e)
