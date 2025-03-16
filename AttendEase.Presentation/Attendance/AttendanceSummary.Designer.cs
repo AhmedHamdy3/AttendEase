@@ -116,7 +116,9 @@
             // cbtn_exportPdf
             // 
             cbtn_exportPdf.BackColor = SystemColors.MenuBar;
+            cbtn_exportPdf.BorderColor = Color.Black;
             cbtn_exportPdf.BorderRadius = 0;
+            cbtn_exportPdf.BorderSize = 0;
             cbtn_exportPdf.Cursor = Cursors.Hand;
             cbtn_exportPdf.FlatAppearance.BorderSize = 0;
             cbtn_exportPdf.FlatStyle = FlatStyle.Flat;
@@ -137,7 +139,9 @@
             // cbtn_exportExcel
             // 
             cbtn_exportExcel.BackColor = SystemColors.MenuBar;
+            cbtn_exportExcel.BorderColor = Color.Black;
             cbtn_exportExcel.BorderRadius = 0;
+            cbtn_exportExcel.BorderSize = 0;
             cbtn_exportExcel.Cursor = Cursors.Hand;
             cbtn_exportExcel.FlatAppearance.BorderSize = 0;
             cbtn_exportExcel.FlatStyle = FlatStyle.Flat;
@@ -158,7 +162,9 @@
             // cbtn_export
             // 
             cbtn_export.BackColor = Color.FromArgb(70, 95, 241);
+            cbtn_export.BorderColor = Color.Black;
             cbtn_export.BorderRadius = 5;
+            cbtn_export.BorderSize = 0;
             cbtn_export.Cursor = Cursors.Hand;
             cbtn_export.FlatAppearance.BorderSize = 0;
             cbtn_export.FlatStyle = FlatStyle.Flat;
@@ -166,7 +172,7 @@
             cbtn_export.ForeColor = Color.White;
             cbtn_export.Image = Properties.Resources.Export;
             cbtn_export.ImageAlign = ContentAlignment.MiddleLeft;
-            cbtn_export.Location = new Point(769, 24);
+            cbtn_export.Location = new Point(750, 24);
             cbtn_export.Name = "cbtn_export";
             cbtn_export.Padding = new Padding(15, 0, 0, 0);
             cbtn_export.Size = new Size(182, 50);
@@ -180,10 +186,11 @@
             // 
             pnl_exportMenu.Controls.Add(cbtn_exportPdf);
             pnl_exportMenu.Controls.Add(cbtn_exportExcel);
-            pnl_exportMenu.Location = new Point(773, 74);
+            pnl_exportMenu.Location = new Point(754, 74);
             pnl_exportMenu.Name = "pnl_exportMenu";
             pnl_exportMenu.Size = new Size(178, 104);
             pnl_exportMenu.TabIndex = 29;
+            pnl_exportMenu.Visible = false;
             // 
             // AttendanceSummary
             // 

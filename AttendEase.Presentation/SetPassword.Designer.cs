@@ -242,7 +242,9 @@
             // csb_singIn
             // 
             csb_singIn.BackColor = Color.FromArgb(236, 240, 255);
+            csb_singIn.BorderColor = Color.Black;
             csb_singIn.BorderRadius = 7;
+            csb_singIn.BorderSize = 0;
             csb_singIn.Cursor = Cursors.Hand;
             csb_singIn.FlatAppearance.BorderSize = 0;
             csb_singIn.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 219, 253);
@@ -261,7 +263,9 @@
             // customButton1
             // 
             customButton1.BackColor = Color.FromArgb(70, 95, 241);
+            customButton1.BorderColor = Color.Black;
             customButton1.BorderRadius = 7;
+            customButton1.BorderSize = 0;
             customButton1.FlatAppearance.BorderSize = 0;
             customButton1.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 95, 241);
             customButton1.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 95, 241);
@@ -278,7 +282,9 @@
             // csb_setPassword
             // 
             csb_setPassword.BackColor = Color.FromArgb(70, 95, 241);
+            csb_setPassword.BorderColor = Color.Black;
             csb_setPassword.BorderRadius = 10;
+            csb_setPassword.BorderSize = 0;
             csb_setPassword.Cursor = Cursors.Hand;
             csb_setPassword.FlatAppearance.BorderSize = 0;
             csb_setPassword.FlatStyle = FlatStyle.Flat;
@@ -312,7 +318,7 @@
             Controls.Add(panel2);
             Name = "SetPassword";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Set Password";
             Load += SetPassword_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

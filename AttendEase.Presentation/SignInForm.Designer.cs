@@ -49,7 +49,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(16, 23);
+            pictureBox1.Location = new Point(32, 23);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(536, 803);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -138,7 +138,9 @@
             // csb_singIn
             // 
             csb_singIn.BackColor = Color.FromArgb(70, 95, 241);
+            csb_singIn.BorderColor = Color.Black;
             csb_singIn.BorderRadius = 7;
+            csb_singIn.BorderSize = 0;
             csb_singIn.FlatAppearance.BorderSize = 0;
             csb_singIn.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 95, 241);
             csb_singIn.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 95, 241);
@@ -155,7 +157,9 @@
             // csb_setPassword
             // 
             csb_setPassword.BackColor = Color.FromArgb(236, 240, 255);
+            csb_setPassword.BorderColor = Color.Black;
             csb_setPassword.BorderRadius = 7;
+            csb_setPassword.BorderSize = 0;
             csb_setPassword.Cursor = Cursors.Hand;
             csb_setPassword.FlatAppearance.BorderSize = 0;
             csb_setPassword.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 219, 253);
@@ -174,7 +178,9 @@
             // csb_signIn
             // 
             csb_signIn.BackColor = Color.FromArgb(70, 95, 241);
+            csb_signIn.BorderColor = Color.Black;
             csb_signIn.BorderRadius = 10;
+            csb_signIn.BorderSize = 0;
             csb_signIn.Cursor = Cursors.Hand;
             csb_signIn.FlatAppearance.BorderSize = 0;
             csb_signIn.FlatStyle = FlatStyle.Flat;
@@ -230,6 +236,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(panel2);
             Name = "SignInForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SignInForm";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);

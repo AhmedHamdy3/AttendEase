@@ -38,6 +38,7 @@
             cbtn_exportPdf = new CustomControls.CustomButton();
             cbtn_exportExcel = new CustomControls.CustomButton();
             cbtn_export = new CustomControls.CustomButton();
+            lbl_details_header = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             pnl_exportMenu.SuspendLayout();
             SuspendLayout();
@@ -55,13 +56,13 @@
             // lbl_title
             // 
             lbl_title.AutoSize = true;
-            lbl_title.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_title.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_title.ForeColor = Color.FromArgb(10, 22, 41);
-            lbl_title.Location = new Point(12, 87);
+            lbl_title.Location = new Point(22, 107);
             lbl_title.Name = "lbl_title";
-            lbl_title.Size = new Size(194, 62);
+            lbl_title.Size = new Size(665, 54);
             lbl_title.TabIndex = 16;
-            lbl_title.Text = "Arrivals";
+            lbl_title.Text = "Late Arrivals and Early Departures";
             // 
             // btn_back
             // 
@@ -117,15 +118,18 @@
             // 
             pnl_exportMenu.Controls.Add(cbtn_exportPdf);
             pnl_exportMenu.Controls.Add(cbtn_exportExcel);
-            pnl_exportMenu.Location = new Point(773, 74);
+            pnl_exportMenu.Location = new Point(754, 74);
             pnl_exportMenu.Name = "pnl_exportMenu";
             pnl_exportMenu.Size = new Size(178, 104);
             pnl_exportMenu.TabIndex = 37;
+            pnl_exportMenu.Visible = false;
             // 
             // cbtn_exportPdf
             // 
             cbtn_exportPdf.BackColor = SystemColors.MenuBar;
+            cbtn_exportPdf.BorderColor = Color.Black;
             cbtn_exportPdf.BorderRadius = 0;
+            cbtn_exportPdf.BorderSize = 0;
             cbtn_exportPdf.Cursor = Cursors.Hand;
             cbtn_exportPdf.FlatAppearance.BorderSize = 0;
             cbtn_exportPdf.FlatStyle = FlatStyle.Flat;
@@ -146,7 +150,9 @@
             // cbtn_exportExcel
             // 
             cbtn_exportExcel.BackColor = SystemColors.MenuBar;
+            cbtn_exportExcel.BorderColor = Color.Black;
             cbtn_exportExcel.BorderRadius = 0;
+            cbtn_exportExcel.BorderSize = 0;
             cbtn_exportExcel.Cursor = Cursors.Hand;
             cbtn_exportExcel.FlatAppearance.BorderSize = 0;
             cbtn_exportExcel.FlatStyle = FlatStyle.Flat;
@@ -167,7 +173,9 @@
             // cbtn_export
             // 
             cbtn_export.BackColor = Color.FromArgb(70, 95, 241);
+            cbtn_export.BorderColor = Color.Black;
             cbtn_export.BorderRadius = 5;
+            cbtn_export.BorderSize = 0;
             cbtn_export.Cursor = Cursors.Hand;
             cbtn_export.FlatAppearance.BorderSize = 0;
             cbtn_export.FlatStyle = FlatStyle.Flat;
@@ -175,7 +183,7 @@
             cbtn_export.ForeColor = Color.White;
             cbtn_export.Image = Properties.Resources.Export;
             cbtn_export.ImageAlign = ContentAlignment.MiddleLeft;
-            cbtn_export.Location = new Point(769, 24);
+            cbtn_export.Location = new Point(750, 24);
             cbtn_export.Name = "cbtn_export";
             cbtn_export.Padding = new Padding(15, 0, 0, 0);
             cbtn_export.Size = new Size(182, 50);
@@ -185,12 +193,22 @@
             cbtn_export.UseVisualStyleBackColor = false;
             cbtn_export.Click += cbtn_export_Click;
             // 
+            // lbl_details_header
+            // 
+            lbl_details_header.AutoSize = true;
+            lbl_details_header.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_details_header.Location = new Point(22, 107);
+            lbl_details_header.Name = "lbl_details_header";
+            lbl_details_header.Size = new Size(0, 38);
+            lbl_details_header.TabIndex = 38;
+            // 
             // Arrivals
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
             ClientSize = new Size(972, 853);
+            Controls.Add(lbl_details_header);
             Controls.Add(pnl_exportMenu);
             Controls.Add(cbtn_export);
             Controls.Add(cdtp_endDate);
@@ -220,5 +238,6 @@
         private CustomControls.CustomButton cbtn_exportPdf;
         private CustomControls.CustomButton cbtn_exportExcel;
         private CustomControls.CustomButton cbtn_export;
+        private Label lbl_details_header;
     }
 }

@@ -22,6 +22,7 @@ namespace AttendEase.Presentation
     public partial class Arrivals : Form
     {
         AttendanceService attendanceService;
+        EmployeesService employeesService;
         CustomTable table;
         int isDetails = 0;
         int id = -1;
@@ -35,6 +36,8 @@ namespace AttendEase.Presentation
             var configSection = configBuilder.GetSection("ConnectionStrings");
             var connectionString = configSection["SQLServerConnection"] ?? null;
             attendanceService = new AttendanceService(connectionString);
+            employeesService = new EmployeesService(connectionString);
+
         }
 
         private void Arrivals_Load(object sender, EventArgs e)
@@ -55,6 +58,8 @@ namespace AttendEase.Presentation
             table.tablePanel.Location = new Point(30, 280);
             table.tablePanel.Size = new Size(888, 530);
             btn_back.Visible = true;
+            lbl_title.Visible = false;
+            lbl_details_header.Text = $"Late Arrivals and Early Departures - {employeesService.GetEmployee(id).Name}";
             ShowArrivalsDetail();
         }
 
@@ -75,6 +80,8 @@ namespace AttendEase.Presentation
             table.tablePanel.Location = new Point(30, 240);
             table.tablePanel.Size = new Size(888, 570);
             btn_back.Visible = false;
+            lbl_details_header.Text = "";
+            lbl_title.Visible = true;
             ShowArrivals();
         }
 

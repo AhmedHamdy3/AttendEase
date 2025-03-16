@@ -473,7 +473,7 @@
             csb_addEmployee.ForeColor = Color.White;
             csb_addEmployee.Image = (Image)resources.GetObject("csb_addEmployee.Image");
             csb_addEmployee.ImageAlign = ContentAlignment.MiddleLeft;
-            csb_addEmployee.Location = new Point(720, 155);
+            csb_addEmployee.Location = new Point(696, 155);
             csb_addEmployee.Name = "csb_addEmployee";
             csb_addEmployee.Padding = new Padding(25, 0, 0, 0);
             csb_addEmployee.Size = new Size(218, 50);

@@ -16,6 +16,8 @@ namespace AttendEase.Presentation
     public partial class FrequentAbsence : Form
     {
         AttendanceService attendanceService;
+        EmployeesService EmployeesService;
+
         CustomTable table;
         int isDetails = 0;
         int id = -1;
@@ -28,6 +30,7 @@ namespace AttendEase.Presentation
             var configSection = configBuilder.GetSection("ConnectionStrings");
             var connectionString = configSection["SQLServerConnection"] ?? null;
             attendanceService = new AttendanceService(connectionString);
+            EmployeesService = new EmployeesService(connectionString);
         }
 
         private void FrequentAbsence_Load(object sender, EventArgs e)
@@ -63,6 +66,8 @@ namespace AttendEase.Presentation
             table.tablePanel.Location = new Point(30, 280);
             table.tablePanel.Size = new Size(888, 530);
             btn_back.Visible = true;
+            lbl_title.Visible = false;
+            lbl_details_header.Text = $"{EmployeesService.GetEmployee(id).Name}'s Absences";
             ShowFrequentAbsenceDetail();
         }
         private void ShowFrequentAbsence()
@@ -91,6 +96,9 @@ namespace AttendEase.Presentation
             table.tablePanel.Location = new Point(30, 240);
             table.tablePanel.Size = new Size(888, 570);
             btn_back.Visible = false;
+            lbl_details_header.Text = "";
+            lbl_title.Visible = true;
+            
             ShowFrequentAbsence();
         }
         private void cdtp_startDate_ValueChanged(object sender, EventArgs e)

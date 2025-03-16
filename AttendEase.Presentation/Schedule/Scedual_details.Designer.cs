@@ -100,7 +100,7 @@
             csb_addSchedule.ForeColor = Color.White;
             csb_addSchedule.Image = (Image)resources.GetObject("csb_addSchedule.Image");
             csb_addSchedule.ImageAlign = ContentAlignment.MiddleLeft;
-            csb_addSchedule.Location = new Point(720, 155);
+            csb_addSchedule.Location = new Point(696, 155);
             csb_addSchedule.Name = "csb_addSchedule";
             csb_addSchedule.Padding = new Padding(25, 0, 0, 0);
             csb_addSchedule.Size = new Size(218, 50);

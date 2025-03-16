@@ -38,8 +38,8 @@ namespace AttendEase.Presentation
             employeeDisplay = new EmployeeDisplayService(connectionString);
 
             pnlCrudEmp.Hide();
-
-            table = new CustomTable(914, 539, 27, 222);
+            
+            table = new CustomTable(888, 570, 30, 240);
 
 
         }
@@ -147,22 +147,36 @@ namespace AttendEase.Presentation
 
         private void cbtn_add_Click(object sender, EventArgs e)
         {
-            employeeDisplay.AddEmployee(ctxt_name.Text, ccb_jobTitle.SelectedItem?.ToString(), ctxt_email.Text, ccb_gender.SelectedItem?.ToString(), ctxt_address.Text, ctxt_phone.Text, (int)ccb_dept.SelectedValue, ccb_emplyeeType.SelectedItem?.ToString(), (int)ccb_schedule.SelectedValue);
-            MessageBox.Show("Added");
-            LoadEmployeesData();
-            btn_back.PerformClick();
-            clearInputs();
+            try
+            {
+                employeeDisplay.AddEmployee(ctxt_name.Text, ccb_jobTitle.SelectedItem?.ToString(), ctxt_email.Text, ccb_gender.SelectedItem?.ToString(), ctxt_address.Text, ctxt_phone.Text, (int)ccb_dept.SelectedValue, ccb_emplyeeType.SelectedItem?.ToString(), (int)ccb_schedule.SelectedValue);
+                MessageBox.Show("Added");
+                LoadEmployeesData();
+                btn_back.PerformClick();
+                clearInputs();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Invalid Data");
+            }
         }
 
         private void cbtn_update_Click(object sender, EventArgs e)
         {
             //MessageBox.Show($"{ccb_emplyeeType.SelectedItem.ToString()}");
 
-            employeeDisplay.UpdateEmplyee(id, ctxt_name.Text, ccb_jobTitle.SelectedItem?.ToString(), ctxt_email.Text, ccb_gender.SelectedItem?.ToString(), ctxt_address.Text, ctxt_phone.Text, (int)ccb_dept.SelectedValue, ccb_emplyeeType.SelectedItem?.ToString(), (int)ccb_schedule.SelectedValue);
-            MessageBox.Show("Updated");
-            LoadEmployeesData();
-            btn_back.PerformClick();
-            clearInputs();
+            try
+            {
+                employeeDisplay.UpdateEmplyee(id, ctxt_name.Text, ccb_jobTitle.SelectedItem?.ToString(), ctxt_email.Text, ccb_gender?.SelectedItem?.ToString(), ctxt_address?.Text, ctxt_phone?.Text, (int)ccb_dept.SelectedValue, ccb_emplyeeType.SelectedItem?.ToString(), (int)ccb_schedule.SelectedValue);
+                MessageBox.Show("Updated");
+                LoadEmployeesData();
+                btn_back.PerformClick();
+                clearInputs();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Invalid Data");
+            }
         }
         private void clearInputs()
         {
