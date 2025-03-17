@@ -36,7 +36,7 @@
             btn_logout = new CustomControls.CustomButton();
             flowLayoutPanel8 = new FlowLayoutPanel();
             btn_dashboard = new Button();
-            label2 = new Label();
+            lbl_subtitle = new Label();
             lbl_employeeName = new Label();
             panel3 = new Panel();
             panel1.SuspendLayout();
@@ -70,7 +70,7 @@
             pnl_sideBar.Controls.Add(btn_logout);
             pnl_sideBar.Controls.Add(flowLayoutPanel8);
             pnl_sideBar.Controls.Add(btn_dashboard);
-            pnl_sideBar.Controls.Add(label2);
+            pnl_sideBar.Controls.Add(lbl_subtitle);
             pnl_sideBar.Controls.Add(lbl_employeeName);
             pnl_sideBar.Location = new Point(0, 38);
             pnl_sideBar.Margin = new Padding(3, 2, 3, 2);
@@ -95,7 +95,7 @@
             btn_HRs.Padding = new Padding(10, 0, 0, 0);
             btn_HRs.Size = new Size(228, 36);
             btn_HRs.TabIndex = 16;
-            btn_HRs.Text = "     HR Data";
+            btn_HRs.Text = "    Employees Data";
             btn_HRs.TextAlign = ContentAlignment.MiddleLeft;
             btn_HRs.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_HRs.UseVisualStyleBackColor = true;
@@ -104,7 +104,9 @@
             // btn_logout
             // 
             btn_logout.BackColor = Color.FromArgb(102, 122, 138);
+            btn_logout.BorderColor = Color.Black;
             btn_logout.BorderRadius = 0;
+            btn_logout.BorderSize = 0;
             btn_logout.Cursor = Cursors.Hand;
             btn_logout.FlatAppearance.BorderSize = 0;
             btn_logout.FlatStyle = FlatStyle.Flat;
@@ -121,6 +123,7 @@
             btn_logout.Text = "       Logout";
             btn_logout.TextAlign = ContentAlignment.MiddleLeft;
             btn_logout.UseVisualStyleBackColor = false;
+            btn_logout.Click += btn_logout_Click;
             // 
             // flowLayoutPanel8
             // 
@@ -148,20 +151,21 @@
             btn_dashboard.Padding = new Padding(10, 0, 0, 0);
             btn_dashboard.Size = new Size(228, 36);
             btn_dashboard.TabIndex = 14;
-            btn_dashboard.Text = "   Dashboard";
+            btn_dashboard.Text = "   Edit Profile";
             btn_dashboard.TextAlign = ContentAlignment.MiddleLeft;
             btn_dashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_dashboard.UseVisualStyleBackColor = true;
+            btn_dashboard.Click += btn_dashboard_Click;
             // 
-            // label2
+            // lbl_subtitle
             // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.FromArgb(93, 114, 133);
-            label2.Location = new Point(71, 130);
-            label2.Name = "label2";
-            label2.Size = new Size(111, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Some user text here";
+            lbl_subtitle.AutoSize = true;
+            lbl_subtitle.ForeColor = Color.FromArgb(93, 114, 133);
+            lbl_subtitle.Location = new Point(71, 130);
+            lbl_subtitle.Name = "lbl_subtitle";
+            lbl_subtitle.Size = new Size(111, 15);
+            lbl_subtitle.TabIndex = 1;
+            lbl_subtitle.Text = "Some user text here";
             // 
             // lbl_employeeName
             // 
@@ -188,11 +192,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1122, 562);
+            ClientSize = new Size(1122, 610);
             Controls.Add(pnl_formLoader);
             Controls.Add(panel3);
             Name = "AdminForm";
             Text = "AdminForm";
+            Load += AdminForm_Load;
             panel1.ResumeLayout(false);
             pnl_sideBar.ResumeLayout(false);
             pnl_sideBar.PerformLayout();
@@ -208,7 +213,7 @@
         private CustomControls.CustomButton btn_logout;
         private FlowLayoutPanel flowLayoutPanel8;
         private Button btn_dashboard;
-        private Label label2;
+        private Label lbl_subtitle;
         private Label lbl_employeeName;
         private Panel panel3;
         private Button btn_HRs;

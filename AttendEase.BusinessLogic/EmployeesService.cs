@@ -88,9 +88,11 @@ namespace AttendEase.BusinessLogic
 
         public class EmployeeDTO
         {
+            public int Id { get; set; }
             public string Name { get; set; }
             public string Email { get; set; }
             public string? Phone { get; set; }
+            public string? JobTitle { get; set; }
             public DateTime DateOfBirth { get; set; }
             public string Gender { get; set; }
             public string Address { get; set; }
@@ -101,17 +103,19 @@ namespace AttendEase.BusinessLogic
 
 
 
-        public List<EmployeeDTO> GetHRs()
+        public List<EmployeeDTO> GetEmployess()
         {
             using (var context = new AttendEaseContext(this.connectionString))
             {
                 var employees = context.Employees
-                    .Where(e => e.JobTitle == "HR")
+                    .Where(e=>e.JobTitle != "Admin")
                     .Select(e => new EmployeeDTO
                     {
+                        Id = e.EmployeeId,
                         Name = e.Name,
                         Email = e.Email,
                         Phone = e.Phone,
+                        JobTitle = e.JobTitle,
                         DateOfBirth = e.DateOfBirth ?? default,
                         Gender = e.Gender,
                         Address = e.Address,

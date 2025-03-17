@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HR_Data));
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pictureBox9 = new PictureBox();
             lbl_HR = new Label();
             dgv_HRData = new DataGridView();
+            btn_ControlHRs = new CustomControls.CustomButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_HRData).BeginInit();
             SuspendLayout();
@@ -63,40 +64,60 @@
             // 
             // dgv_HRData
             // 
-            dataGridViewCellStyle7.BackColor = Color.Salmon;
-            dgv_HRData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = Color.Salmon;
+            dgv_HRData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgv_HRData.BackgroundColor = Color.FromArgb(243, 248, 252);
             dgv_HRData.BorderStyle = BorderStyle.None;
             dgv_HRData.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.ActiveCaption;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgv_HRData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgv_HRData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgv_HRData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = SystemColors.Window;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle9.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = Color.Green;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            dgv_HRData.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Green;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgv_HRData.DefaultCellStyle = dataGridViewCellStyle3;
             dgv_HRData.Location = new Point(12, 142);
             dgv_HRData.Name = "dgv_HRData";
             dgv_HRData.ReadOnly = true;
-            dgv_HRData.Size = new Size(814, 398);
+            dgv_HRData.Size = new Size(816, 418);
             dgv_HRData.TabIndex = 20;
+            dgv_HRData.RowHeaderMouseDoubleClick += dgv_HRData_RowHeaderMouseDoubleClick_1;
+            // 
+            // btn_ControlHRs
+            // 
+            btn_ControlHRs.BackColor = Color.FromArgb(70, 95, 241);
+            btn_ControlHRs.BorderRadius = 7;
+            btn_ControlHRs.FlatAppearance.BorderSize = 0;
+            btn_ControlHRs.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 95, 241);
+            btn_ControlHRs.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 95, 241);
+            btn_ControlHRs.FlatStyle = FlatStyle.Flat;
+            btn_ControlHRs.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_ControlHRs.ForeColor = Color.White;
+            btn_ControlHRs.Location = new Point(654, 25);
+            btn_ControlHRs.Name = "btn_ControlHRs";
+            btn_ControlHRs.Size = new Size(174, 43);
+            btn_ControlHRs.TabIndex = 21;
+            btn_ControlHRs.Text = "Take Control";
+            btn_ControlHRs.UseVisualStyleBackColor = false;
+            btn_ControlHRs.Click += btn_ControlHRs_Click;
             // 
             // HR_Data
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
-            ClientSize = new Size(834, 552);
+            ClientSize = new Size(850, 591);
+            Controls.Add(btn_ControlHRs);
             Controls.Add(dgv_HRData);
             Controls.Add(pictureBox9);
             Controls.Add(lbl_HR);
@@ -115,5 +136,6 @@
         private PictureBox pictureBox9;
         private Label lbl_HR;
         private DataGridView dgv_HRData;
+        private CustomControls.CustomButton btn_ControlHRs;
     }
 }

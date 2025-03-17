@@ -1,5 +1,6 @@
 ﻿using AttendEase.BusinessLogic;
 using AttendEase.DataAccess.Entities;
+using AttendEase.Presentation.Admin;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -76,6 +77,13 @@ namespace AttendEase.Presentation
                     employeeMainForm.StartPosition = FormStartPosition.Manual;
                     employeeMainForm.Location = this.Location;
                     employeeMainForm.Show();
+                }
+                else if (employee.JobTitle == "Admin")
+                {
+                    AdminForm admin= new AdminForm();
+                    admin.StartPosition = FormStartPosition.Manual;
+                    admin.Location = this.Location;
+                    admin.Show();
                 }
                 ctxt_email.Text = ctxt_password.Text = "";
                 this.Hide();

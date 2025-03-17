@@ -152,8 +152,15 @@ namespace AttendEase.BusinessLogic
             }
             //return returnedValue;
         }
+        public List<Schedule> GetSchedule()
+        {
 
-        
+            using (var context = new AttendEaseContext(this.connectionString))
+            {
+                return context.Schedules.ToList();
+            }
+        }
+
 
 
 

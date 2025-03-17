@@ -71,16 +71,17 @@
             lbl_schedules.AutoSize = true;
             lbl_schedules.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_schedules.ForeColor = Color.FromArgb(10, 22, 41);
-            lbl_schedules.Location = new Point(14, 93);
+            lbl_schedules.Location = new Point(12, 70);
             lbl_schedules.Name = "lbl_schedules";
-            lbl_schedules.Size = new Size(245, 62);
+            lbl_schedules.Size = new Size(201, 51);
             lbl_schedules.TabIndex = 13;
             lbl_schedules.Text = "Schedules";
             // 
             // pictureBox9
             // 
             pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(27, 27);
+            pictureBox9.Location = new Point(24, 20);
+            pictureBox9.Margin = new Padding(3, 2, 3, 2);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(412, 48);
             pictureBox9.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -100,10 +101,11 @@
             csb_addSchedule.ForeColor = Color.White;
             csb_addSchedule.Image = (Image)resources.GetObject("csb_addSchedule.Image");
             csb_addSchedule.ImageAlign = ContentAlignment.MiddleLeft;
-            csb_addSchedule.Location = new Point(696, 155);
+            csb_addSchedule.Location = new Point(609, 116);
+            csb_addSchedule.Margin = new Padding(3, 2, 3, 2);
             csb_addSchedule.Name = "csb_addSchedule";
-            csb_addSchedule.Padding = new Padding(25, 0, 0, 0);
-            csb_addSchedule.Size = new Size(218, 50);
+            csb_addSchedule.Padding = new Padding(22, 0, 0, 0);
+            csb_addSchedule.Size = new Size(191, 38);
             csb_addSchedule.TabIndex = 86;
             csb_addSchedule.Text = "  Add Schedule";
             csb_addSchedule.UseVisualStyleBackColor = false;
@@ -121,9 +123,10 @@
             btn_back.ForeColor = Color.FromArgb(63, 140, 255);
             btn_back.Image = (Image)resources.GetObject("btn_back.Image");
             btn_back.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_back.Location = new Point(27, 194);
+            btn_back.Location = new Point(24, 146);
+            btn_back.Margin = new Padding(3, 2, 3, 2);
             btn_back.Name = "btn_back";
-            btn_back.Size = new Size(190, 29);
+            btn_back.Size = new Size(166, 22);
             btn_back.TabIndex = 87;
             btn_back.Text = "      Back to Schedules";
             btn_back.TextAlign = ContentAlignment.MiddleLeft;
@@ -136,10 +139,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label2.ForeColor = SystemColors.ControlText;
-            label2.Location = new Point(55, 32);
+            label2.Location = new Point(48, 24);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(56, 23);
+            label2.Size = new Size(46, 19);
             label2.TabIndex = 86;
             label2.Text = "Name";
             // 
@@ -148,10 +151,10 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label9.ForeColor = SystemColors.ControlText;
-            label9.Location = new Point(55, 151);
+            label9.Location = new Point(48, 113);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(96, 23);
+            label9.Size = new Size(81, 19);
             label9.TabIndex = 90;
             label9.Text = "Description";
             // 
@@ -163,12 +166,13 @@
             ctxt_name.BorderSize = 1;
             ctxt_name.Font = new Font("Segoe UI", 9F);
             ctxt_name.ForeColor = Color.DimGray;
-            ctxt_name.Location = new Point(55, 59);
+            ctxt_name.Location = new Point(48, 44);
+            ctxt_name.Margin = new Padding(3, 2, 3, 2);
             ctxt_name.Multiline = false;
             ctxt_name.Name = "ctxt_name";
-            ctxt_name.Padding = new Padding(13);
+            ctxt_name.Padding = new Padding(11, 10, 11, 10);
             ctxt_name.PasswordChar = false;
-            ctxt_name.Size = new Size(296, 47);
+            ctxt_name.Size = new Size(259, 36);
             ctxt_name.TabIndex = 84;
             ctxt_name.UnderlinedStyle = false;
             // 
@@ -180,12 +184,13 @@
             ctxt_description.BorderSize = 1;
             ctxt_description.Font = new Font("Segoe UI", 9F);
             ctxt_description.ForeColor = Color.DimGray;
-            ctxt_description.Location = new Point(55, 178);
+            ctxt_description.Location = new Point(48, 134);
+            ctxt_description.Margin = new Padding(3, 2, 3, 2);
             ctxt_description.Multiline = true;
             ctxt_description.Name = "ctxt_description";
-            ctxt_description.Padding = new Padding(13);
+            ctxt_description.Padding = new Padding(11, 10, 11, 10);
             ctxt_description.PasswordChar = false;
-            ctxt_description.Size = new Size(297, 232);
+            ctxt_description.Size = new Size(260, 174);
             ctxt_description.TabIndex = 101;
             ctxt_description.UnderlinedStyle = false;
             // 
@@ -201,9 +206,10 @@
             cbtn_add.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cbtn_add.ForeColor = Color.White;
             cbtn_add.ImageAlign = ContentAlignment.MiddleLeft;
-            cbtn_add.Location = new Point(346, 524);
+            cbtn_add.Location = new Point(303, 393);
+            cbtn_add.Margin = new Padding(3, 2, 3, 2);
             cbtn_add.Name = "cbtn_add";
-            cbtn_add.Size = new Size(213, 50);
+            cbtn_add.Size = new Size(186, 38);
             cbtn_add.TabIndex = 106;
             cbtn_add.Text = "Add";
             cbtn_add.UseVisualStyleBackColor = false;
@@ -241,10 +247,10 @@
             pnl_addSchedule.Controls.Add(label2);
             pnl_addSchedule.Font = new Font("Segoe UI", 11F);
             pnl_addSchedule.ForeColor = Color.DimGray;
-            pnl_addSchedule.Location = new Point(27, 222);
+            pnl_addSchedule.Location = new Point(24, 166);
             pnl_addSchedule.Margin = new Padding(2);
             pnl_addSchedule.Name = "pnl_addSchedule";
-            pnl_addSchedule.Size = new Size(914, 614);
+            pnl_addSchedule.Size = new Size(800, 460);
             pnl_addSchedule.TabIndex = 88;
             // 
             // cdtp_wednesday_startDate
@@ -254,14 +260,16 @@
             cdtp_wednesday_startDate.CustomFormat = "hh:mm:ss tt";
             cdtp_wednesday_startDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_wednesday_startDate.Format = DateTimePickerFormat.Custom;
-            cdtp_wednesday_startDate.Location = new Point(527, 296);
-            cdtp_wednesday_startDate.MinimumSize = new Size(0, 46);
+            cdtp_wednesday_startDate.Location = new Point(485, 222);
+            cdtp_wednesday_startDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_wednesday_startDate.MinimumSize = new Size(4, 46);
             cdtp_wednesday_startDate.Name = "cdtp_wednesday_startDate";
             cdtp_wednesday_startDate.ShowUpDown = true;
-            cdtp_wednesday_startDate.Size = new Size(177, 46);
+            cdtp_wednesday_startDate.Size = new Size(131, 46);
             cdtp_wednesday_startDate.SkinColor = Color.White;
             cdtp_wednesday_startDate.TabIndex = 120;
             cdtp_wednesday_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_wednesday_startDate.UseWaitCursor = true;
             // 
             // cdtp_friday_endDate
             // 
@@ -270,21 +278,24 @@
             cdtp_friday_endDate.CustomFormat = "hh:mm:ss tt";
             cdtp_friday_endDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_friday_endDate.Format = DateTimePickerFormat.Custom;
-            cdtp_friday_endDate.Location = new Point(710, 414);
-            cdtp_friday_endDate.MinimumSize = new Size(0, 46);
+            cdtp_friday_endDate.Location = new Point(645, 310);
+            cdtp_friday_endDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_friday_endDate.MinimumSize = new Size(4, 46);
             cdtp_friday_endDate.Name = "cdtp_friday_endDate";
             cdtp_friday_endDate.ShowUpDown = true;
-            cdtp_friday_endDate.Size = new Size(177, 46);
+            cdtp_friday_endDate.Size = new Size(131, 46);
             cdtp_friday_endDate.SkinColor = Color.White;
             cdtp_friday_endDate.TabIndex = 129;
             cdtp_friday_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_friday_endDate.UseWaitCursor = true;
             // 
             // chb_friday
             // 
             chb_friday.AutoSize = true;
-            chb_friday.Location = new Point(402, 420);
+            chb_friday.Location = new Point(352, 315);
+            chb_friday.Margin = new Padding(3, 2, 3, 2);
             chb_friday.Name = "chb_friday";
-            chb_friday.Size = new Size(85, 29);
+            chb_friday.Size = new Size(68, 24);
             chb_friday.TabIndex = 128;
             chb_friday.Text = "Friday";
             chb_friday.UseVisualStyleBackColor = true;
@@ -296,14 +307,16 @@
             cdtp_friday_startDate.CustomFormat = "hh:mm:ss tt";
             cdtp_friday_startDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_friday_startDate.Format = DateTimePickerFormat.Custom;
-            cdtp_friday_startDate.Location = new Point(527, 414);
-            cdtp_friday_startDate.MinimumSize = new Size(0, 46);
+            cdtp_friday_startDate.Location = new Point(485, 310);
+            cdtp_friday_startDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_friday_startDate.MinimumSize = new Size(4, 46);
             cdtp_friday_startDate.Name = "cdtp_friday_startDate";
             cdtp_friday_startDate.ShowUpDown = true;
-            cdtp_friday_startDate.Size = new Size(177, 46);
+            cdtp_friday_startDate.Size = new Size(131, 46);
             cdtp_friday_startDate.SkinColor = Color.White;
             cdtp_friday_startDate.TabIndex = 127;
             cdtp_friday_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_friday_startDate.UseWaitCursor = true;
             // 
             // cdtp_Thurday_endDate
             // 
@@ -312,14 +325,16 @@
             cdtp_Thurday_endDate.CustomFormat = "hh:mm:ss tt";
             cdtp_Thurday_endDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_Thurday_endDate.Format = DateTimePickerFormat.Custom;
-            cdtp_Thurday_endDate.Location = new Point(710, 355);
-            cdtp_Thurday_endDate.MinimumSize = new Size(0, 46);
+            cdtp_Thurday_endDate.Location = new Point(645, 266);
+            cdtp_Thurday_endDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_Thurday_endDate.MinimumSize = new Size(4, 46);
             cdtp_Thurday_endDate.Name = "cdtp_Thurday_endDate";
             cdtp_Thurday_endDate.ShowUpDown = true;
-            cdtp_Thurday_endDate.Size = new Size(177, 46);
+            cdtp_Thurday_endDate.Size = new Size(131, 46);
             cdtp_Thurday_endDate.SkinColor = Color.White;
             cdtp_Thurday_endDate.TabIndex = 126;
             cdtp_Thurday_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_Thurday_endDate.UseWaitCursor = true;
             // 
             // cdtp_wednesday_endDate
             // 
@@ -328,14 +343,16 @@
             cdtp_wednesday_endDate.CustomFormat = "hh:mm:ss tt";
             cdtp_wednesday_endDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_wednesday_endDate.Format = DateTimePickerFormat.Custom;
-            cdtp_wednesday_endDate.Location = new Point(710, 296);
-            cdtp_wednesday_endDate.MinimumSize = new Size(0, 46);
+            cdtp_wednesday_endDate.Location = new Point(645, 222);
+            cdtp_wednesday_endDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_wednesday_endDate.MinimumSize = new Size(4, 46);
             cdtp_wednesday_endDate.Name = "cdtp_wednesday_endDate";
             cdtp_wednesday_endDate.ShowUpDown = true;
-            cdtp_wednesday_endDate.Size = new Size(177, 46);
+            cdtp_wednesday_endDate.Size = new Size(131, 46);
             cdtp_wednesday_endDate.SkinColor = Color.White;
             cdtp_wednesday_endDate.TabIndex = 125;
             cdtp_wednesday_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_wednesday_endDate.UseWaitCursor = true;
             // 
             // cdtp_Tuesday_endDate
             // 
@@ -344,21 +361,24 @@
             cdtp_Tuesday_endDate.CustomFormat = "hh:mm:ss tt";
             cdtp_Tuesday_endDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_Tuesday_endDate.Format = DateTimePickerFormat.Custom;
-            cdtp_Tuesday_endDate.Location = new Point(710, 237);
-            cdtp_Tuesday_endDate.MinimumSize = new Size(0, 46);
+            cdtp_Tuesday_endDate.Location = new Point(645, 178);
+            cdtp_Tuesday_endDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_Tuesday_endDate.MinimumSize = new Size(4, 46);
             cdtp_Tuesday_endDate.Name = "cdtp_Tuesday_endDate";
             cdtp_Tuesday_endDate.ShowUpDown = true;
-            cdtp_Tuesday_endDate.Size = new Size(177, 46);
+            cdtp_Tuesday_endDate.Size = new Size(131, 46);
             cdtp_Tuesday_endDate.SkinColor = Color.White;
             cdtp_Tuesday_endDate.TabIndex = 124;
             cdtp_Tuesday_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_Tuesday_endDate.UseWaitCursor = true;
             // 
             // chb_thursday
             // 
             chb_thursday.AutoSize = true;
-            chb_thursday.Location = new Point(402, 361);
+            chb_thursday.Location = new Point(352, 271);
+            chb_thursday.Margin = new Padding(3, 2, 3, 2);
             chb_thursday.Name = "chb_thursday";
-            chb_thursday.Size = new Size(111, 29);
+            chb_thursday.Size = new Size(87, 24);
             chb_thursday.TabIndex = 123;
             chb_thursday.Text = "Thursday";
             chb_thursday.UseVisualStyleBackColor = true;
@@ -370,22 +390,25 @@
             cdtp_Thurday_startDate.CustomFormat = "hh:mm:ss tt";
             cdtp_Thurday_startDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_Thurday_startDate.Format = DateTimePickerFormat.Custom;
-            cdtp_Thurday_startDate.Location = new Point(527, 355);
-            cdtp_Thurday_startDate.MinimumSize = new Size(0, 46);
+            cdtp_Thurday_startDate.Location = new Point(485, 266);
+            cdtp_Thurday_startDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_Thurday_startDate.MinimumSize = new Size(4, 46);
             cdtp_Thurday_startDate.Name = "cdtp_Thurday_startDate";
             cdtp_Thurday_startDate.ShowUpDown = true;
-            cdtp_Thurday_startDate.Size = new Size(177, 46);
+            cdtp_Thurday_startDate.Size = new Size(131, 46);
             cdtp_Thurday_startDate.SkinColor = Color.White;
             cdtp_Thurday_startDate.TabIndex = 122;
             cdtp_Thurday_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_Thurday_startDate.UseWaitCursor = true;
             // 
             // chb_wednesday
             // 
             chb_wednesday.AutoSize = true;
             chb_wednesday.BackColor = Color.Transparent;
-            chb_wednesday.Location = new Point(402, 302);
+            chb_wednesday.Location = new Point(352, 226);
+            chb_wednesday.Margin = new Padding(3, 2, 3, 2);
             chb_wednesday.Name = "chb_wednesday";
-            chb_wednesday.Size = new Size(131, 29);
+            chb_wednesday.Size = new Size(104, 24);
             chb_wednesday.TabIndex = 121;
             chb_wednesday.Text = "Wednesday";
             chb_wednesday.UseVisualStyleBackColor = false;
@@ -393,9 +416,10 @@
             // chb_tuesday
             // 
             chb_tuesday.AutoSize = true;
-            chb_tuesday.Location = new Point(402, 243);
+            chb_tuesday.Location = new Point(352, 182);
+            chb_tuesday.Margin = new Padding(3, 2, 3, 2);
             chb_tuesday.Name = "chb_tuesday";
-            chb_tuesday.Size = new Size(103, 29);
+            chb_tuesday.Size = new Size(82, 24);
             chb_tuesday.TabIndex = 119;
             chb_tuesday.Text = "Tuesday";
             chb_tuesday.UseVisualStyleBackColor = true;
@@ -407,24 +431,26 @@
             cdtp_Tuesday_startDate.CustomFormat = "hh:mm:ss tt";
             cdtp_Tuesday_startDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_Tuesday_startDate.Format = DateTimePickerFormat.Custom;
-            cdtp_Tuesday_startDate.Location = new Point(527, 237);
-            cdtp_Tuesday_startDate.MinimumSize = new Size(0, 46);
+            cdtp_Tuesday_startDate.Location = new Point(485, 178);
+            cdtp_Tuesday_startDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_Tuesday_startDate.MinimumSize = new Size(4, 46);
             cdtp_Tuesday_startDate.Name = "cdtp_Tuesday_startDate";
             cdtp_Tuesday_startDate.ShowUpDown = true;
-            cdtp_Tuesday_startDate.Size = new Size(177, 46);
+            cdtp_Tuesday_startDate.Size = new Size(131, 46);
             cdtp_Tuesday_startDate.SkinColor = Color.White;
             cdtp_Tuesday_startDate.TabIndex = 118;
             cdtp_Tuesday_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_Tuesday_startDate.UseWaitCursor = true;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label3.ForeColor = SystemColors.ControlText;
-            label3.Location = new Point(755, 32);
+            label3.Location = new Point(661, 24);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(81, 23);
+            label3.Size = new Size(67, 19);
             label3.TabIndex = 117;
             label3.Text = "End Time";
             // 
@@ -433,10 +459,10 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlText;
-            label1.Location = new Point(566, 32);
+            label1.Location = new Point(495, 24);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(88, 23);
+            label1.Size = new Size(74, 19);
             label1.TabIndex = 116;
             label1.Text = "Start Time";
             // 
@@ -447,14 +473,16 @@
             cdtp_monrday_endDate.CustomFormat = "hh:mm:ss tt";
             cdtp_monrday_endDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_monrday_endDate.Format = DateTimePickerFormat.Custom;
-            cdtp_monrday_endDate.Location = new Point(710, 178);
-            cdtp_monrday_endDate.MinimumSize = new Size(0, 46);
+            cdtp_monrday_endDate.Location = new Point(645, 134);
+            cdtp_monrday_endDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_monrday_endDate.MinimumSize = new Size(4, 46);
             cdtp_monrday_endDate.Name = "cdtp_monrday_endDate";
             cdtp_monrday_endDate.ShowUpDown = true;
-            cdtp_monrday_endDate.Size = new Size(177, 46);
+            cdtp_monrday_endDate.Size = new Size(131, 46);
             cdtp_monrday_endDate.SkinColor = Color.White;
             cdtp_monrday_endDate.TabIndex = 115;
             cdtp_monrday_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_monrday_endDate.UseWaitCursor = true;
             // 
             // cdtp_sunday_endDate
             // 
@@ -463,14 +491,16 @@
             cdtp_sunday_endDate.CustomFormat = "hh:mm:ss tt";
             cdtp_sunday_endDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_sunday_endDate.Format = DateTimePickerFormat.Custom;
-            cdtp_sunday_endDate.Location = new Point(710, 119);
-            cdtp_sunday_endDate.MinimumSize = new Size(0, 46);
+            cdtp_sunday_endDate.Location = new Point(645, 89);
+            cdtp_sunday_endDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_sunday_endDate.MinimumSize = new Size(4, 46);
             cdtp_sunday_endDate.Name = "cdtp_sunday_endDate";
             cdtp_sunday_endDate.ShowUpDown = true;
-            cdtp_sunday_endDate.Size = new Size(177, 46);
+            cdtp_sunday_endDate.Size = new Size(131, 46);
             cdtp_sunday_endDate.SkinColor = Color.White;
             cdtp_sunday_endDate.TabIndex = 114;
             cdtp_sunday_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_sunday_endDate.UseWaitCursor = true;
             // 
             // cdtp_saturday_endDate
             // 
@@ -479,21 +509,24 @@
             cdtp_saturday_endDate.CustomFormat = "hh:mm:ss tt";
             cdtp_saturday_endDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_saturday_endDate.Format = DateTimePickerFormat.Custom;
-            cdtp_saturday_endDate.Location = new Point(710, 60);
-            cdtp_saturday_endDate.MinimumSize = new Size(0, 46);
+            cdtp_saturday_endDate.Location = new Point(645, 45);
+            cdtp_saturday_endDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_saturday_endDate.MinimumSize = new Size(4, 46);
             cdtp_saturday_endDate.Name = "cdtp_saturday_endDate";
             cdtp_saturday_endDate.ShowUpDown = true;
-            cdtp_saturday_endDate.Size = new Size(177, 46);
+            cdtp_saturday_endDate.Size = new Size(131, 46);
             cdtp_saturday_endDate.SkinColor = Color.White;
             cdtp_saturday_endDate.TabIndex = 113;
             cdtp_saturday_endDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_saturday_endDate.UseWaitCursor = true;
             // 
             // chb_monday
             // 
             chb_monday.AutoSize = true;
-            chb_monday.Location = new Point(402, 184);
+            chb_monday.Location = new Point(352, 138);
+            chb_monday.Margin = new Padding(3, 2, 3, 2);
             chb_monday.Name = "chb_monday";
-            chb_monday.Size = new Size(103, 29);
+            chb_monday.Size = new Size(82, 24);
             chb_monday.TabIndex = 112;
             chb_monday.Text = "Monday";
             chb_monday.UseVisualStyleBackColor = true;
@@ -505,21 +538,24 @@
             cdtp_monrday_startDate.CustomFormat = "hh:mm:ss tt";
             cdtp_monrday_startDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_monrday_startDate.Format = DateTimePickerFormat.Custom;
-            cdtp_monrday_startDate.Location = new Point(527, 178);
-            cdtp_monrday_startDate.MinimumSize = new Size(0, 46);
+            cdtp_monrday_startDate.Location = new Point(485, 134);
+            cdtp_monrday_startDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_monrday_startDate.MinimumSize = new Size(4, 46);
             cdtp_monrday_startDate.Name = "cdtp_monrday_startDate";
             cdtp_monrday_startDate.ShowUpDown = true;
-            cdtp_monrday_startDate.Size = new Size(177, 46);
+            cdtp_monrday_startDate.Size = new Size(131, 46);
             cdtp_monrday_startDate.SkinColor = Color.White;
             cdtp_monrday_startDate.TabIndex = 111;
             cdtp_monrday_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_monrday_startDate.UseWaitCursor = true;
             // 
             // chb_sunday
             // 
             chb_sunday.AutoSize = true;
-            chb_sunday.Location = new Point(402, 125);
+            chb_sunday.Location = new Point(352, 94);
+            chb_sunday.Margin = new Padding(3, 2, 3, 2);
             chb_sunday.Name = "chb_sunday";
-            chb_sunday.Size = new Size(96, 29);
+            chb_sunday.Size = new Size(76, 24);
             chb_sunday.TabIndex = 110;
             chb_sunday.Text = "Sunday";
             chb_sunday.UseVisualStyleBackColor = true;
@@ -531,21 +567,24 @@
             cdtp_sunday_startDate.CustomFormat = "hh:mm:ss tt";
             cdtp_sunday_startDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_sunday_startDate.Format = DateTimePickerFormat.Custom;
-            cdtp_sunday_startDate.Location = new Point(527, 119);
-            cdtp_sunday_startDate.MinimumSize = new Size(0, 46);
+            cdtp_sunday_startDate.Location = new Point(485, 89);
+            cdtp_sunday_startDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_sunday_startDate.MinimumSize = new Size(4, 46);
             cdtp_sunday_startDate.Name = "cdtp_sunday_startDate";
             cdtp_sunday_startDate.ShowUpDown = true;
-            cdtp_sunday_startDate.Size = new Size(177, 46);
+            cdtp_sunday_startDate.Size = new Size(131, 46);
             cdtp_sunday_startDate.SkinColor = Color.White;
             cdtp_sunday_startDate.TabIndex = 109;
             cdtp_sunday_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_sunday_startDate.UseWaitCursor = true;
             // 
             // chb_saturday
             // 
             chb_saturday.AutoSize = true;
-            chb_saturday.Location = new Point(402, 66);
+            chb_saturday.Location = new Point(352, 50);
+            chb_saturday.Margin = new Padding(3, 2, 3, 2);
             chb_saturday.Name = "chb_saturday";
-            chb_saturday.Size = new Size(108, 29);
+            chb_saturday.Size = new Size(86, 24);
             chb_saturday.TabIndex = 108;
             chb_saturday.Text = "Saturday";
             chb_saturday.UseVisualStyleBackColor = true;
@@ -557,28 +596,31 @@
             cdtp_saturday_startDate.CustomFormat = "hh:mm:ss tt";
             cdtp_saturday_startDate.Font = new Font("Segoe UI", 9.5F);
             cdtp_saturday_startDate.Format = DateTimePickerFormat.Custom;
-            cdtp_saturday_startDate.Location = new Point(527, 60);
-            cdtp_saturday_startDate.MinimumSize = new Size(0, 46);
+            cdtp_saturday_startDate.Location = new Point(485, 45);
+            cdtp_saturday_startDate.Margin = new Padding(3, 2, 3, 2);
+            cdtp_saturday_startDate.MinimumSize = new Size(4, 46);
             cdtp_saturday_startDate.Name = "cdtp_saturday_startDate";
+            cdtp_saturday_startDate.RightToLeft = RightToLeft.No;
+            cdtp_saturday_startDate.RightToLeftLayout = true;
             cdtp_saturday_startDate.ShowUpDown = true;
-            cdtp_saturday_startDate.Size = new Size(177, 46);
+            cdtp_saturday_startDate.Size = new Size(131, 46);
             cdtp_saturday_startDate.SkinColor = Color.White;
             cdtp_saturday_startDate.TabIndex = 107;
             cdtp_saturday_startDate.TextColor = Color.FromArgb(10, 22, 41);
+            cdtp_saturday_startDate.UseWaitCursor = true;
             // 
             // Scedual_details
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 248, 252);
-            ClientSize = new Size(972, 853);
+            ClientSize = new Size(850, 591);
             Controls.Add(pnl_addSchedule);
             Controls.Add(btn_back);
             Controls.Add(csb_addSchedule);
             Controls.Add(pictureBox9);
             Controls.Add(lbl_schedules);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Scedual_details";
             Text = "Scedual_details";
             Load += Scedual_details_Load;
