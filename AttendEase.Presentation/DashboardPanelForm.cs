@@ -44,6 +44,13 @@ namespace AttendEase.Presentation
             {
                 btn_checkout.Enabled = false;
             }
+
+            string text = GlobalData.EmployeeId.ToString();
+
+            QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
+            var myData = qr.CreateQrCode(text, QRCoder.QRCodeGenerator.ECCLevel.H);
+            var code = new QRCoder.QRCode(myData);
+            pic_qrDisplay.Image = code.GetGraphic(50);
         }
 
         private void btn_checkin_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using AttendEase.BusinessLogic;
 using AttendEase.DataAccess.Entities;
+using AttendEase.Presentation.Attendance;
 using AttendEase.Presentation.CustomControls;
 using Microsoft.Extensions.Configuration;
 
@@ -10,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,6 +26,7 @@ namespace AttendEase.Presentation
         bool isFirstImage = true;
         Image image1;
         Image image2;
+        int flag = 0;
 
         public EmployeeDisplay()
         {
@@ -116,6 +119,8 @@ namespace AttendEase.Presentation
         {
             pnlCrudEmp.Show();
 
+
+
             var departments = context.Departments.Select(department => new { department.DepartmentId, department.Name }).ToList();
             var schedules = context.Schedules.Select(schedule => new { schedule.ScheduleId, schedule.Name }).ToList();
             ccb_schedule.DataSource = schedules;
@@ -147,41 +152,103 @@ namespace AttendEase.Presentation
 
         private void cbtn_add_Click(object sender, EventArgs e)
         {
-            try
-            {
+           
+           
+                ValidateInputs();
+            if (flag == 0) {
                 employeeDisplay.AddEmployee(ctxt_name.Text, ccb_jobTitle.SelectedItem?.ToString(), ctxt_email.Text, ccb_gender.SelectedItem?.ToString(), ctxt_address.Text, ctxt_phone.Text, (int)ccb_dept.SelectedValue, ccb_emplyeeType.SelectedItem?.ToString(), (int)ccb_schedule.SelectedValue);
                 MessageBox.Show("Added");
                 LoadEmployeesData();
                 btn_back.PerformClick();
                 clearInputs();
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Invalid Data");
-            }
+
         }
 
         private void cbtn_update_Click(object sender, EventArgs e)
         {
             //MessageBox.Show($"{ccb_emplyeeType.SelectedItem.ToString()}");
 
-            try
+            ValidateUpdates();
+            if (flag == 0)
             {
+
                 employeeDisplay.UpdateEmplyee(id, ctxt_name.Text, ccb_jobTitle.SelectedItem?.ToString(), ctxt_email.Text, ccb_gender?.SelectedItem?.ToString(), ctxt_address?.Text, ctxt_phone?.Text, (int)ccb_dept.SelectedValue, ccb_emplyeeType.SelectedItem?.ToString(), (int)ccb_schedule.SelectedValue);
                 MessageBox.Show("Updated");
                 LoadEmployeesData();
                 btn_back.PerformClick();
                 clearInputs();
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Invalid Data");
-            }
+         
         }
         private void clearInputs()
         {
             ctxt_address.Text = ctxt_email.Text = ctxt_name.Text = ctxt_phone.Text = "";
             ccb_emplyeeType.SelectedIndex = ccb_dept.SelectedIndex = ccb_gender.SelectedIndex = ccb_jobTitle.SelectedIndex = ccb_schedule.SelectedIndex = -1;
+        }
+
+        private void ValidateInputs()
+        {
+            flag = 0;
+
+            if (employeeDisplay.getEmployeeByEmail(ctxt_email.Text) != null)
+            {
+         
+                MessageBox.Show("Email already exists.");
+                flag = 1;
+                return;
+
+            }
+
+            if (!Regex.IsMatch(ctxt_email.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                
+                MessageBox.Show("Email Format is not valid.");
+
+                flag = 1;
+                return;
+
+            }
+
+
+            if (!Regex.IsMatch(ctxt_phone.Text, @"^01\d{0,18}$"))
+            {
+               
+                MessageBox.Show("Phone must be 21 digits and starts with 01.");
+
+                flag = 1;
+                return;
+
+
+            }
+        }
+
+        private void ValidateUpdates()
+        {
+            flag = 0;
+
+
+            if (!Regex.IsMatch(ctxt_email.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Email Format is not valid.");
+
+                flag = 1;
+                return;
+
+            }
+
+          
+
+
+
+            if (!Regex.IsMatch(ctxt_phone.Text, @"^01\d{0,18}$"))
+            {
+                MessageBox.Show($"Phone must be 21 digits and starts with 01.");
+                flag = 1;
+                return;
+
+
+            }
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardPanelForm));
             pnl_dashboard = new Panel();
+            pic_qrDisplay = new PictureBox();
             pictureBox9 = new PictureBox();
             lbl_title = new Label();
             panel6 = new Panel();
@@ -48,6 +49,7 @@
             label5 = new Label();
             pictureBox3 = new PictureBox();
             pnl_dashboard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pic_qrDisplay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             panel6.SuspendLayout();
             panel7.SuspendLayout();
@@ -60,6 +62,7 @@
             // 
             // pnl_dashboard
             // 
+            pnl_dashboard.Controls.Add(pic_qrDisplay);
             pnl_dashboard.Controls.Add(pictureBox9);
             pnl_dashboard.Controls.Add(lbl_title);
             pnl_dashboard.Controls.Add(panel6);
@@ -71,6 +74,15 @@
             pnl_dashboard.Name = "pnl_dashboard";
             pnl_dashboard.Size = new Size(970, 829);
             pnl_dashboard.TabIndex = 1;
+            // 
+            // pic_qrDisplay
+            // 
+            pic_qrDisplay.Location = new Point(522, 42);
+            pic_qrDisplay.Name = "pic_qrDisplay";
+            pic_qrDisplay.Size = new Size(331, 196);
+            pic_qrDisplay.SizeMode = PictureBoxSizeMode.Zoom;
+            pic_qrDisplay.TabIndex = 29;
+            pic_qrDisplay.TabStop = false;
             // 
             // pictureBox9
             // 
@@ -98,7 +110,7 @@
             panel6.BackColor = Color.FromArgb(243, 248, 252);
             panel6.Controls.Add(btn_checkin);
             panel6.Controls.Add(btn_checkout);
-            panel6.Location = new Point(451, 239);
+            panel6.Location = new Point(454, 254);
             panel6.Name = "panel6";
             panel6.Size = new Size(459, 209);
             panel6.TabIndex = 24;
@@ -271,6 +283,7 @@
             Text = "DashboardPanelForm";
             pnl_dashboard.ResumeLayout(false);
             pnl_dashboard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pic_qrDisplay).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             panel6.ResumeLayout(false);
             panel7.ResumeLayout(false);
@@ -305,5 +318,6 @@
         private PictureBox pictureBox3;
         private Label label1;
         private Label label2;
+        private PictureBox pic_qrDisplay;
     }
 }

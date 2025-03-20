@@ -656,13 +656,13 @@ namespace AttendEase.BusinessLogic
 
 
         #region  CheckIn/Out
-
         public void HrCheckIn(int id)
         {
-            using( var context=new AttendEaseContext(this.connectionString))
+            using (var context = new AttendEaseContext(this.connectionString))
             {
                 var checkIn = context.Attendances.FirstOrDefault(a => a.EmployeeId == id);
                 checkIn.CheckInTime = DateTime.Now.TimeOfDay;
+                IsLate(id, (TimeSpan)checkIn.CheckInTime);
 
                 context.SaveChanges();
 
@@ -676,12 +676,12 @@ namespace AttendEase.BusinessLogic
             {
                 var Hr = context.Attendances.FirstOrDefault(a => a.EmployeeId == id);
                 Hr.CheckOutTime = DateTime.Now.TimeOfDay;
+                IsLeftEarly(id, (TimeSpan)Hr.CheckOutTime);
 
                 context.SaveChanges();
 
             }
         }
-
 
         public bool HasCheckedIn(int id)
         {
@@ -717,6 +717,121 @@ namespace AttendEase.BusinessLogic
                 return false;
             }
         }
-        #endregion
+
+
+
+        public void IsLate(int id, TimeSpan checkin)
+        {
+            using (var context = new AttendEaseContext())
+            {
+                var today = DateTime.Now.Date;
+                var dayOfWeek = today.DayOfWeek.ToString();
+
+                var x = (from e in context.Employees
+                         join s in context.Schedules on e.ScheduleId equals s.ScheduleId
+                         join swd in context.ScheduleWorkDays on s.ScheduleId equals swd.ScheduleId
+                         join wd in context.WorkDays on swd.WorkDayId equals wd.WorkDayId
+
+                         where e.EmployeeId == id
+                         where wd.DayOfWeek == dayOfWeek
+                         select new
+                         {
+
+                             wd.DayOfWeek,
+                             wd.WorkDayId,
+                             wd.StartTime,
+                             wd.EndTime
+
+
+                         }).FirstOrDefault();
+
+                if (x != null)
+                {
+                    if (checkin > x.StartTime)
+                    {
+                        var attendance = context.Attendances
+                     .FirstOrDefault(a => a.EmployeeId == id && a.AttendanceDate.Date == today);
+
+                        if (attendance != null)
+                        {
+
+                            var lateStatus = context.AttendanceStatuses
+                                .FirstOrDefault(s => s.Status == "Late");
+
+                            if (lateStatus != null)
+                            {
+
+                                var attendanceStatusLink = new AttendanceAttendanceStatus
+                                {
+                                    AttendanceId = attendance.AttendanceId,
+                                    AttendanceStatusId = lateStatus.AttendanceStatusId
+                                };
+
+                                context.AttendanceAttendanceStatuses.Add(attendanceStatusLink);
+                                context.SaveChanges();
+                            }
+
+
+
+                        }
+                    }
+
+
+                }
+               
+            }
+        }
+        public void IsLeftEarly(int id, TimeSpan checkout)
+        {
+            using (var context = new AttendEaseContext())
+            {
+                var today = DateTime.Now.Date;
+                var dayOfWeek = today.DayOfWeek.ToString();
+
+                var x = (from e in context.Employees
+                         join s in context.Schedules on e.ScheduleId equals s.ScheduleId
+                         join swd in context.ScheduleWorkDays on s.ScheduleId equals swd.ScheduleId
+                         join wd in context.WorkDays on swd.WorkDayId equals wd.WorkDayId
+                         where e.EmployeeId == id && wd.DayOfWeek == dayOfWeek
+                         select new
+                         {
+                             wd.DayOfWeek,
+                             wd.WorkDayId,
+                             wd.StartTime,
+                             wd.EndTime
+                         }).FirstOrDefault();
+
+                if (x != null)
+                {
+                    if (checkout < x.EndTime)
+                    {
+
+                        var attendance = context.Attendances
+                            .FirstOrDefault(a => a.EmployeeId == id && a.AttendanceDate.Date == today);
+
+                        if (attendance != null)
+                        {
+
+                            var leftEarlyStatus = context.AttendanceStatuses
+                                .FirstOrDefault(s => s.Status == "Left Early");
+
+                            if (leftEarlyStatus != null)
+                            {
+
+                                var attendanceStatusLink = new AttendanceAttendanceStatus
+                                {
+                                    AttendanceId = attendance.AttendanceId,
+                                    AttendanceStatusId = leftEarlyStatus.AttendanceStatusId
+                                };
+
+                                context.AttendanceAttendanceStatuses.Add(attendanceStatusLink);
+                                context.SaveChanges();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+#endregion
     }
 }

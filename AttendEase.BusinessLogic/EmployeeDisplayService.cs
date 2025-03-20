@@ -76,7 +76,16 @@ namespace AttendEase.BusinessLogic
                 return context.Employees.Include(e=>e.Department).Include(e=>e.Schedule).Where(e => e.EmployeeId == id).FirstOrDefault();
                     }
         }
-        //string name, string? jobTitle, string email, string? gender, string? address, string? phone, int deptId, string? employmentType, int scheduleId
+
+
+        public Employee getEmployeeByEmail(string email)
+        {
+            using (var context = new AttendEaseContext())
+            {
+                return context.Employees.FirstOrDefault(e => e.Email == email);
+            }
+        }
+
         public void AddEmployee(string name, string? jobTitle, string email, string? gender, string? address, string? phone, int deptId, string? employmentType, int scheduleId)
         {
 
