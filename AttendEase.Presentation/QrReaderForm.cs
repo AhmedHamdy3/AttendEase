@@ -13,16 +13,23 @@ using ZXing;
 using AttendEase.DataAccess.Entities;
 using Microsoft.Extensions.Configuration;
 using AttendEase.BusinessLogic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AttendEase.Presentation
 {
     public partial class QrReaderForm : Form
     {
-        int CurrentId=GlobalData.EmployeeId;
+
+        int CurrentId = GlobalData.EmployeeId;
         AttendEaseContext context;
         AttendanceService attendanceService;
-        private FilterInfoCollection videoDevices;
-        private VideoCaptureDevice videoSource;
+        private FilterInfoCollection CaptureDevice;
+        private VideoCaptureDevice FinalFrame;
+
+
+
+
+
         public QrReaderForm()
         {
             InitializeComponent();
@@ -35,79 +42,160 @@ namespace AttendEase.Presentation
             var configSection = configBuilder.GetSection("ConnectionStrings");
             var connectionString = configSection["SQLServerConnection"] ?? null;
 
-            attendanceService=new AttendanceService(connectionString);
+            attendanceService = new AttendanceService(connectionString);
 
+            CaptureDevice = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
-
-            videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-
-            if (videoDevices.Count == 0)
+            if (CaptureDevice.Count == 0)
             {
                 MessageBox.Show("No camera detected!");
                 return;
             }
 
-            videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
-            videoSource.NewFrame += (s, ev) =>
-            {
-                Bitmap bitmap = (Bitmap)ev.Frame.Clone();
-                pic_qr.Image = bitmap;
-            };
-            videoSource.Start();
-           // MessageBox.Show("Camera Started!");
+            FinalFrame = new VideoCaptureDevice(CaptureDevice[0].MonikerString);
+            FinalFrame.NewFrame += new NewFrameEventHandler(FinalFrame_NewFrame);
+
+            FinalFrame.Start();
         }
 
-        private void videoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
+     
+
+
+
+
+
+
+        private void QrReaderForm_Load(object sender, EventArgs e)
         {
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            pic_qr.Image = bitmap;
+            
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+      
+        }
+
+        private void FinalFrame_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            try
+            {
+                pic_qr.Image = (Bitmap)eventArgs.Frame.Clone();
+            }
+            catch(Exception ex) {
+                MessageBox.Show("Camera Error: " + ex.Message);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+             timer1.Stop();
+
+           // MessageBox.Show("timer ticked");
 
             try
             {
-                var reader = new BarcodeReader();
-
-
-                var result = reader.Decode(bitmap);
-
-                if (result != null)
+                if (pic_qr.Image == null)
                 {
-                    string qrText = result.Text;
+                    MessageBox.Show("no pic");
+                    return;
+                }
 
-                    if (qrText == CurrentId.ToString())
+                BarcodeReader Reader = new BarcodeReader()
+                {
+                    AutoRotate = true,
+                    TryInverted = true,
+                    Options =
                     {
-                        videoSource.SignalToStop();
-                        this.Invoke(new MethodInvoker(delegate
+                        PossibleFormats= new List<BarcodeFormat> {BarcodeFormat.QR_CODE}
+                    }
+
+                };
+
+                using (var bitmap = new Bitmap(pic_qr.Image))
+                {
+                    Result result = Reader.Decode(bitmap);
+
+                    // MessageBox.Show($"{result}");
+
+                    if (result != null)
+                    {
+                        // MessageBox.Show("no piccccccc");
+                        string decoded = result.Text.Trim();
+                        string id = GlobalData.EmployeeId.ToString();
+
+                       // MessageBox.Show($"{decoded},{id}");
+
+                        if (decoded == id)
                         {
-                            MessageBox.Show("QR Code Matched!");
-                            if (attendanceService.HasCheckedIn(CurrentId) == true)
+                            timer1.Stop();
+                            MessageBox.Show("QR Matched");
+                            if (attendanceService.HasCheckedIn(CurrentId))
                             {
                                 attendanceService.HrCheckOut(CurrentId);
                             }
-                            else { 
+                            else
+                            {
                                 attendanceService.HrCheckIn(CurrentId);
-
                             }
 
-                            this.DialogResult = DialogResult.OK;
-                            this.Close();
-                        }));
+                        }
+                        else
+                        {
+                            MessageBox.Show("QR Not Matched");
+                            timer1.Stop();
+
+
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("Scan Error " + ex.Message);
+                timer1.Stop();
             }
+
+
         }
 
-        private void QrReaderForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            if (videoSource != null && videoSource.IsRunning)
-            {
-                videoSource.SignalToStop();
-            }
+           // MessageBox.Show("click");
+            timer1.Enabled = true;
+            timer1.Start();
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          
+            try
+            {
+                if (FinalFrame != null)
+                {
+                    if (FinalFrame.IsRunning)
+                    {
+                        FinalFrame.NewFrame -= FinalFrame_NewFrame; 
+                        FinalFrame.SignalToStop();
+                        FinalFrame = null; 
+                    }
+                }
 
+                timer1.Stop();
+                timer1.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Closing camera error: {ex.Message}");
+            }
+
+        }
+
+        private void QrReaderForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
