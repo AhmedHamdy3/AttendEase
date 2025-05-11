@@ -1,9 +1,12 @@
 # 📌 Attendease - Employment Attendance System 🕒
-
-## 🌟 Overview
 Attendease is a comprehensive employment attendance system designed to streamline attendance tracking, employee management, and reporting. The system supports three main roles: **Employee**, **Admin**, and **HR**. Each role has specific permissions and functionalities tailored to their responsibilities. Built with **Entity Framework**, **LINQ**, and **Windows Forms**, Attendease provides a robust and user-friendly desktop application for managing attendance and employee data.
 
 ---
+
+## 🌟 Overview  
+[![AttendEase Demo Preview](https://github.com/AhmedHamdy3/AttendEase/blob/main/Demo.gif)](https://youtu.be/VL2mo1QqToU)
+
+*↑ Click to watch full demo (YouTube)*  
 
 ## 👥 Roles and Permissions
 
