@@ -8,6 +8,8 @@ Attendease is a comprehensive employment attendance system designed to streamlin
 
 *↑ Click to watch full demo (YouTube)*  
 
+---
+
 ## 👥 Roles and Permissions
 
 ### 1. **Admin** 👨‍💻
